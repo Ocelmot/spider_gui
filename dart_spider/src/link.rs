@@ -1,8 +1,8 @@
-use std::{collections::HashMap, sync::Arc};
+use std::{collections::HashMap, sync::Arc, path::PathBuf, time::Duration};
 
 use spider_client::{
     message::{AbsoluteDatasetPath, DatasetData, Message, RouterMessage, UiMessage, UiPageList},
-    Relation, Role, SpiderClient, SpiderId2048,
+    Relation, Role, SpiderId2048, SpiderClientBuilder, ClientResponse, beacon_lookout_many, Link,
 };
 use tokio::{
     runtime::{Builder, Runtime},
@@ -16,13 +16,13 @@ use tokio::{
 
 use flutter_rust_bridge::StreamSink;
 
-use crate::ui::{DartUiInput, DartUiPage};
+use crate::{ui::{DartUiInput, DartUiPage}, link_state::LinkState};
 
 #[derive(Debug)]
 pub enum ToProcessor {
     // Connection management
-    Connect(String),
-    Disconnect,
+    Pair(String),
+    Unpair,
 
     // Input
     Input {
@@ -35,9 +35,11 @@ pub enum ToProcessor {
 
 #[derive(Debug)]
 pub enum ToUi {
-    Initialized,
+    Unpaired,
+    // first string is name, second is base64 of its key
+    Pairs{ relations: Vec<(String, String)>},
+    Connecting {msg: String},
     Connected,
-    Disconnected,
     SetPageOrder { pages: Vec<String> },
     SetPage { page: DartUiPage },
 }
@@ -53,40 +55,30 @@ pub struct LinkProcessor {
     sender: StreamSink<ToUi>,
     receiver: Receiver<ToProcessor>,
     // State
-    client: SpiderClient,
+    link_state: LinkState,
     page_set: UiPageList,
     datasets: HashMap<AbsoluteDatasetPath, Vec<DatasetData>>,
 }
 
 impl LinkProcessor {
-    pub fn create(stream_sink: StreamSink<ToUi>) -> LinkProcessorParts {
+    pub fn create(stream_sink: StreamSink<ToUi>, config_path: String) -> LinkProcessorParts {
         let (processor_tx, processor_rx) = channel(50);
 
         println!("Creating client");
-        let mut client = SpiderClient::new();
 
-        // TEMP: LOAD BASE RELATION FROM FILE
-        println!("Reading spider_keyfile.json");
-        if !client.has_host_relation() {
-            // let path = PathBuf::from("spider_keyfile.json");
-
-            // let data = std::fs::read_to_string(&path).expect("spider_keyfile.json should exist");
-            let data = include_str!("spider_keyfile.json");
-            let id: SpiderId2048 =
-                serde_json::from_str(&data).expect("Failed to deserialize spiderid");
-            let host = Relation {
-                id,
-                role: Role::Peer,
-            };
-            client.set_host_relation(host);
-        }
-        // END TEMP
+        let mut path = PathBuf::from(config_path);
+        path.push("spider_config.json");
+        let client_builder = SpiderClientBuilder::load_or_set(&path, |builder|{
+            
+        });
+        let link_state = LinkState::new(client_builder);
+        
 
         let processor = LinkProcessor {
             sender: stream_sink,
             receiver: processor_rx,
             // State
-            client,
+            link_state,
             page_set: UiPageList::new(),
             datasets: HashMap::new(),
         };
@@ -114,7 +106,13 @@ impl LinkProcessor {
     async fn run(mut self, notify: Arc<Notify>) {
         // wait until the channel has been installed into the global option
         notify.notified().await;
-        self.sender.add(ToUi::Initialized);
+        // Initialize pair/connect
+        if self.link_state.is_paired() {
+            self.link_state.connect().await;
+            self.sender.add(ToUi::Connecting { msg: String::from("Connecting...") });
+        } else {
+            self.sender.add(ToUi::Unpaired);
+        }
 
         loop {
             println!("looping!");
@@ -124,62 +122,74 @@ impl LinkProcessor {
                     println!("From flutter: {:?}", cmd);
                     match cmd {
                         // Connection management
-                        ToProcessor::Connect(addr) => {
-                            self.connect(addr).await;
+                        ToProcessor::Pair(key) => {
+                            if let Some(relation) = Relation::peer_from_base_64(key){
+                                self.link_state.pair(relation);
+                                self.link_state.connect().await;
+                                self.sender.add(ToUi::Connecting { msg: String::from("Connecting...") });    
+                            }
                         },
-                        ToProcessor::Disconnect => {
-                            self.client.disconnect().await;
-                            self.sender.add(ToUi::Disconnected);
+                        ToProcessor::Unpair => {
+                            self.link_state.unpair().await;
+                            self.sender.add(ToUi::Unpaired);
                         },
 
                         // Input
                         ToProcessor::Input{ page_id, element_id, dataset_indices, input } => {
                             if let Some(id) = SpiderId2048::from_base64(page_id) {
                                 let dataset_indices = dataset_indices.iter().map(|x|*x as usize).collect();
-                                self.client.send(Message::Ui(UiMessage::InputFor(id, element_id, dataset_indices, input.into()))).await;
+                                self.link_state.send(Message::Ui(UiMessage::InputFor(id, element_id, dataset_indices, input.into()))).await;
                             }
                         },
                     }
                 },
-                msg = self.client.recv(), if self.client.is_connected() => {
-                    println!("From base: {:?}", msg);
-                    if msg.is_none(){
-                        // disconnected
-                        println!("Disconnected!");
-                    }else{
-                        match msg.unwrap() {
-                            Message::Ui(msg) => {
-                                self.handle_ui(msg).await;
-                            },
-                            Message::Dataset(_) => {},
-                            Message::Router(_) => {},
+                addrs = beacon_lookout_many(Duration::from_secs(5)), if !self.link_state.is_paired() => {
+                    // if the link is not paired, search for possible bases
+                    let mut relations = Vec::new();
+                    for addr in addrs {
+                        match Link::key_request(addr).await {
+                            Some(key_request) => {
+                                let name = key_request.name;
+                                let key = key_request.key.to_base64();
+                                relations.push((name, key));
+                            }
+                            None => {}
                         }
+                    }
+                    self.sender.add(ToUi::Pairs { relations });
+                },
+                msg = self.link_state.recv(), if self.link_state.is_connected() => {
+                    println!("From base: {:?}", msg);
+                    println!("link_state: {:?}", self.link_state);
+                    match msg {
+                        Some(msg) => {
+                            match msg {
+                                ClientResponse::Message(Message::Ui(msg)) => {
+                                    self.handle_ui(msg).await;
+                                },
+                                ClientResponse::Connected => {
+                                    println!("connected");
+                                    self.sender.add(ToUi::Connected);
+                                    // since we are connected, need to register as a ui
+                                    // set name
+                                    let msg = RouterMessage::SetIdentityProperty("name".into(), "GUI".into());
+                                    let msg = Message::Router(msg);
+                                    self.link_state.send(msg).await;
+
+                                    // subscribe to ui
+                                    let msg = Message::Ui(UiMessage::Subscribe);
+                                    self.link_state.send(msg).await;
+                                },
+                                _ => {}
+                            }
+                        },
+                        None => {
+                            // disconnected
+                            println!("Disconnected!");
+                        },
                     }
                 }
             }
-        }
-    }
-
-    async fn connect(&mut self, addr: String) {
-        println!("attempting connection to {addr}");
-        if self.client.is_connected() {
-            println!("was already connected");
-            return; // disconnect before connect
-        }
-        if self.client.connect_to(addr).await {
-            println!("connected");
-            self.sender.add(ToUi::Connected);
-            // since we are connected, need to register as a ui
-            // set name
-            let msg = RouterMessage::SetIdentityProperty("name".into(), "GUI".into());
-            let msg = Message::Router(msg);
-            self.client.send(msg).await;
-
-            // subscribe to ui
-            let msg = Message::Ui(UiMessage::Subscribe);
-            self.client.send(msg).await;
-        } else {
-            println!("failed");
         }
     }
 

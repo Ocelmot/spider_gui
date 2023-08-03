@@ -14,16 +14,23 @@ class PageSelectView extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> children = [];
     for (var pageId in pageOrder) {
-      var w = TextButton(
-          onPressed: () {
-            onPressed(pageId);
-          },
-          child: Text(pages[pageId]?.name ?? '<No Value>'));
+      var w = Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: TextButton(
+            onPressed: () {
+              onPressed(pageId);
+            },
+            child: Text(pages[pageId]?.name ?? '<No Value>')),
+      );
       children.add(w);
     }
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: children,
-    );
+    return SingleChildScrollView(
+        child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: children,
+      ),
+    ));
   }
 }

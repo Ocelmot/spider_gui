@@ -313,8 +313,8 @@ abstract class DartUiInput_Text implements DartUiInput {
 mixin _$ToProcessor {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String field0) connect,
-    required TResult Function() disconnect,
+    required TResult Function(String field0) pair,
+    required TResult Function() unpair,
     required TResult Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)
         input,
@@ -322,8 +322,8 @@ mixin _$ToProcessor {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String field0)? connect,
-    TResult? Function()? disconnect,
+    TResult? Function(String field0)? pair,
+    TResult? Function()? unpair,
     TResult? Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)?
         input,
@@ -331,8 +331,8 @@ mixin _$ToProcessor {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String field0)? connect,
-    TResult Function()? disconnect,
+    TResult Function(String field0)? pair,
+    TResult Function()? unpair,
     TResult Function(String pageId, String elementId, Uint32List datasetIndices,
             DartUiInput input)?
         input,
@@ -341,22 +341,22 @@ mixin _$ToProcessor {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToProcessor_Connect value) connect,
-    required TResult Function(ToProcessor_Disconnect value) disconnect,
+    required TResult Function(ToProcessor_Pair value) pair,
+    required TResult Function(ToProcessor_Unpair value) unpair,
     required TResult Function(ToProcessor_Input value) input,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToProcessor_Connect value)? connect,
-    TResult? Function(ToProcessor_Disconnect value)? disconnect,
+    TResult? Function(ToProcessor_Pair value)? pair,
+    TResult? Function(ToProcessor_Unpair value)? unpair,
     TResult? Function(ToProcessor_Input value)? input,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToProcessor_Connect value)? connect,
-    TResult Function(ToProcessor_Disconnect value)? disconnect,
+    TResult Function(ToProcessor_Pair value)? pair,
+    TResult Function(ToProcessor_Unpair value)? unpair,
     TResult Function(ToProcessor_Input value)? input,
     required TResult orElse(),
   }) =>
@@ -382,20 +382,20 @@ class _$ToProcessorCopyWithImpl<$Res, $Val extends ToProcessor>
 }
 
 /// @nodoc
-abstract class _$$ToProcessor_ConnectCopyWith<$Res> {
-  factory _$$ToProcessor_ConnectCopyWith(_$ToProcessor_Connect value,
-          $Res Function(_$ToProcessor_Connect) then) =
-      __$$ToProcessor_ConnectCopyWithImpl<$Res>;
+abstract class _$$ToProcessor_PairCopyWith<$Res> {
+  factory _$$ToProcessor_PairCopyWith(
+          _$ToProcessor_Pair value, $Res Function(_$ToProcessor_Pair) then) =
+      __$$ToProcessor_PairCopyWithImpl<$Res>;
   @useResult
   $Res call({String field0});
 }
 
 /// @nodoc
-class __$$ToProcessor_ConnectCopyWithImpl<$Res>
-    extends _$ToProcessorCopyWithImpl<$Res, _$ToProcessor_Connect>
-    implements _$$ToProcessor_ConnectCopyWith<$Res> {
-  __$$ToProcessor_ConnectCopyWithImpl(
-      _$ToProcessor_Connect _value, $Res Function(_$ToProcessor_Connect) _then)
+class __$$ToProcessor_PairCopyWithImpl<$Res>
+    extends _$ToProcessorCopyWithImpl<$Res, _$ToProcessor_Pair>
+    implements _$$ToProcessor_PairCopyWith<$Res> {
+  __$$ToProcessor_PairCopyWithImpl(
+      _$ToProcessor_Pair _value, $Res Function(_$ToProcessor_Pair) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -403,7 +403,7 @@ class __$$ToProcessor_ConnectCopyWithImpl<$Res>
   $Res call({
     Object? field0 = null,
   }) {
-    return _then(_$ToProcessor_Connect(
+    return _then(_$ToProcessor_Pair(
       null == field0
           ? _value.field0
           : field0 // ignore: cast_nullable_to_non_nullable
@@ -414,22 +414,22 @@ class __$$ToProcessor_ConnectCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ToProcessor_Connect implements ToProcessor_Connect {
-  const _$ToProcessor_Connect(this.field0);
+class _$ToProcessor_Pair implements ToProcessor_Pair {
+  const _$ToProcessor_Pair(this.field0);
 
   @override
   final String field0;
 
   @override
   String toString() {
-    return 'ToProcessor.connect(field0: $field0)';
+    return 'ToProcessor.pair(field0: $field0)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ToProcessor_Connect &&
+            other is _$ToProcessor_Pair &&
             (identical(other.field0, field0) || other.field0 == field0));
   }
 
@@ -439,46 +439,45 @@ class _$ToProcessor_Connect implements ToProcessor_Connect {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ToProcessor_ConnectCopyWith<_$ToProcessor_Connect> get copyWith =>
-      __$$ToProcessor_ConnectCopyWithImpl<_$ToProcessor_Connect>(
-          this, _$identity);
+  _$$ToProcessor_PairCopyWith<_$ToProcessor_Pair> get copyWith =>
+      __$$ToProcessor_PairCopyWithImpl<_$ToProcessor_Pair>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String field0) connect,
-    required TResult Function() disconnect,
+    required TResult Function(String field0) pair,
+    required TResult Function() unpair,
     required TResult Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)
         input,
   }) {
-    return connect(field0);
+    return pair(field0);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String field0)? connect,
-    TResult? Function()? disconnect,
+    TResult? Function(String field0)? pair,
+    TResult? Function()? unpair,
     TResult? Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)?
         input,
   }) {
-    return connect?.call(field0);
+    return pair?.call(field0);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String field0)? connect,
-    TResult Function()? disconnect,
+    TResult Function(String field0)? pair,
+    TResult Function()? unpair,
     TResult Function(String pageId, String elementId, Uint32List datasetIndices,
             DartUiInput input)?
         input,
     required TResult orElse(),
   }) {
-    if (connect != null) {
-      return connect(field0);
+    if (pair != null) {
+      return pair(field0);
     }
     return orElse();
   }
@@ -486,78 +485,77 @@ class _$ToProcessor_Connect implements ToProcessor_Connect {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToProcessor_Connect value) connect,
-    required TResult Function(ToProcessor_Disconnect value) disconnect,
+    required TResult Function(ToProcessor_Pair value) pair,
+    required TResult Function(ToProcessor_Unpair value) unpair,
     required TResult Function(ToProcessor_Input value) input,
   }) {
-    return connect(this);
+    return pair(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToProcessor_Connect value)? connect,
-    TResult? Function(ToProcessor_Disconnect value)? disconnect,
+    TResult? Function(ToProcessor_Pair value)? pair,
+    TResult? Function(ToProcessor_Unpair value)? unpair,
     TResult? Function(ToProcessor_Input value)? input,
   }) {
-    return connect?.call(this);
+    return pair?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToProcessor_Connect value)? connect,
-    TResult Function(ToProcessor_Disconnect value)? disconnect,
+    TResult Function(ToProcessor_Pair value)? pair,
+    TResult Function(ToProcessor_Unpair value)? unpair,
     TResult Function(ToProcessor_Input value)? input,
     required TResult orElse(),
   }) {
-    if (connect != null) {
-      return connect(this);
+    if (pair != null) {
+      return pair(this);
     }
     return orElse();
   }
 }
 
-abstract class ToProcessor_Connect implements ToProcessor {
-  const factory ToProcessor_Connect(final String field0) =
-      _$ToProcessor_Connect;
+abstract class ToProcessor_Pair implements ToProcessor {
+  const factory ToProcessor_Pair(final String field0) = _$ToProcessor_Pair;
 
   String get field0;
   @JsonKey(ignore: true)
-  _$$ToProcessor_ConnectCopyWith<_$ToProcessor_Connect> get copyWith =>
+  _$$ToProcessor_PairCopyWith<_$ToProcessor_Pair> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ToProcessor_DisconnectCopyWith<$Res> {
-  factory _$$ToProcessor_DisconnectCopyWith(_$ToProcessor_Disconnect value,
-          $Res Function(_$ToProcessor_Disconnect) then) =
-      __$$ToProcessor_DisconnectCopyWithImpl<$Res>;
+abstract class _$$ToProcessor_UnpairCopyWith<$Res> {
+  factory _$$ToProcessor_UnpairCopyWith(_$ToProcessor_Unpair value,
+          $Res Function(_$ToProcessor_Unpair) then) =
+      __$$ToProcessor_UnpairCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ToProcessor_DisconnectCopyWithImpl<$Res>
-    extends _$ToProcessorCopyWithImpl<$Res, _$ToProcessor_Disconnect>
-    implements _$$ToProcessor_DisconnectCopyWith<$Res> {
-  __$$ToProcessor_DisconnectCopyWithImpl(_$ToProcessor_Disconnect _value,
-      $Res Function(_$ToProcessor_Disconnect) _then)
+class __$$ToProcessor_UnpairCopyWithImpl<$Res>
+    extends _$ToProcessorCopyWithImpl<$Res, _$ToProcessor_Unpair>
+    implements _$$ToProcessor_UnpairCopyWith<$Res> {
+  __$$ToProcessor_UnpairCopyWithImpl(
+      _$ToProcessor_Unpair _value, $Res Function(_$ToProcessor_Unpair) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ToProcessor_Disconnect implements ToProcessor_Disconnect {
-  const _$ToProcessor_Disconnect();
+class _$ToProcessor_Unpair implements ToProcessor_Unpair {
+  const _$ToProcessor_Unpair();
 
   @override
   String toString() {
-    return 'ToProcessor.disconnect()';
+    return 'ToProcessor.unpair()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ToProcessor_Disconnect);
+        (other.runtimeType == runtimeType && other is _$ToProcessor_Unpair);
   }
 
   @override
@@ -566,39 +564,39 @@ class _$ToProcessor_Disconnect implements ToProcessor_Disconnect {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String field0) connect,
-    required TResult Function() disconnect,
+    required TResult Function(String field0) pair,
+    required TResult Function() unpair,
     required TResult Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)
         input,
   }) {
-    return disconnect();
+    return unpair();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String field0)? connect,
-    TResult? Function()? disconnect,
+    TResult? Function(String field0)? pair,
+    TResult? Function()? unpair,
     TResult? Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)?
         input,
   }) {
-    return disconnect?.call();
+    return unpair?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String field0)? connect,
-    TResult Function()? disconnect,
+    TResult Function(String field0)? pair,
+    TResult Function()? unpair,
     TResult Function(String pageId, String elementId, Uint32List datasetIndices,
             DartUiInput input)?
         input,
     required TResult orElse(),
   }) {
-    if (disconnect != null) {
-      return disconnect();
+    if (unpair != null) {
+      return unpair();
     }
     return orElse();
   }
@@ -606,40 +604,40 @@ class _$ToProcessor_Disconnect implements ToProcessor_Disconnect {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToProcessor_Connect value) connect,
-    required TResult Function(ToProcessor_Disconnect value) disconnect,
+    required TResult Function(ToProcessor_Pair value) pair,
+    required TResult Function(ToProcessor_Unpair value) unpair,
     required TResult Function(ToProcessor_Input value) input,
   }) {
-    return disconnect(this);
+    return unpair(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToProcessor_Connect value)? connect,
-    TResult? Function(ToProcessor_Disconnect value)? disconnect,
+    TResult? Function(ToProcessor_Pair value)? pair,
+    TResult? Function(ToProcessor_Unpair value)? unpair,
     TResult? Function(ToProcessor_Input value)? input,
   }) {
-    return disconnect?.call(this);
+    return unpair?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToProcessor_Connect value)? connect,
-    TResult Function(ToProcessor_Disconnect value)? disconnect,
+    TResult Function(ToProcessor_Pair value)? pair,
+    TResult Function(ToProcessor_Unpair value)? unpair,
     TResult Function(ToProcessor_Input value)? input,
     required TResult orElse(),
   }) {
-    if (disconnect != null) {
-      return disconnect(this);
+    if (unpair != null) {
+      return unpair(this);
     }
     return orElse();
   }
 }
 
-abstract class ToProcessor_Disconnect implements ToProcessor {
-  const factory ToProcessor_Disconnect() = _$ToProcessor_Disconnect;
+abstract class ToProcessor_Unpair implements ToProcessor {
+  const factory ToProcessor_Unpair() = _$ToProcessor_Unpair;
 }
 
 /// @nodoc
@@ -751,8 +749,8 @@ class _$ToProcessor_Input implements ToProcessor_Input {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String field0) connect,
-    required TResult Function() disconnect,
+    required TResult Function(String field0) pair,
+    required TResult Function() unpair,
     required TResult Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)
         input,
@@ -763,8 +761,8 @@ class _$ToProcessor_Input implements ToProcessor_Input {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String field0)? connect,
-    TResult? Function()? disconnect,
+    TResult? Function(String field0)? pair,
+    TResult? Function()? unpair,
     TResult? Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)?
         input,
@@ -775,8 +773,8 @@ class _$ToProcessor_Input implements ToProcessor_Input {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String field0)? connect,
-    TResult Function()? disconnect,
+    TResult Function(String field0)? pair,
+    TResult Function()? unpair,
     TResult Function(String pageId, String elementId, Uint32List datasetIndices,
             DartUiInput input)?
         input,
@@ -791,8 +789,8 @@ class _$ToProcessor_Input implements ToProcessor_Input {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToProcessor_Connect value) connect,
-    required TResult Function(ToProcessor_Disconnect value) disconnect,
+    required TResult Function(ToProcessor_Pair value) pair,
+    required TResult Function(ToProcessor_Unpair value) unpair,
     required TResult Function(ToProcessor_Input value) input,
   }) {
     return input(this);
@@ -801,8 +799,8 @@ class _$ToProcessor_Input implements ToProcessor_Input {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToProcessor_Connect value)? connect,
-    TResult? Function(ToProcessor_Disconnect value)? disconnect,
+    TResult? Function(ToProcessor_Pair value)? pair,
+    TResult? Function(ToProcessor_Unpair value)? unpair,
     TResult? Function(ToProcessor_Input value)? input,
   }) {
     return input?.call(this);
@@ -811,8 +809,8 @@ class _$ToProcessor_Input implements ToProcessor_Input {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToProcessor_Connect value)? connect,
-    TResult Function(ToProcessor_Disconnect value)? disconnect,
+    TResult Function(ToProcessor_Pair value)? pair,
+    TResult Function(ToProcessor_Unpair value)? unpair,
     TResult Function(ToProcessor_Input value)? input,
     required TResult orElse(),
   }) {
@@ -843,27 +841,30 @@ abstract class ToProcessor_Input implements ToProcessor {
 mixin _$ToUi {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initialized,
+    required TResult Function() unpaired,
+    required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String msg) connecting,
     required TResult Function() connected,
-    required TResult Function() disconnected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initialized,
+    TResult? Function()? unpaired,
+    TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String msg)? connecting,
     TResult? Function()? connected,
-    TResult? Function()? disconnected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initialized,
+    TResult Function()? unpaired,
+    TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String msg)? connecting,
     TResult Function()? connected,
-    TResult Function()? disconnected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
     required TResult orElse(),
@@ -871,27 +872,30 @@ mixin _$ToUi {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToUi_Initialized value) initialized,
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Connected value) connected,
-    required TResult Function(ToUi_Disconnected value) disconnected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToUi_Initialized value)? initialized,
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Connected value)? connected,
-    TResult? Function(ToUi_Disconnected value)? disconnected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToUi_Initialized value)? initialized,
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Connected value)? connected,
-    TResult Function(ToUi_Disconnected value)? disconnected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
     required TResult orElse(),
@@ -917,35 +921,35 @@ class _$ToUiCopyWithImpl<$Res, $Val extends ToUi>
 }
 
 /// @nodoc
-abstract class _$$ToUi_InitializedCopyWith<$Res> {
-  factory _$$ToUi_InitializedCopyWith(
-          _$ToUi_Initialized value, $Res Function(_$ToUi_Initialized) then) =
-      __$$ToUi_InitializedCopyWithImpl<$Res>;
+abstract class _$$ToUi_UnpairedCopyWith<$Res> {
+  factory _$$ToUi_UnpairedCopyWith(
+          _$ToUi_Unpaired value, $Res Function(_$ToUi_Unpaired) then) =
+      __$$ToUi_UnpairedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ToUi_InitializedCopyWithImpl<$Res>
-    extends _$ToUiCopyWithImpl<$Res, _$ToUi_Initialized>
-    implements _$$ToUi_InitializedCopyWith<$Res> {
-  __$$ToUi_InitializedCopyWithImpl(
-      _$ToUi_Initialized _value, $Res Function(_$ToUi_Initialized) _then)
+class __$$ToUi_UnpairedCopyWithImpl<$Res>
+    extends _$ToUiCopyWithImpl<$Res, _$ToUi_Unpaired>
+    implements _$$ToUi_UnpairedCopyWith<$Res> {
+  __$$ToUi_UnpairedCopyWithImpl(
+      _$ToUi_Unpaired _value, $Res Function(_$ToUi_Unpaired) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ToUi_Initialized implements ToUi_Initialized {
-  const _$ToUi_Initialized();
+class _$ToUi_Unpaired implements ToUi_Unpaired {
+  const _$ToUi_Unpaired();
 
   @override
   String toString() {
-    return 'ToUi.initialized()';
+    return 'ToUi.unpaired()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ToUi_Initialized);
+        (other.runtimeType == runtimeType && other is _$ToUi_Unpaired);
   }
 
   @override
@@ -954,39 +958,42 @@ class _$ToUi_Initialized implements ToUi_Initialized {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initialized,
+    required TResult Function() unpaired,
+    required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String msg) connecting,
     required TResult Function() connected,
-    required TResult Function() disconnected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
   }) {
-    return initialized();
+    return unpaired();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initialized,
+    TResult? Function()? unpaired,
+    TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String msg)? connecting,
     TResult? Function()? connected,
-    TResult? Function()? disconnected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
   }) {
-    return initialized?.call();
+    return unpaired?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initialized,
+    TResult Function()? unpaired,
+    TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String msg)? connecting,
     TResult Function()? connected,
-    TResult Function()? disconnected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
     required TResult orElse(),
   }) {
-    if (initialized != null) {
-      return initialized();
+    if (unpaired != null) {
+      return unpaired();
     }
     return orElse();
   }
@@ -994,46 +1001,373 @@ class _$ToUi_Initialized implements ToUi_Initialized {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToUi_Initialized value) initialized,
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Connected value) connected,
-    required TResult Function(ToUi_Disconnected value) disconnected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
   }) {
-    return initialized(this);
+    return unpaired(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToUi_Initialized value)? initialized,
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Connected value)? connected,
-    TResult? Function(ToUi_Disconnected value)? disconnected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
   }) {
-    return initialized?.call(this);
+    return unpaired?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToUi_Initialized value)? initialized,
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Connected value)? connected,
-    TResult Function(ToUi_Disconnected value)? disconnected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
     required TResult orElse(),
   }) {
-    if (initialized != null) {
-      return initialized(this);
+    if (unpaired != null) {
+      return unpaired(this);
     }
     return orElse();
   }
 }
 
-abstract class ToUi_Initialized implements ToUi {
-  const factory ToUi_Initialized() = _$ToUi_Initialized;
+abstract class ToUi_Unpaired implements ToUi {
+  const factory ToUi_Unpaired() = _$ToUi_Unpaired;
+}
+
+/// @nodoc
+abstract class _$$ToUi_PairsCopyWith<$Res> {
+  factory _$$ToUi_PairsCopyWith(
+          _$ToUi_Pairs value, $Res Function(_$ToUi_Pairs) then) =
+      __$$ToUi_PairsCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<(String, String)> relations});
+}
+
+/// @nodoc
+class __$$ToUi_PairsCopyWithImpl<$Res>
+    extends _$ToUiCopyWithImpl<$Res, _$ToUi_Pairs>
+    implements _$$ToUi_PairsCopyWith<$Res> {
+  __$$ToUi_PairsCopyWithImpl(
+      _$ToUi_Pairs _value, $Res Function(_$ToUi_Pairs) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? relations = null,
+  }) {
+    return _then(_$ToUi_Pairs(
+      relations: null == relations
+          ? _value._relations
+          : relations // ignore: cast_nullable_to_non_nullable
+              as List<(String, String)>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToUi_Pairs implements ToUi_Pairs {
+  const _$ToUi_Pairs({required final List<(String, String)> relations})
+      : _relations = relations;
+
+  final List<(String, String)> _relations;
+  @override
+  List<(String, String)> get relations {
+    if (_relations is EqualUnmodifiableListView) return _relations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_relations);
+  }
+
+  @override
+  String toString() {
+    return 'ToUi.pairs(relations: $relations)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToUi_Pairs &&
+            const DeepCollectionEquality()
+                .equals(other._relations, _relations));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_relations));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToUi_PairsCopyWith<_$ToUi_Pairs> get copyWith =>
+      __$$ToUi_PairsCopyWithImpl<_$ToUi_Pairs>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unpaired,
+    required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String msg) connecting,
+    required TResult Function() connected,
+    required TResult Function(List<String> pages) setPageOrder,
+    required TResult Function(DartUiPage page) setPage,
+  }) {
+    return pairs(relations);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unpaired,
+    TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String msg)? connecting,
+    TResult? Function()? connected,
+    TResult? Function(List<String> pages)? setPageOrder,
+    TResult? Function(DartUiPage page)? setPage,
+  }) {
+    return pairs?.call(relations);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unpaired,
+    TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String msg)? connecting,
+    TResult Function()? connected,
+    TResult Function(List<String> pages)? setPageOrder,
+    TResult Function(DartUiPage page)? setPage,
+    required TResult orElse(),
+  }) {
+    if (pairs != null) {
+      return pairs(relations);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Connected value) connected,
+    required TResult Function(ToUi_SetPageOrder value) setPageOrder,
+    required TResult Function(ToUi_SetPage value) setPage,
+  }) {
+    return pairs(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Connected value)? connected,
+    TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult? Function(ToUi_SetPage value)? setPage,
+  }) {
+    return pairs?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Connected value)? connected,
+    TResult Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult Function(ToUi_SetPage value)? setPage,
+    required TResult orElse(),
+  }) {
+    if (pairs != null) {
+      return pairs(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToUi_Pairs implements ToUi {
+  const factory ToUi_Pairs({required final List<(String, String)> relations}) =
+      _$ToUi_Pairs;
+
+  List<(String, String)> get relations;
+  @JsonKey(ignore: true)
+  _$$ToUi_PairsCopyWith<_$ToUi_Pairs> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ToUi_ConnectingCopyWith<$Res> {
+  factory _$$ToUi_ConnectingCopyWith(
+          _$ToUi_Connecting value, $Res Function(_$ToUi_Connecting) then) =
+      __$$ToUi_ConnectingCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String msg});
+}
+
+/// @nodoc
+class __$$ToUi_ConnectingCopyWithImpl<$Res>
+    extends _$ToUiCopyWithImpl<$Res, _$ToUi_Connecting>
+    implements _$$ToUi_ConnectingCopyWith<$Res> {
+  __$$ToUi_ConnectingCopyWithImpl(
+      _$ToUi_Connecting _value, $Res Function(_$ToUi_Connecting) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? msg = null,
+  }) {
+    return _then(_$ToUi_Connecting(
+      msg: null == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToUi_Connecting implements ToUi_Connecting {
+  const _$ToUi_Connecting({required this.msg});
+
+  @override
+  final String msg;
+
+  @override
+  String toString() {
+    return 'ToUi.connecting(msg: $msg)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToUi_Connecting &&
+            (identical(other.msg, msg) || other.msg == msg));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, msg);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToUi_ConnectingCopyWith<_$ToUi_Connecting> get copyWith =>
+      __$$ToUi_ConnectingCopyWithImpl<_$ToUi_Connecting>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unpaired,
+    required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String msg) connecting,
+    required TResult Function() connected,
+    required TResult Function(List<String> pages) setPageOrder,
+    required TResult Function(DartUiPage page) setPage,
+  }) {
+    return connecting(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? unpaired,
+    TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String msg)? connecting,
+    TResult? Function()? connected,
+    TResult? Function(List<String> pages)? setPageOrder,
+    TResult? Function(DartUiPage page)? setPage,
+  }) {
+    return connecting?.call(msg);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unpaired,
+    TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String msg)? connecting,
+    TResult Function()? connected,
+    TResult Function(List<String> pages)? setPageOrder,
+    TResult Function(DartUiPage page)? setPage,
+    required TResult orElse(),
+  }) {
+    if (connecting != null) {
+      return connecting(msg);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Connected value) connected,
+    required TResult Function(ToUi_SetPageOrder value) setPageOrder,
+    required TResult Function(ToUi_SetPage value) setPage,
+  }) {
+    return connecting(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Connected value)? connected,
+    TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult? Function(ToUi_SetPage value)? setPage,
+  }) {
+    return connecting?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Connected value)? connected,
+    TResult Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult Function(ToUi_SetPage value)? setPage,
+    required TResult orElse(),
+  }) {
+    if (connecting != null) {
+      return connecting(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToUi_Connecting implements ToUi {
+  const factory ToUi_Connecting({required final String msg}) =
+      _$ToUi_Connecting;
+
+  String get msg;
+  @JsonKey(ignore: true)
+  _$$ToUi_ConnectingCopyWith<_$ToUi_Connecting> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1074,9 +1408,10 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initialized,
+    required TResult Function() unpaired,
+    required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String msg) connecting,
     required TResult Function() connected,
-    required TResult Function() disconnected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
   }) {
@@ -1086,9 +1421,10 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initialized,
+    TResult? Function()? unpaired,
+    TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String msg)? connecting,
     TResult? Function()? connected,
-    TResult? Function()? disconnected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
   }) {
@@ -1098,9 +1434,10 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initialized,
+    TResult Function()? unpaired,
+    TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String msg)? connecting,
     TResult Function()? connected,
-    TResult Function()? disconnected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
     required TResult orElse(),
@@ -1114,9 +1451,10 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToUi_Initialized value) initialized,
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Connected value) connected,
-    required TResult Function(ToUi_Disconnected value) disconnected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
   }) {
@@ -1126,9 +1464,10 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToUi_Initialized value)? initialized,
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Connected value)? connected,
-    TResult? Function(ToUi_Disconnected value)? disconnected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
   }) {
@@ -1138,9 +1477,10 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToUi_Initialized value)? initialized,
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Connected value)? connected,
-    TResult Function(ToUi_Disconnected value)? disconnected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
     required TResult orElse(),
@@ -1154,126 +1494,6 @@ class _$ToUi_Connected implements ToUi_Connected {
 
 abstract class ToUi_Connected implements ToUi {
   const factory ToUi_Connected() = _$ToUi_Connected;
-}
-
-/// @nodoc
-abstract class _$$ToUi_DisconnectedCopyWith<$Res> {
-  factory _$$ToUi_DisconnectedCopyWith(
-          _$ToUi_Disconnected value, $Res Function(_$ToUi_Disconnected) then) =
-      __$$ToUi_DisconnectedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ToUi_DisconnectedCopyWithImpl<$Res>
-    extends _$ToUiCopyWithImpl<$Res, _$ToUi_Disconnected>
-    implements _$$ToUi_DisconnectedCopyWith<$Res> {
-  __$$ToUi_DisconnectedCopyWithImpl(
-      _$ToUi_Disconnected _value, $Res Function(_$ToUi_Disconnected) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ToUi_Disconnected implements ToUi_Disconnected {
-  const _$ToUi_Disconnected();
-
-  @override
-  String toString() {
-    return 'ToUi.disconnected()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ToUi_Disconnected);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initialized,
-    required TResult Function() connected,
-    required TResult Function() disconnected,
-    required TResult Function(List<String> pages) setPageOrder,
-    required TResult Function(DartUiPage page) setPage,
-  }) {
-    return disconnected();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initialized,
-    TResult? Function()? connected,
-    TResult? Function()? disconnected,
-    TResult? Function(List<String> pages)? setPageOrder,
-    TResult? Function(DartUiPage page)? setPage,
-  }) {
-    return disconnected?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initialized,
-    TResult Function()? connected,
-    TResult Function()? disconnected,
-    TResult Function(List<String> pages)? setPageOrder,
-    TResult Function(DartUiPage page)? setPage,
-    required TResult orElse(),
-  }) {
-    if (disconnected != null) {
-      return disconnected();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ToUi_Initialized value) initialized,
-    required TResult Function(ToUi_Connected value) connected,
-    required TResult Function(ToUi_Disconnected value) disconnected,
-    required TResult Function(ToUi_SetPageOrder value) setPageOrder,
-    required TResult Function(ToUi_SetPage value) setPage,
-  }) {
-    return disconnected(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToUi_Initialized value)? initialized,
-    TResult? Function(ToUi_Connected value)? connected,
-    TResult? Function(ToUi_Disconnected value)? disconnected,
-    TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
-    TResult? Function(ToUi_SetPage value)? setPage,
-  }) {
-    return disconnected?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToUi_Initialized value)? initialized,
-    TResult Function(ToUi_Connected value)? connected,
-    TResult Function(ToUi_Disconnected value)? disconnected,
-    TResult Function(ToUi_SetPageOrder value)? setPageOrder,
-    TResult Function(ToUi_SetPage value)? setPage,
-    required TResult orElse(),
-  }) {
-    if (disconnected != null) {
-      return disconnected(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ToUi_Disconnected implements ToUi {
-  const factory ToUi_Disconnected() = _$ToUi_Disconnected;
 }
 
 /// @nodoc
@@ -1347,9 +1567,10 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initialized,
+    required TResult Function() unpaired,
+    required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String msg) connecting,
     required TResult Function() connected,
-    required TResult Function() disconnected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
   }) {
@@ -1359,9 +1580,10 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initialized,
+    TResult? Function()? unpaired,
+    TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String msg)? connecting,
     TResult? Function()? connected,
-    TResult? Function()? disconnected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
   }) {
@@ -1371,9 +1593,10 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initialized,
+    TResult Function()? unpaired,
+    TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String msg)? connecting,
     TResult Function()? connected,
-    TResult Function()? disconnected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
     required TResult orElse(),
@@ -1387,9 +1610,10 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToUi_Initialized value) initialized,
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Connected value) connected,
-    required TResult Function(ToUi_Disconnected value) disconnected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
   }) {
@@ -1399,9 +1623,10 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToUi_Initialized value)? initialized,
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Connected value)? connected,
-    TResult? Function(ToUi_Disconnected value)? disconnected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
   }) {
@@ -1411,9 +1636,10 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToUi_Initialized value)? initialized,
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Connected value)? connected,
-    TResult Function(ToUi_Disconnected value)? disconnected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
     required TResult orElse(),
@@ -1499,9 +1725,10 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initialized,
+    required TResult Function() unpaired,
+    required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String msg) connecting,
     required TResult Function() connected,
-    required TResult Function() disconnected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
   }) {
@@ -1511,9 +1738,10 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initialized,
+    TResult? Function()? unpaired,
+    TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String msg)? connecting,
     TResult? Function()? connected,
-    TResult? Function()? disconnected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
   }) {
@@ -1523,9 +1751,10 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initialized,
+    TResult Function()? unpaired,
+    TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String msg)? connecting,
     TResult Function()? connected,
-    TResult Function()? disconnected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
     required TResult orElse(),
@@ -1539,9 +1768,10 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ToUi_Initialized value) initialized,
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Connected value) connected,
-    required TResult Function(ToUi_Disconnected value) disconnected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
   }) {
@@ -1551,9 +1781,10 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToUi_Initialized value)? initialized,
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Connected value)? connected,
-    TResult? Function(ToUi_Disconnected value)? disconnected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
   }) {
@@ -1563,9 +1794,10 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToUi_Initialized value)? initialized,
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Connected value)? connected,
-    TResult Function(ToUi_Disconnected value)? disconnected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
     required TResult orElse(),

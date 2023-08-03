@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'ui/state.dart';
+import 'package:path_provider/path_provider.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // var dir = await getApplicationDocumentsDirectory();
+  var dir = await getApplicationSupportDirectory();
+  var configPath = dir.path;
+  print(configPath);
+  runApp(MyApp(configPath: configPath));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String configPath;
+  const MyApp({super.key, required this.configPath});
 
   // This widget is the root of your application.
   @override
@@ -17,7 +24,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Spider'),
+      home: MyHomePage(
+        title: 'Spider',
+        configPath: configPath,
+      ),
     );
   }
 }

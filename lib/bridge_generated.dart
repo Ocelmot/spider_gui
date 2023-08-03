@@ -42,12 +42,13 @@ class DartSpiderImpl implements DartSpider {
         argNames: [],
       );
 
-  Stream<ToUi> init({dynamic hint}) {
+  Stream<ToUi> init({required String configPath, dynamic hint}) {
+    var arg0 = _platform.api2wire_String(configPath);
     return _platform.executeStream(FlutterRustBridgeTask(
-      callFfi: (port_) => _platform.inner.wire_init(port_),
+      callFfi: (port_) => _platform.inner.wire_init(port_, arg0),
       parseSuccessData: _wire2api_to_ui,
       constMeta: kInitConstMeta,
-      argValues: [],
+      argValues: [configPath],
       hint: hint,
     ));
   }
@@ -55,7 +56,7 @@ class DartSpiderImpl implements DartSpider {
   FlutterRustBridgeTaskConstMeta get kInitConstMeta =>
       const FlutterRustBridgeTaskConstMeta(
         debugName: "init",
-        argNames: [],
+        argNames: ["configPath"],
       );
 
   Future<void> write({required ToProcessor msg, dynamic hint}) {
@@ -86,6 +87,17 @@ class DartSpiderImpl implements DartSpider {
 
   List<String> _wire2api_StringList(dynamic raw) {
     return (raw as List<dynamic>).cast<String>();
+  }
+
+  (String, String) _wire2api___record__String_String(dynamic raw) {
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2) {
+      throw Exception('Expected 2 elements, got ${arr.length}');
+    }
+    return (
+      _wire2api_String(arr[0]),
+      _wire2api_String(arr[1]),
+    );
   }
 
   DartUiPage _wire2api_box_autoadd_dart_ui_page(dynamic raw) {
@@ -124,6 +136,12 @@ class DartSpiderImpl implements DartSpider {
     return raw as int;
   }
 
+  List<(String, String)> _wire2api_list___record__String_String(dynamic raw) {
+    return (raw as List<dynamic>)
+        .map(_wire2api___record__String_String)
+        .toList();
+  }
+
   List<DartUiElement> _wire2api_list_dart_ui_element(dynamic raw) {
     return (raw as List<dynamic>).map(_wire2api_dart_ui_element).toList();
   }
@@ -135,16 +153,22 @@ class DartSpiderImpl implements DartSpider {
   ToUi _wire2api_to_ui(dynamic raw) {
     switch (raw[0]) {
       case 0:
-        return ToUi_Initialized();
+        return ToUi_Unpaired();
       case 1:
-        return ToUi_Connected();
+        return ToUi_Pairs(
+          relations: _wire2api_list___record__String_String(raw[1]),
+        );
       case 2:
-        return ToUi_Disconnected();
+        return ToUi_Connecting(
+          msg: _wire2api_String(raw[1]),
+        );
       case 3:
+        return ToUi_Connected();
+      case 4:
         return ToUi_SetPageOrder(
           pages: _wire2api_StringList(raw[1]),
         );
-      case 4:
+      case 5:
         return ToUi_SetPage(
           page: _wire2api_box_autoadd_dart_ui_page(raw[1]),
         );
@@ -258,14 +282,14 @@ class DartSpiderPlatform extends FlutterRustBridgeBase<DartSpiderWire> {
 
   void _api_fill_to_wire_to_processor(
       ToProcessor apiObj, wire_ToProcessor wireObj) {
-    if (apiObj is ToProcessor_Connect) {
+    if (apiObj is ToProcessor_Pair) {
       var pre_field0 = api2wire_String(apiObj.field0);
       wireObj.tag = 0;
-      wireObj.kind = inner.inflate_ToProcessor_Connect();
-      wireObj.kind.ref.Connect.ref.field0 = pre_field0;
+      wireObj.kind = inner.inflate_ToProcessor_Pair();
+      wireObj.kind.ref.Pair.ref.field0 = pre_field0;
       return;
     }
-    if (apiObj is ToProcessor_Disconnect) {
+    if (apiObj is ToProcessor_Unpair) {
       wireObj.tag = 1;
       return;
     }
@@ -397,15 +421,20 @@ class DartSpiderWire implements FlutterRustBridgeWireBase {
 
   void wire_init(
     int port_,
+    ffi.Pointer<wire_uint_8_list> config_path,
   ) {
     return _wire_init(
       port_,
+      config_path,
     );
   }
 
-  late final _wire_initPtr =
-      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int64)>>('wire_init');
-  late final _wire_init = _wire_initPtr.asFunction<void Function(int)>();
+  late final _wire_initPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(
+              ffi.Int64, ffi.Pointer<wire_uint_8_list>)>>('wire_init');
+  late final _wire_init = _wire_initPtr
+      .asFunction<void Function(int, ffi.Pointer<wire_uint_8_list>)>();
 
   void wire_write(
     int port_,
@@ -486,14 +515,14 @@ class DartSpiderWire implements FlutterRustBridgeWireBase {
   late final _inflate_DartUiInput_Text = _inflate_DartUiInput_TextPtr
       .asFunction<ffi.Pointer<DartUiInputKind> Function()>();
 
-  ffi.Pointer<ToProcessorKind> inflate_ToProcessor_Connect() {
-    return _inflate_ToProcessor_Connect();
+  ffi.Pointer<ToProcessorKind> inflate_ToProcessor_Pair() {
+    return _inflate_ToProcessor_Pair();
   }
 
-  late final _inflate_ToProcessor_ConnectPtr =
+  late final _inflate_ToProcessor_PairPtr =
       _lookup<ffi.NativeFunction<ffi.Pointer<ToProcessorKind> Function()>>(
-          'inflate_ToProcessor_Connect');
-  late final _inflate_ToProcessor_Connect = _inflate_ToProcessor_ConnectPtr
+          'inflate_ToProcessor_Pair');
+  late final _inflate_ToProcessor_Pair = _inflate_ToProcessor_PairPtr
       .asFunction<ffi.Pointer<ToProcessorKind> Function()>();
 
   ffi.Pointer<ToProcessorKind> inflate_ToProcessor_Input() {
@@ -530,11 +559,11 @@ final class wire_uint_8_list extends ffi.Struct {
   external int len;
 }
 
-final class wire_ToProcessor_Connect extends ffi.Struct {
+final class wire_ToProcessor_Pair extends ffi.Struct {
   external ffi.Pointer<wire_uint_8_list> field0;
 }
 
-final class wire_ToProcessor_Disconnect extends ffi.Opaque {}
+final class wire_ToProcessor_Unpair extends ffi.Opaque {}
 
 final class wire_uint_32_list extends ffi.Struct {
   external ffi.Pointer<ffi.Uint32> ptr;
@@ -573,9 +602,9 @@ final class wire_ToProcessor_Input extends ffi.Struct {
 }
 
 final class ToProcessorKind extends ffi.Union {
-  external ffi.Pointer<wire_ToProcessor_Connect> Connect;
+  external ffi.Pointer<wire_ToProcessor_Pair> Pair;
 
-  external ffi.Pointer<wire_ToProcessor_Disconnect> Disconnect;
+  external ffi.Pointer<wire_ToProcessor_Unpair> Unpair;
 
   external ffi.Pointer<wire_ToProcessor_Input> Input;
 }

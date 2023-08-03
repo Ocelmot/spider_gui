@@ -38,14 +38,17 @@ fn wire_test_text_impl(port_: MessagePort) {
         move || move |task_callback| Ok(test_text()),
     )
 }
-fn wire_init_impl(port_: MessagePort) {
+fn wire_init_impl(port_: MessagePort, config_path: impl Wire2Api<String> + UnwindSafe) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap(
         WrapInfo {
             debug_name: "init",
             port: Some(port_),
             mode: FfiCallMode::Stream,
         },
-        move || move |task_callback| Ok(init(task_callback.stream_sink())),
+        move || {
+            let api_config_path = config_path.wire2api();
+            move |task_callback| Ok(init(task_callback.stream_sink(), api_config_path))
+        },
     )
 }
 fn wire_write_impl(port_: MessagePort, msg: impl Wire2Api<ToProcessor> + UnwindSafe) {
@@ -141,11 +144,12 @@ impl support::IntoDartExceptPrimitive for DartUiPage {}
 impl support::IntoDart for ToUi {
     fn into_dart(self) -> support::DartAbi {
         match self {
-            Self::Initialized => vec![0.into_dart()],
-            Self::Connected => vec![1.into_dart()],
-            Self::Disconnected => vec![2.into_dart()],
-            Self::SetPageOrder { pages } => vec![3.into_dart(), pages.into_dart()],
-            Self::SetPage { page } => vec![4.into_dart(), page.into_dart()],
+            Self::Unpaired => vec![0.into_dart()],
+            Self::Pairs { relations } => vec![1.into_dart(), relations.into_dart()],
+            Self::Connecting { msg } => vec![2.into_dart(), msg.into_dart()],
+            Self::Connected => vec![3.into_dart()],
+            Self::SetPageOrder { pages } => vec![4.into_dart(), pages.into_dart()],
+            Self::SetPage { page } => vec![5.into_dart(), page.into_dart()],
         }
         .into_dart()
     }

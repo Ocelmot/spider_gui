@@ -45,3 +45,4 @@ app.*.map.json
 
 # Project misc
 spider_keyfile.json
+client_state.json

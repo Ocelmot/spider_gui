@@ -7,8 +7,8 @@ pub extern "C" fn wire_test_text(port_: i64) {
 }
 
 #[no_mangle]
-pub extern "C" fn wire_init(port_: i64) {
-    wire_init_impl(port_)
+pub extern "C" fn wire_init(port_: i64, config_path: *mut wire_uint_8_list) {
+    wire_init_impl(port_, config_path)
 }
 
 #[no_mangle]
@@ -86,10 +86,10 @@ impl Wire2Api<ToProcessor> for wire_ToProcessor {
         match self.tag {
             0 => unsafe {
                 let ans = support::box_from_leak_ptr(self.kind);
-                let ans = support::box_from_leak_ptr(ans.Connect);
-                ToProcessor::Connect(ans.field0.wire2api())
+                let ans = support::box_from_leak_ptr(ans.Pair);
+                ToProcessor::Pair(ans.field0.wire2api())
             },
-            1 => ToProcessor::Disconnect,
+            1 => ToProcessor::Unpair,
             2 => unsafe {
                 let ans = support::box_from_leak_ptr(self.kind);
                 let ans = support::box_from_leak_ptr(ans.Input);
@@ -168,20 +168,20 @@ pub struct wire_ToProcessor {
 
 #[repr(C)]
 pub union ToProcessorKind {
-    Connect: *mut wire_ToProcessor_Connect,
-    Disconnect: *mut wire_ToProcessor_Disconnect,
+    Pair: *mut wire_ToProcessor_Pair,
+    Unpair: *mut wire_ToProcessor_Unpair,
     Input: *mut wire_ToProcessor_Input,
 }
 
 #[repr(C)]
 #[derive(Clone)]
-pub struct wire_ToProcessor_Connect {
+pub struct wire_ToProcessor_Pair {
     field0: *mut wire_uint_8_list,
 }
 
 #[repr(C)]
 #[derive(Clone)]
-pub struct wire_ToProcessor_Disconnect {}
+pub struct wire_ToProcessor_Unpair {}
 
 #[repr(C)]
 #[derive(Clone)]
@@ -244,9 +244,9 @@ impl NewWithNullPtr for wire_ToProcessor {
 }
 
 #[no_mangle]
-pub extern "C" fn inflate_ToProcessor_Connect() -> *mut ToProcessorKind {
+pub extern "C" fn inflate_ToProcessor_Pair() -> *mut ToProcessorKind {
     support::new_leak_box_ptr(ToProcessorKind {
-        Connect: support::new_leak_box_ptr(wire_ToProcessor_Connect {
+        Pair: support::new_leak_box_ptr(wire_ToProcessor_Pair {
             field0: core::ptr::null_mut(),
         }),
     })

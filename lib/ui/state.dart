@@ -1,61 +1,86 @@
 import 'package:flutter/material.dart';
 import '../ffi.dart';
-import 'connect_view.dart';
+import 'spinner_view.dart';
+import 'pair_menu_view.dart';
 import 'page_select_view.dart';
 import 'page_render_view.dart';
 
 class MyHomePage extends StatefulWidget {
   final String title;
 
-  const MyHomePage({super.key, required this.title});
+  final String configPath;
+
+  const MyHomePage({super.key, required this.title, required this.configPath});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  // ignore: no_logic_in_create_state
+  State<MyHomePage> createState() => _MyHomePageState(configPath);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   // Processor Connection
   late Stream<ToUi> stream;
 
-  // handle connection to base
-  bool _isConnected = false;
+  // Current State
+  bool _initialized = false;
 
-  // pages
+  bool _isPaired = false;
+  List<(String, String)> pairs = List.empty(); // Potential Pairs
+
+  bool _isConnected = false;
+  String _connectingMessage = "";
+
+  // Pages
   var pageOrder = <String>[];
   var pages = <String, DartUiPage>{};
   String? selectedPage;
 
-  _MyHomePageState() {
-    stream = api.init();
+  _MyHomePageState(String configPath) {
+    stream = api.init(configPath: configPath);
 
     stream.listen((event) {
       print("Dart event: $event");
       event.map(
-        initialized: _onInitialization,
+        unpaired: _onUnpaired,
+        pairs: _onPairs,
+        connecting: _onConnecting,
         connected: _onConnected,
-        disconnected: _onDisconnected,
         setPageOrder: _onSetPageOrder,
         setPage: _onSetPage,
       );
     });
   }
 
-  void _onInitialization(_) {
-    // Test only
-    // api.write(msg: const ToProcessor.connect("127.0.0.1:1930"));
+  void _onUnpaired(_) {
+    setState(() {
+      _initialized = true;
+      _isPaired = false;
+      _isConnected = false;
+      pageOrder = [];
+      pages = {};
+    });
+  }
+
+  void _onPairs(ToUi_Pairs event) {
+    setState(() {
+      pairs = event.relations;
+    });
+  }
+
+  void _onConnecting(ToUi_Connecting event) {
+    setState(() {
+      _initialized = true;
+      _isPaired = true;
+      _isConnected = false;
+      _connectingMessage = event.msg;
+    });
   }
 
   void _onConnected(_) {
     setState(() {
+      _isPaired = true;
       _isConnected = true;
-    });
-  }
-
-  void _onDisconnected(_) {
-    setState(() {
-      _isConnected = false;
-      pageOrder = [];
-      pages = {};
+      _connectingMessage = "";
     });
   }
 
@@ -79,63 +104,83 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    var (body, leading) = getRenders();
+    return Scaffold(
+      appBar: AppBar(
+        // TRY THIS: Try changing the color here to a specific color (to
+        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+        // change color while the other colors stay the same.
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
+        title: Text(widget.title),
+        leading: leading,
+        actions: [
+          PopupMenuButton(
+            icon: const Icon(Icons.settings),
+            itemBuilder: (BuildContext context) => [
+              PopupMenuItem(
+                child: const Text("Unpair"),
+                onTap: () {
+                  api.write(msg: const ToProcessor.unpair());
+                },
+              )
+            ],
+          )
+        ],
+      ),
+      body: body,
+    );
+  }
 
-    Widget body;
-    Widget? leading;
+  (Widget, Widget?) getRenders() {
+    //
+    if (!_initialized) {
+      return (
+        const SpinnerView(
+          title: 'Loading...',
+        ),
+        null
+      );
+    }
+
+    // Show loading view
+    if (!_isPaired) {
+      return (PairMenuView(pairs: pairs), null);
+    }
+
+    // Show connection screen
     if (!_isConnected) {
-      leading = null;
-      body = const ConnectView();
-    } else {
-      if (selectedPage == null) {
-        leading = null;
-        body = PageSelectView(pageOrder, pages,
+      return (
+        SpinnerView(
+          title: "Connecting...",
+          subtitle: _connectingMessage,
+        ),
+        null
+      );
+    }
+
+    if (selectedPage == null) {
+      return (
+        PageSelectView(pageOrder, pages,
             onPressed: (pageId) => {
                   setState(() {
                     selectedPage = pageId;
                   })
-                });
-      } else {
-        leading = BackButton(onPressed: () {
+                }),
+        null
+      );
+    } else {
+      return (
+        PageRenderView(
+          page: pages[selectedPage],
+        ),
+        BackButton(onPressed: () {
           setState(() {
             selectedPage = null;
           });
-        });
-        body = PageRenderView(
-          page: pages[selectedPage],
-        );
-      }
+        })
+      );
     }
-
-    return Scaffold(
-        appBar: AppBar(
-          // TRY THIS: Try changing the color here to a specific color (to
-          // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-          // change color while the other colors stay the same.
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
-          leading: leading,
-          actions: [
-            PopupMenuButton(
-              icon: const Icon(Icons.settings),
-              itemBuilder: (BuildContext context) => [
-                PopupMenuItem(
-                  child: const Text("Disconnect"),
-                  onTap: () {
-                    api.write(msg: const ToProcessor.disconnect());
-                  },
-                )
-              ],
-            )
-          ],
-        ),
-        body: SingleChildScrollView(
-            // shrinkWrap: true,
-            child: Flex(
-          direction: Axis.vertical,
-          mainAxisSize: MainAxisSize.min,
-          children: [body],
-        )));
   }
 }

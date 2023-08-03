@@ -16,7 +16,7 @@ abstract class DartSpider {
 
   FlutterRustBridgeTaskConstMeta get kTestTextConstMeta;
 
-  Stream<ToUi> init({dynamic hint});
+  Stream<ToUi> init({required String configPath, dynamic hint});
 
   FlutterRustBridgeTaskConstMeta get kInitConstMeta;
 
@@ -73,10 +73,10 @@ class DartUiPage {
 
 @freezed
 sealed class ToProcessor with _$ToProcessor {
-  const factory ToProcessor.connect(
+  const factory ToProcessor.pair(
     String field0,
-  ) = ToProcessor_Connect;
-  const factory ToProcessor.disconnect() = ToProcessor_Disconnect;
+  ) = ToProcessor_Pair;
+  const factory ToProcessor.unpair() = ToProcessor_Unpair;
   const factory ToProcessor.input({
     required String pageId,
     required String elementId,
@@ -87,9 +87,14 @@ sealed class ToProcessor with _$ToProcessor {
 
 @freezed
 sealed class ToUi with _$ToUi {
-  const factory ToUi.initialized() = ToUi_Initialized;
+  const factory ToUi.unpaired() = ToUi_Unpaired;
+  const factory ToUi.pairs({
+    required List<(String, String)> relations,
+  }) = ToUi_Pairs;
+  const factory ToUi.connecting({
+    required String msg,
+  }) = ToUi_Connecting;
   const factory ToUi.connected() = ToUi_Connected;
-  const factory ToUi.disconnected() = ToUi_Disconnected;
   const factory ToUi.setPageOrder({
     required List<String> pages,
   }) = ToUi_SetPageOrder;

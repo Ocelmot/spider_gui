@@ -9,9 +9,9 @@ pub fn test_text() -> String {
     String::from("<RUST STRING!>")
 }
 
-pub fn init(stream_sink: StreamSink<ToUi>) {
+pub fn init(stream_sink: StreamSink<ToUi>, config_path: String) {
     // start the processor and get the read and write channels
-    let lpp = LinkProcessor::create(stream_sink);
+    let lpp = LinkProcessor::create(stream_sink, config_path);
 
     // install LinkProcessorParts into the global
     let mut x = LINK_PROCESSOR_PARTS.lock().expect("Lock is not poisoned");
