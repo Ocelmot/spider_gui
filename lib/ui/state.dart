@@ -39,7 +39,6 @@ class _MyHomePageState extends State<MyHomePage> {
     stream = api.init(configPath: configPath);
 
     stream.listen((event) {
-      print("Dart event: $event");
       event.map(
         unpaired: _onUnpaired,
         pairs: _onPairs,

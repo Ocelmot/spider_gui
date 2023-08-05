@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'ui/state.dart';
 import 'package:path_provider/path_provider.dart';
+import 'color_schemes.g.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // var dir = await getApplicationDocumentsDirectory();
   var dir = await getApplicationSupportDirectory();
   var configPath = dir.path;
-  print(configPath);
   runApp(MyApp(configPath: configPath));
 }
 
@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Spider',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: lightColorScheme,
         useMaterial3: true,
       ),
       home: MyHomePage(

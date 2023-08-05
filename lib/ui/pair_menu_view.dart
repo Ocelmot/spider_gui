@@ -46,7 +46,7 @@ class PairMenuView extends StatelessWidget {
               ),
             ],
           )),
-          TextButton(
+          ElevatedButton(
               onPressed: () {
                 api.write(msg: ToProcessor.pair(key));
               },

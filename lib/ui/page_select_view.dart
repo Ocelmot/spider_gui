@@ -16,7 +16,7 @@ class PageSelectView extends StatelessWidget {
     for (var pageId in pageOrder) {
       var w = Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
-        child: TextButton(
+        child: ElevatedButton(
             onPressed: () {
               onPressed(pageId);
             },

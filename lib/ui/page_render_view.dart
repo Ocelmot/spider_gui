@@ -19,7 +19,7 @@ class PageRenderView extends StatelessWidget {
 
     return SingleChildScrollView(
         child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
       child: ElementWidget(page: renderPage, element: renderPage.root),
     ));
   }
@@ -57,13 +57,10 @@ class ElementWidget extends StatelessWidget {
             child: ElementWidget(page: page, element: child),
           ));
         }
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: SpiderRow(
-            lastRowAlignRight: true,
-            verticalAlignCenter: true,
-            children: children,
-          ),
+        return SpiderRow(
+          lastRowAlignRight: true,
+          verticalAlignCenter: true,
+          children: children,
         );
       case 'Rows':
         var children = <Widget>[];
@@ -77,7 +74,7 @@ class ElementWidget extends StatelessWidget {
         );
       case 'Header':
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8.0),
           child: Text(
             element.text,
             style: const TextStyle(fontSize: 22),
@@ -85,44 +82,50 @@ class ElementWidget extends StatelessWidget {
         );
       case 'Text':
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8.0),
           child: Text(element.text),
         );
       case 'TextEntry':
         var textElementController = TextEditingController();
 
-        return SizedBox(
-            width: 150,
-            child: TextField(
-              controller: textElementController,
-              decoration: InputDecoration(
-                isDense: true,
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                border: const OutlineInputBorder(),
-                labelText: element.text,
-              ),
-              onSubmitted: (value) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+          child: SizedBox(
+              width: 150,
+              child: TextField(
+                controller: textElementController,
+                decoration: InputDecoration(
+                  isDense: true,
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                  border: const OutlineInputBorder(),
+                  labelText: element.text,
+                ),
+                onSubmitted: (value) {
+                  api.write(
+                      msg: ToProcessor.input(
+                          pageId: page.id,
+                          elementId: element.id!,
+                          datasetIndices: element.datasetIndices,
+                          input: DartUiInput.text(value)));
+                  textElementController.clear();
+                },
+              )),
+        );
+      case 'Button':
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+          child: ElevatedButton(
+              onPressed: () {
                 api.write(
                     msg: ToProcessor.input(
                         pageId: page.id,
                         elementId: element.id!,
                         datasetIndices: element.datasetIndices,
-                        input: DartUiInput.text(value)));
-                textElementController.clear();
+                        input: const DartUiInput.click()));
               },
-            ));
-      case 'Button':
-        return TextButton(
-            onPressed: () {
-              api.write(
-                  msg: ToProcessor.input(
-                      pageId: page.id,
-                      elementId: element.id!,
-                      datasetIndices: element.datasetIndices,
-                      input: const DartUiInput.click()));
-            },
-            child: Text(element.text));
+              child: Text(element.text)),
+        );
       default:
         return const Text("<Unsupported element type>");
     }
