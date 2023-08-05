@@ -41,30 +41,30 @@ class ElementWidget extends StatelessWidget {
         // var children = <(SpiderRowLayoutType, Widget)>[];
         var children = <Widget>[];
         for (DartUiElement child in element.children) {
-          var layoutType = SpiderRowLayoutType.static;
+          var layoutType = SpiderRowLayoutStrategy.static;
           if (child.kind.name == 'Text') {
-            layoutType = SpiderRowLayoutType.flex;
+            if (child.text.length < 50) {
+              layoutType = SpiderRowLayoutStrategy.static;
+            } else {
+              layoutType = SpiderRowLayoutStrategy.flex;
+            }
           }
           if (child.kind.name == 'Spacer') {
-            layoutType = SpiderRowLayoutType.spacer;
+            layoutType = SpiderRowLayoutStrategy.spacer;
           }
-          children.add(ElementWidget(page: page, element: child));
-          // var childWidget = ElementWidget(page: page, element: child);
-          // children.add((layoutType, childWidget));
+          children.add(SpiderRowLayoutStrategyWidget(
+            layoutStrategy: layoutType,
+            child: ElementWidget(page: page, element: child),
+          ));
         }
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
+          child: SpiderRow(
+            lastRowAlignRight: true,
+            verticalAlignCenter: true,
             children: children,
           ),
         );
-      // return Padding(
-      //   padding: const EdgeInsets.symmetric(vertical: 4),
-      //   child: SpiderRowWidget(
-      //     children: children,
-      //   ),
-      // );
       case 'Rows':
         var children = <Widget>[];
         for (DartUiElement child in element.children) {
@@ -75,19 +75,32 @@ class ElementWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: children,
         );
+      case 'Header':
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            element.text,
+            style: const TextStyle(fontSize: 22),
+          ),
+        );
       case 'Text':
-        return Flexible(flex: 0, fit: FlexFit.loose, child: Text(element.text));
-      // return Text(element.text);
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(element.text),
+        );
       case 'TextEntry':
         var textElementController = TextEditingController();
 
-        return Container(
+        return SizedBox(
             width: 150,
             child: TextField(
               controller: textElementController,
               decoration: InputDecoration(
+                isDense: true,
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                 border: const OutlineInputBorder(),
-                hintText: element.text,
+                labelText: element.text,
               ),
               onSubmitted: (value) {
                 api.write(
@@ -100,29 +113,16 @@ class ElementWidget extends StatelessWidget {
               },
             ));
       case 'Button':
-        // return TextButton(
-        //     onPressed: () {
-        //       api.write(
-        //           msg: ToProcessor.input(
-        //               pageId: page.id,
-        //               elementId: element.id!,
-        //               datasetIndices: element.datasetIndices,
-        //               input: const DartUiInput.click()));
-        //     },
-        //     child: Text(element.text));
-        return Flexible(
-            flex: 0,
-            fit: FlexFit.loose,
-            child: TextButton(
-                onPressed: () {
-                  api.write(
-                      msg: ToProcessor.input(
-                          pageId: page.id,
-                          elementId: element.id!,
-                          datasetIndices: element.datasetIndices,
-                          input: const DartUiInput.click()));
-                },
-                child: Text(element.text)));
+        return TextButton(
+            onPressed: () {
+              api.write(
+                  msg: ToProcessor.input(
+                      pageId: page.id,
+                      elementId: element.id!,
+                      datasetIndices: element.datasetIndices,
+                      input: const DartUiInput.click()));
+            },
+            child: Text(element.text));
       default:
         return const Text("<Unsupported element type>");
     }

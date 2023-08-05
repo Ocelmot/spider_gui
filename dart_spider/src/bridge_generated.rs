@@ -121,9 +121,10 @@ impl support::IntoDart for DartUiElementKind {
             Self::Spacer => 1,
             Self::Columns => 2,
             Self::Rows => 3,
-            Self::Text => 4,
-            Self::TextEntry => 5,
-            Self::Button => 6,
+            Self::Header => 4,
+            Self::Text => 5,
+            Self::TextEntry => 6,
+            Self::Button => 7,
         }
         .into_dart()
     }

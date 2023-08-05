@@ -2,7 +2,7 @@ use std::{collections::HashMap, sync::Arc, path::PathBuf, time::Duration};
 
 use spider_client::{
     message::{AbsoluteDatasetPath, DatasetData, Message, RouterMessage, UiMessage, UiPageList},
-    Relation, Role, SpiderId2048, SpiderClientBuilder, ClientResponse, beacon_lookout_many, Link,
+    Relation, SpiderId2048, SpiderClientBuilder, ClientResponse, beacon_lookout_many, Link,
 };
 use tokio::{
     runtime::{Builder, Runtime},

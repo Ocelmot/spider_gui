@@ -46,6 +46,7 @@ enum DartUiElementKind {
   Spacer,
   Columns,
   Rows,
+  Header,
   Text,
   TextEntry,
   Button,

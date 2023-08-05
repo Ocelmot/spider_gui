@@ -1,182 +1,295 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
-enum SpiderRowLayoutType { static, flex, spacer }
+// =======  Main Widget =====
+class SpiderRow extends MultiChildRenderObjectWidget {
+  final double flexMinWidth;
+  final bool verticalAlignCenter;
+  final bool lastRowAlignRight;
 
-class SpiderRowWidget extends StatelessWidget {
-  final List<(SpiderRowLayoutType, Widget)> children;
-  const SpiderRowWidget({super.key, required this.children});
+  const SpiderRow(
+      {super.key,
+      this.flexMinWidth = 150,
+      this.verticalAlignCenter = false,
+      this.lastRowAlignRight = false,
+      required List<Widget> children})
+      : super(children: children);
+
   @override
-  Widget build(BuildContext context) {
-    List<Widget> layoutChildren = [];
-    List<SpiderRowLayoutType> layoutChildrenType = [];
-    int i = 0;
-    for (var (layoutType, child) in children) {
-      layoutChildrenType.add(layoutType);
-      layoutChildren.add(LayoutId(id: i, child: child));
-      i++;
-    }
-    return SizedBox(
-        height: 60,
-        child: CustomMultiChildLayout(
-          delegate:
-              SpiderRowWidgetLayoutDelegate(childrenTypes: layoutChildrenType),
-          children: layoutChildren,
-        ));
+  RenderObject createRenderObject(BuildContext context) {
+    return RenderSpiderRow(
+        flexMinWidth: flexMinWidth,
+        verticalAlignCenter: verticalAlignCenter,
+        lastRowAlignRight: lastRowAlignRight);
   }
 }
 
-class SpiderRowWidgetLayoutDelegate extends MultiChildLayoutDelegate {
-  final List<SpiderRowLayoutType> childrenTypes;
-  SpiderRowWidgetLayoutDelegate({required this.childrenTypes});
+// ===== Layout Strategies =====
+enum SpiderRowLayoutStrategy { static, flex, spacer }
+
+// ===== Child Widget to apply Layout Strategy =====
+class SpiderRowLayoutStrategyWidget
+    extends ParentDataWidget<_SpiderRowParentData> {
+  const SpiderRowLayoutStrategyWidget({
+    super.key,
+    this.layoutStrategy = SpiderRowLayoutStrategy.static,
+    required super.child,
+  });
+
+  final SpiderRowLayoutStrategy layoutStrategy;
+
   @override
-  void performLayout(Size size) {
-    double flexMinsize = 40;
+  void applyParentData(RenderObject renderObject) {
+    assert(renderObject.parentData is _SpiderRowParentData);
+    final _SpiderRowParentData parentData =
+        renderObject.parentData! as _SpiderRowParentData;
+    bool needsLayout = false;
 
-    // first pass
-    Map<int, Size> staticChildren = {};
-    double staticAccumulatedSize = 0;
-    List<int> flexIndices = [];
-    List<int> spacerIndices = [];
+    if (parentData.layoutStrategy != layoutStrategy) {
+      parentData.layoutStrategy = layoutStrategy;
+      needsLayout = true;
+    }
 
+    if (needsLayout) {
+      final AbstractNode? targetParent = renderObject.parent;
+      if (targetParent is RenderObject) {
+        targetParent.markNeedsLayout();
+      }
+    }
+  }
+
+  @override
+  Type get debugTypicalAncestorWidgetClass => SpiderRow;
+}
+
+// ===== Parent Data for Child Widgets =====
+class _SpiderRowParentData extends ContainerBoxParentData<RenderBox>
+    with ContainerParentDataMixin<RenderBox> {
+  SpiderRowLayoutStrategy layoutStrategy = SpiderRowLayoutStrategy.static;
+}
+
+// ===== Renderer for Main Widget =====
+class RenderSpiderRow extends RenderBox
+    with
+        ContainerRenderObjectMixin<RenderBox, _SpiderRowParentData>,
+        RenderBoxContainerDefaultsMixin<RenderBox, _SpiderRowParentData> {
+  double flexMinWidth;
+  bool verticalAlignCenter;
+  bool lastRowAlignRight;
+
+  RenderSpiderRow(
+      {this.flexMinWidth = 150,
+      this.verticalAlignCenter = false,
+      this.lastRowAlignRight = false});
+
+  @override
+  void setupParentData(covariant RenderObject child) {
+    if (child.parentData is! _SpiderRowParentData) {
+      child.parentData = _SpiderRowParentData();
+    }
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    defaultPaint(context, offset);
+  }
+
+  @override
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
+    return defaultHitTestChildren(result, position: position);
+  }
+
+  _SpiderRowParentData _getChildParentData(RenderBox? child) {
+    return child?.parentData as _SpiderRowParentData;
+  }
+
+  @override
+  void performLayout() {
+    // First pass
+    Map<int, SpiderRowLayoutStrategy> layoutStrategies = {};
+    Map<int, RenderBox> staticChildren = {};
+    Map<int, RenderBox> flexChildren = {};
+    Map<int, RenderBox> spacerChildren = {};
+
+    double staticAccumulatedWidth = 0;
+    double staticMaxHeight = 0;
     double accumulatedSize = 0;
 
-    double rowLocation = 0;
-    int rowIndex = 0;
-
-    print("Laying out object");
+    double rowStartOffset = 0;
+    int rowStartIndex = 0;
 
     var i = 0;
-    for (SpiderRowLayoutType type in childrenTypes) {
-      double newSize = 0;
-      Size childSize = Size.zero;
-      switch (type) {
-        case SpiderRowLayoutType.static:
+    var child = firstChild;
+    while (child != null) {
+      var childParentData = _getChildParentData(child);
+
+      // Prologue
+      double newWidth = 0;
+      layoutStrategies[i] = childParentData.layoutStrategy;
+      switch (childParentData.layoutStrategy) {
+        case SpiderRowLayoutStrategy.static:
           {
-            var childSize =
-                layoutChild(i, BoxConstraints(maxWidth: size.width));
-            newSize = childSize.width;
+            child.layout(BoxConstraints(maxWidth: constraints.maxWidth),
+                parentUsesSize: true);
+            newWidth = child.size.width;
           }
           break;
-        case SpiderRowLayoutType.flex:
+        case SpiderRowLayoutStrategy.flex:
           {
-            newSize += flexMinsize;
+            newWidth += flexMinWidth;
           }
           break;
-        case SpiderRowLayoutType.spacer:
+        case SpiderRowLayoutStrategy.spacer:
           {}
           break;
       }
 
-      if ((accumulatedSize + newSize) > size.width) {
+      // Body
+      if ((accumulatedSize + newWidth) > constraints.maxWidth) {
         // time to layout the row
-        print("Laying out row");
-        var rowHeight = layoutRow(staticChildren, rowIndex, i, size,
-            rowLocation, staticAccumulatedSize, flexIndices, spacerIndices);
-        rowLocation += rowHeight;
-        rowIndex = i;
+        var rowHeight = layoutRow(
+            rowStartIndex,
+            i,
+            layoutStrategies,
+            staticChildren,
+            staticAccumulatedWidth,
+            staticMaxHeight,
+            flexChildren,
+            spacerChildren,
+            rowStartOffset,
+            false);
+        rowStartOffset += rowHeight;
+        rowStartIndex = i;
 
         accumulatedSize = 0;
-        staticAccumulatedSize = 0;
-        flexIndices = [];
-        spacerIndices = [];
+        staticAccumulatedWidth = 0;
+        flexChildren = {};
+        spacerChildren = {};
       }
 
-      accumulatedSize += newSize;
-      switch (type) {
-        case SpiderRowLayoutType.static:
+      // Epilogue
+      accumulatedSize += newWidth;
+      switch (childParentData.layoutStrategy) {
+        case SpiderRowLayoutStrategy.static:
           {
-            staticAccumulatedSize += newSize;
-            staticChildren[i] = childSize;
+            staticAccumulatedWidth += newWidth;
+            if (child.size.height > staticMaxHeight) {
+              staticMaxHeight = child.size.height;
+            }
+            staticChildren[i] = child;
           }
           break;
-        case SpiderRowLayoutType.flex:
+        case SpiderRowLayoutStrategy.flex:
           {
-            flexIndices.add(i);
+            flexChildren[i] = child;
           }
           break;
-        case SpiderRowLayoutType.spacer:
+        case SpiderRowLayoutStrategy.spacer:
           {
-            spacerIndices.add(i);
+            spacerChildren[i] = child;
           }
           break;
       }
 
       i++;
+      child = childParentData.nextSibling;
     }
-
     // Layout row for the case where it didnt wrap
-    print("Laying out row");
-    var rowHeight = layoutRow(staticChildren, rowIndex, i, size, rowLocation,
-        staticAccumulatedSize, flexIndices, spacerIndices);
-    rowLocation += rowHeight;
+    var rowHeight = layoutRow(
+        rowStartIndex,
+        i,
+        layoutStrategies,
+        staticChildren,
+        staticAccumulatedWidth,
+        staticMaxHeight,
+        flexChildren,
+        spacerChildren,
+        rowStartOffset,
+        true);
+    rowStartOffset += rowHeight;
+
+    // set our size
+    size = Size(constraints.maxWidth, rowStartOffset);
   }
 
   double layoutRow(
-      Map<int, Size> staticChildren,
-      int start,
-      int end,
-      Size size,
-      double rowLocation,
-      double staticAccumulatedSize,
-      List<int> flexIndices,
-      List<int> spacerIndices) {
-    double maxHeight = 0;
+      int startIndex,
+      int endIndex,
+      Map<int, SpiderRowLayoutStrategy> layoutStrategies,
+      Map<int, RenderBox> staticChildren,
+      double staticAccumulatedWidth,
+      double staticMaxHeight,
+      Map<int, RenderBox> flexChildren,
+      Map<int, RenderBox> spacerChildren,
+      double rowOffset,
+      bool islastRow) {
+    double maxHeight = staticMaxHeight;
     double flexMaxWidth =
-        (size.width - staticAccumulatedSize) / flexIndices.length;
+        (constraints.maxWidth - staticAccumulatedWidth) / flexChildren.length;
     // With flex max width calculated, the flex items can be laid out
-    Map<int, Size> flexChildren = {};
-    double flexAccumulatedSize = 0;
-    for (var index in flexIndices) {
-      var flexSize = layoutChild(index, BoxConstraints(maxWidth: flexMaxWidth));
-      flexAccumulatedSize += flexSize.width;
-      flexChildren[index] = flexSize;
+    double flexAccumulatedWidth = 0;
+    for (var child in flexChildren.values) {
+      child.layout(BoxConstraints(maxWidth: flexMaxWidth),
+          parentUsesSize: true);
+      flexAccumulatedWidth += child.size.width;
+      if (child.size.height > maxHeight) {
+        maxHeight = child.size.height;
+      }
     }
     double spacerMaxWidth =
-        (size.width - staticAccumulatedSize - flexAccumulatedSize) /
-            spacerIndices.length;
+        (constraints.maxWidth - staticAccumulatedWidth - flexAccumulatedWidth) /
+            spacerChildren.length;
     // With spacer max width calculate, the spacers can be laid out
-    Map<int, Size> spacerChildren = {};
-    for (var index in spacerIndices) {
-      var spacerSize = layoutChild(index,
-          BoxConstraints(minWidth: spacerMaxWidth, maxWidth: spacerMaxWidth));
-      spacerChildren[index] = spacerSize;
+    double spacerAccumulatedWidth = 0;
+    for (var child in spacerChildren.values) {
+      child.layout(
+          BoxConstraints(minWidth: spacerMaxWidth, maxWidth: spacerMaxWidth),
+          parentUsesSize: true);
+      spacerAccumulatedWidth += child.size.width;
+      if (child.size.height > maxHeight) {
+        maxHeight = child.size.height;
+      }
     }
     // With all children for this row laid out, they are placed in the parent
+
     double xPos = 0;
-    for (int i = start; i < end; i++) {
-      var childType = childrenTypes[i];
-      Size childSize;
-      switch (childType) {
-        case SpiderRowLayoutType.static:
+
+    if (islastRow && lastRowAlignRight) {
+      var remainingWidth = constraints.maxWidth -
+          staticAccumulatedWidth -
+          flexAccumulatedWidth -
+          spacerAccumulatedWidth;
+      xPos += remainingWidth;
+    }
+
+    for (int i = startIndex; i < endIndex; i++) {
+      RenderBox child;
+      switch (layoutStrategies[i]!) {
+        case SpiderRowLayoutStrategy.static:
           {
-            childSize = staticChildren[i]!;
-            print("static child with size: $childSize");
+            child = staticChildren[i]!;
           }
           break;
-        case SpiderRowLayoutType.flex:
+        case SpiderRowLayoutStrategy.flex:
           {
-            childSize = flexChildren[i]!;
-            print("flex child with size: $childSize");
+            child = flexChildren[i]!;
           }
           break;
-        case SpiderRowLayoutType.spacer:
+        case SpiderRowLayoutStrategy.spacer:
           {
-            childSize = spacerChildren[i]!;
-            print("spacer child with size: $childSize");
+            child = spacerChildren[i]!;
           }
           break;
       }
-      positionChild(i, Offset(xPos, rowLocation));
-      xPos += childSize.width;
-      if (childSize.height > maxHeight) {
-        maxHeight = childSize.height;
+      double vertOffset = 0;
+      if (verticalAlignCenter) {
+        vertOffset += (maxHeight - child.size.height) / 2;
       }
+      var childParentData = _getChildParentData(child);
+      childParentData.offset = Offset(xPos, rowOffset + vertOffset);
+      xPos += child.size.width;
     }
     return maxHeight;
-  }
-
-  @override
-  bool shouldRelayout(covariant SpiderRowWidgetLayoutDelegate oldDelegate) {
-    return childrenTypes != oldDelegate.childrenTypes;
   }
 }

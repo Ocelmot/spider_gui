@@ -5,8 +5,6 @@ class SpiderSpacerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return SizedBox.shrink();
-    return const Flexible(
-        flex: 1, fit: FlexFit.tight, child: SizedBox.shrink());
+    return const SizedBox.shrink();
   }
 }
