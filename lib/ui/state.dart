@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spider_gui/ui/show_key_overlay.dart';
 import '../ffi.dart';
 import 'spinner_view.dart';
 import 'pair_menu_view.dart';
@@ -30,6 +31,10 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _isConnected = false;
   String _connectingMessage = "";
 
+  bool _isPending = false;
+
+  String key = "<None>";
+
   // Pages
   var pageOrder = <String>[];
   var pages = <String, DartUiPage>{};
@@ -40,13 +45,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
     stream.listen((event) {
       event.map(
+        setId: _onSetId,
         unpaired: _onUnpaired,
         pairs: _onPairs,
         connecting: _onConnecting,
+        pending: _onPending,
         connected: _onConnected,
         setPageOrder: _onSetPageOrder,
         setPage: _onSetPage,
       );
+    });
+  }
+
+  void _onSetId(ToUi_SetId event) {
+    setState(() {
+      key = event.field0;
     });
   }
 
@@ -72,6 +85,12 @@ class _MyHomePageState extends State<MyHomePage> {
       _isPaired = true;
       _isConnected = false;
       _connectingMessage = event.msg;
+    });
+  }
+
+  void _onPending(ToUi_Pending event) {
+    setState(() {
+      _isPending = !event.approved;
     });
   }
 
@@ -123,6 +142,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () {
                   api.write(msg: const ToProcessor.unpair());
                 },
+              ),
+              PopupMenuItem(
+                child: const Text("Show Key"),
+                onTap: () => {
+                  Future.delayed(const Duration(seconds: 0),
+                      () => {keyOverlayBuilder(context, key)})
+                },
               )
             ],
           )
@@ -133,7 +159,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   (Widget, Widget?) getRenders() {
-    //
     if (!_initialized) {
       return (
         const SpinnerView(
@@ -154,6 +179,17 @@ class _MyHomePageState extends State<MyHomePage> {
         SpinnerView(
           title: "Connecting...",
           subtitle: _connectingMessage,
+        ),
+        null
+      );
+    }
+
+    // Show connection screen
+    if (_isPending) {
+      return (
+        const SpinnerView(
+          title: "Connection Pending Approval",
+          subtitle: "Approve connection in Settings > Pending Connections",
         ),
         null
       );

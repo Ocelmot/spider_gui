@@ -841,9 +841,11 @@ abstract class ToProcessor_Input implements ToProcessor {
 mixin _$ToUi {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(List<(String, String)> relations) pairs,
     required TResult Function(String msg) connecting,
+    required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
@@ -851,9 +853,11 @@ mixin _$ToUi {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(List<(String, String)> relations)? pairs,
     TResult? Function(String msg)? connecting,
+    TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
@@ -861,9 +865,11 @@ mixin _$ToUi {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(List<(String, String)> relations)? pairs,
     TResult Function(String msg)? connecting,
+    TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
@@ -872,9 +878,11 @@ mixin _$ToUi {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_Pairs value) pairs,
     required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
@@ -882,9 +890,11 @@ mixin _$ToUi {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_Pairs value)? pairs,
     TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
@@ -892,9 +902,11 @@ mixin _$ToUi {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_Pairs value)? pairs,
     TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
@@ -918,6 +930,175 @@ class _$ToUiCopyWithImpl<$Res, $Val extends ToUi>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$ToUi_SetIdCopyWith<$Res> {
+  factory _$$ToUi_SetIdCopyWith(
+          _$ToUi_SetId value, $Res Function(_$ToUi_SetId) then) =
+      __$$ToUi_SetIdCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String field0});
+}
+
+/// @nodoc
+class __$$ToUi_SetIdCopyWithImpl<$Res>
+    extends _$ToUiCopyWithImpl<$Res, _$ToUi_SetId>
+    implements _$$ToUi_SetIdCopyWith<$Res> {
+  __$$ToUi_SetIdCopyWithImpl(
+      _$ToUi_SetId _value, $Res Function(_$ToUi_SetId) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$ToUi_SetId(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToUi_SetId implements ToUi_SetId {
+  const _$ToUi_SetId(this.field0);
+
+  @override
+  final String field0;
+
+  @override
+  String toString() {
+    return 'ToUi.setId(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToUi_SetId &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToUi_SetIdCopyWith<_$ToUi_SetId> get copyWith =>
+      __$$ToUi_SetIdCopyWithImpl<_$ToUi_SetId>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
+    required TResult Function() unpaired,
+    required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String msg) connecting,
+    required TResult Function(bool approved) pending,
+    required TResult Function() connected,
+    required TResult Function(List<String> pages) setPageOrder,
+    required TResult Function(DartUiPage page) setPage,
+  }) {
+    return setId(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
+    TResult? Function()? unpaired,
+    TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String msg)? connecting,
+    TResult? Function(bool approved)? pending,
+    TResult? Function()? connected,
+    TResult? Function(List<String> pages)? setPageOrder,
+    TResult? Function(DartUiPage page)? setPage,
+  }) {
+    return setId?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
+    TResult Function()? unpaired,
+    TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String msg)? connecting,
+    TResult Function(bool approved)? pending,
+    TResult Function()? connected,
+    TResult Function(List<String> pages)? setPageOrder,
+    TResult Function(DartUiPage page)? setPage,
+    required TResult orElse(),
+  }) {
+    if (setId != null) {
+      return setId(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Pending value) pending,
+    required TResult Function(ToUi_Connected value) connected,
+    required TResult Function(ToUi_SetPageOrder value) setPageOrder,
+    required TResult Function(ToUi_SetPage value) setPage,
+  }) {
+    return setId(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Pending value)? pending,
+    TResult? Function(ToUi_Connected value)? connected,
+    TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult? Function(ToUi_SetPage value)? setPage,
+  }) {
+    return setId?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Pending value)? pending,
+    TResult Function(ToUi_Connected value)? connected,
+    TResult Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult Function(ToUi_SetPage value)? setPage,
+    required TResult orElse(),
+  }) {
+    if (setId != null) {
+      return setId(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToUi_SetId implements ToUi {
+  const factory ToUi_SetId(final String field0) = _$ToUi_SetId;
+
+  String get field0;
+  @JsonKey(ignore: true)
+  _$$ToUi_SetIdCopyWith<_$ToUi_SetId> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -958,9 +1139,11 @@ class _$ToUi_Unpaired implements ToUi_Unpaired {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(List<(String, String)> relations) pairs,
     required TResult Function(String msg) connecting,
+    required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
@@ -971,9 +1154,11 @@ class _$ToUi_Unpaired implements ToUi_Unpaired {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(List<(String, String)> relations)? pairs,
     TResult? Function(String msg)? connecting,
+    TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
@@ -984,9 +1169,11 @@ class _$ToUi_Unpaired implements ToUi_Unpaired {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(List<(String, String)> relations)? pairs,
     TResult Function(String msg)? connecting,
+    TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
@@ -1001,9 +1188,11 @@ class _$ToUi_Unpaired implements ToUi_Unpaired {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_Pairs value) pairs,
     required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
@@ -1014,9 +1203,11 @@ class _$ToUi_Unpaired implements ToUi_Unpaired {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_Pairs value)? pairs,
     TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
@@ -1027,9 +1218,11 @@ class _$ToUi_Unpaired implements ToUi_Unpaired {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_Pairs value)? pairs,
     TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
@@ -1118,9 +1311,11 @@ class _$ToUi_Pairs implements ToUi_Pairs {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(List<(String, String)> relations) pairs,
     required TResult Function(String msg) connecting,
+    required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
@@ -1131,9 +1326,11 @@ class _$ToUi_Pairs implements ToUi_Pairs {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(List<(String, String)> relations)? pairs,
     TResult? Function(String msg)? connecting,
+    TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
@@ -1144,9 +1341,11 @@ class _$ToUi_Pairs implements ToUi_Pairs {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(List<(String, String)> relations)? pairs,
     TResult Function(String msg)? connecting,
+    TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
@@ -1161,9 +1360,11 @@ class _$ToUi_Pairs implements ToUi_Pairs {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_Pairs value) pairs,
     required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
@@ -1174,9 +1375,11 @@ class _$ToUi_Pairs implements ToUi_Pairs {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_Pairs value)? pairs,
     TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
@@ -1187,9 +1390,11 @@ class _$ToUi_Pairs implements ToUi_Pairs {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_Pairs value)? pairs,
     TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
@@ -1276,9 +1481,11 @@ class _$ToUi_Connecting implements ToUi_Connecting {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(List<(String, String)> relations) pairs,
     required TResult Function(String msg) connecting,
+    required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
@@ -1289,9 +1496,11 @@ class _$ToUi_Connecting implements ToUi_Connecting {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(List<(String, String)> relations)? pairs,
     TResult? Function(String msg)? connecting,
+    TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
@@ -1302,9 +1511,11 @@ class _$ToUi_Connecting implements ToUi_Connecting {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(List<(String, String)> relations)? pairs,
     TResult Function(String msg)? connecting,
+    TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
@@ -1319,9 +1530,11 @@ class _$ToUi_Connecting implements ToUi_Connecting {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_Pairs value) pairs,
     required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
@@ -1332,9 +1545,11 @@ class _$ToUi_Connecting implements ToUi_Connecting {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_Pairs value)? pairs,
     TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
@@ -1345,9 +1560,11 @@ class _$ToUi_Connecting implements ToUi_Connecting {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_Pairs value)? pairs,
     TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
@@ -1367,6 +1584,176 @@ abstract class ToUi_Connecting implements ToUi {
   String get msg;
   @JsonKey(ignore: true)
   _$$ToUi_ConnectingCopyWith<_$ToUi_Connecting> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ToUi_PendingCopyWith<$Res> {
+  factory _$$ToUi_PendingCopyWith(
+          _$ToUi_Pending value, $Res Function(_$ToUi_Pending) then) =
+      __$$ToUi_PendingCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool approved});
+}
+
+/// @nodoc
+class __$$ToUi_PendingCopyWithImpl<$Res>
+    extends _$ToUiCopyWithImpl<$Res, _$ToUi_Pending>
+    implements _$$ToUi_PendingCopyWith<$Res> {
+  __$$ToUi_PendingCopyWithImpl(
+      _$ToUi_Pending _value, $Res Function(_$ToUi_Pending) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? approved = null,
+  }) {
+    return _then(_$ToUi_Pending(
+      approved: null == approved
+          ? _value.approved
+          : approved // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToUi_Pending implements ToUi_Pending {
+  const _$ToUi_Pending({required this.approved});
+
+  @override
+  final bool approved;
+
+  @override
+  String toString() {
+    return 'ToUi.pending(approved: $approved)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToUi_Pending &&
+            (identical(other.approved, approved) ||
+                other.approved == approved));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, approved);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToUi_PendingCopyWith<_$ToUi_Pending> get copyWith =>
+      __$$ToUi_PendingCopyWithImpl<_$ToUi_Pending>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
+    required TResult Function() unpaired,
+    required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String msg) connecting,
+    required TResult Function(bool approved) pending,
+    required TResult Function() connected,
+    required TResult Function(List<String> pages) setPageOrder,
+    required TResult Function(DartUiPage page) setPage,
+  }) {
+    return pending(approved);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
+    TResult? Function()? unpaired,
+    TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String msg)? connecting,
+    TResult? Function(bool approved)? pending,
+    TResult? Function()? connected,
+    TResult? Function(List<String> pages)? setPageOrder,
+    TResult? Function(DartUiPage page)? setPage,
+  }) {
+    return pending?.call(approved);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
+    TResult Function()? unpaired,
+    TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String msg)? connecting,
+    TResult Function(bool approved)? pending,
+    TResult Function()? connected,
+    TResult Function(List<String> pages)? setPageOrder,
+    TResult Function(DartUiPage page)? setPage,
+    required TResult orElse(),
+  }) {
+    if (pending != null) {
+      return pending(approved);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Pending value) pending,
+    required TResult Function(ToUi_Connected value) connected,
+    required TResult Function(ToUi_SetPageOrder value) setPageOrder,
+    required TResult Function(ToUi_SetPage value) setPage,
+  }) {
+    return pending(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Pending value)? pending,
+    TResult? Function(ToUi_Connected value)? connected,
+    TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult? Function(ToUi_SetPage value)? setPage,
+  }) {
+    return pending?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Pending value)? pending,
+    TResult Function(ToUi_Connected value)? connected,
+    TResult Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult Function(ToUi_SetPage value)? setPage,
+    required TResult orElse(),
+  }) {
+    if (pending != null) {
+      return pending(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToUi_Pending implements ToUi {
+  const factory ToUi_Pending({required final bool approved}) = _$ToUi_Pending;
+
+  bool get approved;
+  @JsonKey(ignore: true)
+  _$$ToUi_PendingCopyWith<_$ToUi_Pending> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1408,9 +1795,11 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(List<(String, String)> relations) pairs,
     required TResult Function(String msg) connecting,
+    required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
@@ -1421,9 +1810,11 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(List<(String, String)> relations)? pairs,
     TResult? Function(String msg)? connecting,
+    TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
@@ -1434,9 +1825,11 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(List<(String, String)> relations)? pairs,
     TResult Function(String msg)? connecting,
+    TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
@@ -1451,9 +1844,11 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_Pairs value) pairs,
     required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
@@ -1464,9 +1859,11 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_Pairs value)? pairs,
     TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
@@ -1477,9 +1874,11 @@ class _$ToUi_Connected implements ToUi_Connected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_Pairs value)? pairs,
     TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
@@ -1567,9 +1966,11 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(List<(String, String)> relations) pairs,
     required TResult Function(String msg) connecting,
+    required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
@@ -1580,9 +1981,11 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(List<(String, String)> relations)? pairs,
     TResult? Function(String msg)? connecting,
+    TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
@@ -1593,9 +1996,11 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(List<(String, String)> relations)? pairs,
     TResult Function(String msg)? connecting,
+    TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
@@ -1610,9 +2015,11 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_Pairs value) pairs,
     required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
@@ -1623,9 +2030,11 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_Pairs value)? pairs,
     TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
@@ -1636,9 +2045,11 @@ class _$ToUi_SetPageOrder implements ToUi_SetPageOrder {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_Pairs value)? pairs,
     TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
@@ -1725,9 +2136,11 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(List<(String, String)> relations) pairs,
     required TResult Function(String msg) connecting,
+    required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
@@ -1738,9 +2151,11 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(List<(String, String)> relations)? pairs,
     TResult? Function(String msg)? connecting,
+    TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
@@ -1751,9 +2166,11 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(List<(String, String)> relations)? pairs,
     TResult Function(String msg)? connecting,
+    TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
@@ -1768,9 +2185,11 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_Pairs value) pairs,
     required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
@@ -1781,9 +2200,11 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_Pairs value)? pairs,
     TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
@@ -1794,9 +2215,11 @@ class _$ToUi_SetPage implements ToUi_SetPage {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_Pairs value)? pairs,
     TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,

@@ -88,6 +88,9 @@ sealed class ToProcessor with _$ToProcessor {
 
 @freezed
 sealed class ToUi with _$ToUi {
+  const factory ToUi.setId(
+    String field0,
+  ) = ToUi_SetId;
   const factory ToUi.unpaired() = ToUi_Unpaired;
   const factory ToUi.pairs({
     required List<(String, String)> relations,
@@ -95,6 +98,9 @@ sealed class ToUi with _$ToUi {
   const factory ToUi.connecting({
     required String msg,
   }) = ToUi_Connecting;
+  const factory ToUi.pending({
+    required bool approved,
+  }) = ToUi_Pending;
   const factory ToUi.connected() = ToUi_Connected;
   const factory ToUi.setPageOrder({
     required List<String> pages,

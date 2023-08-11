@@ -12,7 +12,14 @@ class SpinnerView extends StatelessWidget {
         child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(title),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(title),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(subtitle),
+        ),
         const CircularProgressIndicator.adaptive(),
       ],
     ));

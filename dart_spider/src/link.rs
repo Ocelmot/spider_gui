@@ -35,10 +35,12 @@ pub enum ToProcessor {
 
 #[derive(Debug)]
 pub enum ToUi {
+    SetId(String),
     Unpaired,
     // first string is name, second is base64 of its key
     Pairs{ relations: Vec<(String, String)>},
     Connecting {msg: String},
+    Pending{approved: bool},
     Connected,
     SetPageOrder { pages: Vec<String> },
     SetPage { page: DartUiPage },
@@ -71,6 +73,9 @@ impl LinkProcessor {
         let client_builder = SpiderClientBuilder::load_or_set(&path, |builder|{
             
         });
+        let sig = client_builder.self_relation().id.to_base64();
+        let sig: String = sig.chars().skip(sig.len().saturating_sub(15)).collect();
+        stream_sink.add(ToUi::SetId(sig));
         let link_state = LinkState::new(client_builder);
         
 
@@ -106,6 +111,7 @@ impl LinkProcessor {
     async fn run(mut self, notify: Arc<Notify>) {
         // wait until the channel has been installed into the global option
         notify.notified().await;
+
         // Initialize pair/connect
         if self.link_state.is_paired() {
             self.link_state.connect().await;
@@ -167,6 +173,12 @@ impl LinkProcessor {
                                 ClientResponse::Message(Message::Ui(msg)) => {
                                     self.handle_ui(msg).await;
                                 },
+                                ClientResponse::Message(Message::Router(RouterMessage::Pending)) => {
+                                    self.sender.add(ToUi::Pending{approved: false});
+                                },
+                                ClientResponse::Message(Message::Router(RouterMessage::Approved)) => {
+                                    self.sender.add(ToUi::Pending{approved: true});
+                                },
                                 ClientResponse::Connected => {
                                     println!("connected");
                                     self.sender.add(ToUi::Connected);
@@ -180,13 +192,23 @@ impl LinkProcessor {
                                     let msg = Message::Ui(UiMessage::Subscribe);
                                     self.link_state.send(msg).await;
                                 },
+                                ClientResponse::Disconnected => {
+                                    // Move Ui to loading screen as
+                                    // link will attempt to reconnect
+                                    self.sender.add(ToUi::Connecting { msg: "Reconnecting...".into() });
+                                }
+                                ClientResponse::Denied(_) =>{
+                                    self.sender.add(ToUi::Unpaired);
+                                }
+                                ClientResponse::Terminated(builder) => {
+                                    // Should only occur on exit
+                                    builder.save();
+                                    return;
+                                }
                                 _ => {}
                             }
                         },
-                        None => {
-                            // disconnected
-                            println!("Disconnected!");
-                        },
+                        None => {},
                     }
                 }
             }

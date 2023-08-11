@@ -109,6 +109,10 @@ impl LinkState {
                     if let ClientResponse::Terminated(builder) = &msg {
                         *self = LinkState::Paired(builder.clone());
                     }
+                    if let ClientResponse::Denied(builder) = &msg {
+                        builder.save();
+                        *self = LinkState::Unpaired(builder.clone());
+                    }
                     Some(msg)
                 }
                 None => None,

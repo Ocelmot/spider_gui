@@ -100,6 +100,10 @@ class DartSpiderImpl implements DartSpider {
     );
   }
 
+  bool _wire2api_bool(dynamic raw) {
+    return raw as bool;
+  }
+
   DartUiPage _wire2api_box_autoadd_dart_ui_page(dynamic raw) {
     return _wire2api_dart_ui_page(raw);
   }
@@ -153,22 +157,30 @@ class DartSpiderImpl implements DartSpider {
   ToUi _wire2api_to_ui(dynamic raw) {
     switch (raw[0]) {
       case 0:
-        return ToUi_Unpaired();
+        return ToUi_SetId(
+          _wire2api_String(raw[1]),
+        );
       case 1:
+        return ToUi_Unpaired();
+      case 2:
         return ToUi_Pairs(
           relations: _wire2api_list___record__String_String(raw[1]),
         );
-      case 2:
+      case 3:
         return ToUi_Connecting(
           msg: _wire2api_String(raw[1]),
         );
-      case 3:
-        return ToUi_Connected();
       case 4:
+        return ToUi_Pending(
+          approved: _wire2api_bool(raw[1]),
+        );
+      case 5:
+        return ToUi_Connected();
+      case 6:
         return ToUi_SetPageOrder(
           pages: _wire2api_StringList(raw[1]),
         );
-      case 5:
+      case 7:
         return ToUi_SetPage(
           page: _wire2api_box_autoadd_dart_ui_page(raw[1]),
         );

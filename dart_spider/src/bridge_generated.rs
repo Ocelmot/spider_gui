@@ -145,12 +145,14 @@ impl support::IntoDartExceptPrimitive for DartUiPage {}
 impl support::IntoDart for ToUi {
     fn into_dart(self) -> support::DartAbi {
         match self {
-            Self::Unpaired => vec![0.into_dart()],
-            Self::Pairs { relations } => vec![1.into_dart(), relations.into_dart()],
-            Self::Connecting { msg } => vec![2.into_dart(), msg.into_dart()],
-            Self::Connected => vec![3.into_dart()],
-            Self::SetPageOrder { pages } => vec![4.into_dart(), pages.into_dart()],
-            Self::SetPage { page } => vec![5.into_dart(), page.into_dart()],
+            Self::SetId(field0) => vec![0.into_dart(), field0.into_dart()],
+            Self::Unpaired => vec![1.into_dart()],
+            Self::Pairs { relations } => vec![2.into_dart(), relations.into_dart()],
+            Self::Connecting { msg } => vec![3.into_dart(), msg.into_dart()],
+            Self::Pending { approved } => vec![4.into_dart(), approved.into_dart()],
+            Self::Connected => vec![5.into_dart()],
+            Self::SetPageOrder { pages } => vec![6.into_dart(), pages.into_dart()],
+            Self::SetPage { page } => vec![7.into_dart(), page.into_dart()],
         }
         .into_dart()
     }
