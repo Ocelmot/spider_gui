@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:spider_gui/src/rust/api/simple.dart';
+import 'package:spider_gui/src/rust/dart_spider/link.dart';
+import 'package:spider_gui/src/rust/dart_spider/ui.dart';
+import 'package:spider_gui/ui/show_invite_overlay.dart';
 import 'package:spider_gui/ui/show_key_overlay.dart';
-import '../ffi.dart';
 import 'spinner_view.dart';
 import 'pair_menu_view.dart';
 import 'page_select_view.dart';
@@ -41,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String? selectedPage;
 
   _MyHomePageState(String configPath) {
-    stream = api.init(configPath: configPath);
+    stream = initRust(configPath: configPath);
 
     stream.listen((event) {
       event.map(
@@ -53,6 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
         connected: _onConnected,
         setPageOrder: _onSetPageOrder,
         setPage: _onSetPage,
+        generatedInvite: _onGeneratedInvite,
+        status: _onStatus,
       );
     });
   }
@@ -60,6 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onSetId(ToUi_SetId event) {
     setState(() {
       key = event.field0;
+    });
+  }
+
+  void _onStatus(ToUi_Status event) {
+    setState(() {
+      _connectingMessage = event.msg;
     });
   }
 
@@ -114,6 +125,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _onGeneratedInvite(ToUi_GeneratedInvite event) {
+    inviteOverlayBuilder(context, event.field0);
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -140,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
               PopupMenuItem(
                 child: const Text("Unpair"),
                 onTap: () {
-                  api.write(msg: const ToProcessor.unpair());
+                  write(msg: const ToProcessor.unpair());
                 },
               ),
               PopupMenuItem(
@@ -148,6 +163,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () => {
                   Future.delayed(const Duration(seconds: 0),
                       () => {keyOverlayBuilder(context, key)})
+                },
+              ),
+              PopupMenuItem(
+                child: const Text("Invite User"),
+                onTap: () => {
+                  Future.delayed(const Duration(seconds: 0),
+                      () => {write(msg: const ToProcessor.generateInvite())})
                 },
               )
             ],

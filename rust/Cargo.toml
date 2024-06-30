@@ -1,0 +1,27 @@
+[package]
+name = "rust_lib_spider_gui"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "staticlib"]
+
+[dependencies]
+flutter_rust_bridge = { version = "=2.0.0-dev.36", features = ["log"] }
+tokio = { version = "1", features = ["full"] }
+spider_client = { git = "https://github.com/Ocelmot/spider" }
+
+serde_json = "1.0.73"
+serde = { version = "1.0.132", features = ["derive"] }
+log = "0.4.21"
+
+veilid-core = "0.3.2"
+
+# Dependencies for Android
+[target.'cfg(target_os = "android")'.dependencies]
+jni = "0.21.1"
+android_logger = "0.13"
+
+# Dependencies for IOS
+[target.'cfg(target_os = "ios")'.dependencies]
+oslog = {version = "0.1.0"}

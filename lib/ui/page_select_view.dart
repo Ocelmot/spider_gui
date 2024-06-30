@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../ffi.dart';
+import 'package:spider_gui/src/rust/dart_spider/ui.dart';
 
 class PageSelectView extends StatelessWidget {
   final List<String> pageOrder;

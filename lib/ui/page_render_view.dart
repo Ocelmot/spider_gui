@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:spider_gui/src/rust/api/simple.dart';
+import 'package:spider_gui/src/rust/dart_spider/link.dart';
+import 'package:spider_gui/src/rust/dart_spider/ui.dart';
 import 'package:spider_gui/widgets/spider_row.dart';
 import 'package:spider_gui/widgets/spider_spacer.dart';
-
-import '../ffi.dart';
 
 class PageRenderView extends StatelessWidget {
   final DartUiPage? page;
@@ -33,23 +34,23 @@ class ElementWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (element.kind.name) {
-      case 'None':
+      case 'none':
         return const SizedBox(width: 0, height: 0);
-      case 'Spacer':
+      case 'spacer':
         return const SpiderSpacerWidget();
-      case 'Columns':
+      case 'columns':
         // var children = <(SpiderRowLayoutType, Widget)>[];
         var children = <Widget>[];
         for (DartUiElement child in element.children) {
           var layoutType = SpiderRowLayoutStrategy.static;
-          if (child.kind.name == 'Text') {
+          if (child.kind.name == 'text') {
             if (child.text.length < 50) {
               layoutType = SpiderRowLayoutStrategy.static;
             } else {
               layoutType = SpiderRowLayoutStrategy.flex;
             }
           }
-          if (child.kind.name == 'Spacer') {
+          if (child.kind.name == 'spacer') {
             layoutType = SpiderRowLayoutStrategy.spacer;
           }
           children.add(SpiderRowLayoutStrategyWidget(
@@ -62,7 +63,7 @@ class ElementWidget extends StatelessWidget {
           verticalAlignCenter: true,
           children: children,
         );
-      case 'Rows':
+      case 'rows':
         var children = <Widget>[];
         for (DartUiElement child in element.children) {
           children.add(ElementWidget(page: page, element: child));
@@ -72,7 +73,7 @@ class ElementWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: children,
         );
-      case 'Header':
+      case 'header':
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8.0),
           child: Text(
@@ -80,12 +81,15 @@ class ElementWidget extends StatelessWidget {
             style: const TextStyle(fontSize: 22),
           ),
         );
-      case 'Text':
+      case 'text':
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8.0),
-          child: Text(element.text),
+          child: SelectableText(
+            element.text,
+            enableInteractiveSelection: element.selectable,
+          ),
         );
-      case 'TextEntry':
+      case 'textEntry':
         var textElementController = TextEditingController();
 
         return Padding(
@@ -102,7 +106,7 @@ class ElementWidget extends StatelessWidget {
                   labelText: element.text,
                 ),
                 onSubmitted: (value) {
-                  api.write(
+                  write(
                       msg: ToProcessor.input(
                           pageId: page.id,
                           elementId: element.id!,
@@ -112,12 +116,12 @@ class ElementWidget extends StatelessWidget {
                 },
               )),
         );
-      case 'Button':
+      case 'button':
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
           child: ElevatedButton(
               onPressed: () {
-                api.write(
+                write(
                     msg: ToProcessor.input(
                         pageId: page.id,
                         elementId: element.id!,
@@ -127,7 +131,7 @@ class ElementWidget extends StatelessWidget {
               child: Text(element.text)),
         );
       default:
-        return const Text("<Unsupported element type>");
+        return Text("<Unsupported element type: ${element.kind.name}>");
     }
   }
 }

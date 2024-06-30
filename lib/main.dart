@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:spider_gui/src/rust/frb_generated.dart';
 import 'ui/state.dart';
 import 'package:path_provider/path_provider.dart';
 import 'color_schemes.g.dart';
 
 void main() async {
+  await RustLib.init();
   WidgetsFlutterBinding.ensureInitialized();
-  // var dir = await getApplicationDocumentsDirectory();
   var dir = await getApplicationSupportDirectory();
   var configPath = dir.path;
   runApp(MyApp(configPath: configPath));

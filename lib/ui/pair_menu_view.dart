@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../ffi.dart';
+import 'package:spider_gui/src/rust/api/simple.dart';
+import 'package:spider_gui/src/rust/dart_spider/link.dart';
 
 class PairMenuView extends StatelessWidget {
   final List<(String, String)> pairs;
@@ -15,7 +15,7 @@ class PairMenuView extends StatelessWidget {
           hintText: 'Enter key of base to pair',
         ),
         onSubmitted: (value) {
-          api.write(msg: ToProcessor.pair(value));
+          write(msg: ToProcessor.pair(value));
         },
       ),
       const Row(
@@ -48,7 +48,7 @@ class PairMenuView extends StatelessWidget {
           )),
           ElevatedButton(
               onPressed: () {
-                api.write(msg: ToProcessor.pair(key));
+                write(msg: ToProcessor.pair(key));
               },
               child: const Text("Pair"))
         ],

@@ -46,3 +46,6 @@ app.*.map.json
 # Project misc
 spider_keyfile.json
 client_state.json
+out.txt
+.veilid/
+android/app/src/main/jniLibs/
