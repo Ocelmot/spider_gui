@@ -7,7 +7,7 @@ edition = "2021"
 crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
-flutter_rust_bridge = { version = "=2.0.0-dev.36", features = ["log"] }
+flutter_rust_bridge = { version = "=2.0.0", features = ["log"] }
 tokio = { version = "1", features = ["full"] }
 spider_client = { git = "https://github.com/Ocelmot/spider" }
 
