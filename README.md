@@ -1,16 +1,27 @@
-# spider_gui
+# Spider GUI
 
-A new Flutter project.
+This is the GUI portion of the [Spider](https://github.com/Ocelmot/spider)
+project. For full installation details see the write up on that page. For
+Installation installation instructions for this part only, see below.
 
-## Getting Started
+## Installation
+This project requires
+[Flutter](https://docs.flutter.dev/get-started/install?gad_source=1&gclsrc=ds)
+and [Rust](https://www.rust-lang.org/tools/install). Make sure they are
+installed before continuing.
 
-This project is a starting point for a Flutter application.
+Next clone the GUI repo into the directory of your choice
+``` bash
+git clone https://github.com/Ocelmot/spider_gui.git
+```
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Once the base is running, launch the client
+```bash
+flutter run
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Flutter will prompt for which device/platform to target, make the appropriate
+selection. After compilation, the GUI will launch. For more information about
+its usage, see the usage directions for the
+[base](https://github.com/Ocelmot/spider#usage).

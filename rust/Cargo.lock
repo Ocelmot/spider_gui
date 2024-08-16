@@ -3296,7 +3296,6 @@ dependencies = [
 [[package]]
 name = "spider_client"
 version = "0.1.0"
-source = "git+https://github.com/Ocelmot/spider#ba0667f09c354aced1b582fb3917d5e201612674"
 dependencies = [
  "cfg-if 1.0.0",
  "dht_chord",
@@ -3313,7 +3312,6 @@ dependencies = [
 [[package]]
 name = "spider_link"
 version = "0.1.0"
-source = "git+https://github.com/Ocelmot/spider#ba0667f09c354aced1b582fb3917d5e201612674"
 dependencies = [
  "base64 0.21.7",
  "chacha20poly1305",
@@ -4634,3 +4632,11 @@ dependencies = [
  "quote",
  "syn 1.0.109",
 ]
+
+[[patch.unused]]
+name = "spider"
+version = "0.1.0"
+
+[[patch.unused]]
+name = "dht_chord"
+version = "0.2.0"
