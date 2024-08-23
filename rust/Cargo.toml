@@ -16,6 +16,7 @@ serde = { version = "1.0.132", features = ["derive"] }
 log = "0.4.21"
 
 veilid-core = "=0.3.3"
+veilid-tools = "=0.3.3"
 
 # Dependencies for Android
 [target.'cfg(target_os = "android")'.dependencies]
