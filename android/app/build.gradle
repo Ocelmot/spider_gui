@@ -1,14 +1,16 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
         localProperties.load(reader)
     }
-}
-
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -21,14 +23,17 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+def sdk_dir = android.getSdkDirectory()
+def ndk_dir = "$sdk_dir\\ndk"
+
 
 android {
     namespace "com.spider.spider_gui"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
+    compileSdk = 36
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -69,7 +74,7 @@ flutter {
 
 dependencies {
     implementation "androidx.security:security-crypto:1.1.0-alpha06"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.1.0"
 }
 
 
@@ -94,7 +99,8 @@ dependencies {
             -o ../android/app/src/main/jniLibs build $profileMode"""
 
         workingDir "../../rust"
-        environment "ANDROID_NDK_HOME", "$ANDROID_NDK"
+        environment "ANDROID_NDK_HOME", "$ndk_dir"
+        environment "ANDROID_SDK_ROOT", "$sdk_dir"
         if (org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.currentOperatingSystem.isWindows()) {
             commandLine 'cmd', '/C', ndk_command
         } else {

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use spider_client::message::{AbsoluteDatasetPath, DatasetData, UiElement, UiElementKind, UiPage, UiInput};
+use spider_client::link::message::{AbsoluteDatasetPath, DatasetData, UiElement, UiElementKind, UiPage, UiInput};
 
 struct BuildContext<'a> {
     datasets: &'a HashMap<AbsoluteDatasetPath, Vec<DatasetData>>,

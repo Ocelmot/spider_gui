@@ -1,51 +1,19 @@
 use log::info;
 
-#[cfg(target_os = "android")]
-use log::LevelFilter;
-
 use crate::frb_generated::StreamSink;
-use std::sync::Mutex;
+use std::sync::{atomic::AtomicBool, Mutex};
 
 pub use crate::dart_spider::link::{LinkProcessor, LinkProcessorParts, ToProcessor, ToUi};
 
+static INITIALIZED: AtomicBool = AtomicBool::new(false);
 static LINK_PROCESSOR_PARTS: Mutex<Option<LinkProcessorParts>> = Mutex::new(None);
-
-#[flutter_rust_bridge::frb(init)]
-pub fn init_app() {
-    // flutter_rust_bridge::setup_default_user_utils();
-
-    // Setup logging
-    #[cfg(target_os = "android")]
-    {
-        let mut builder = android_logger::FilterBuilder::new();
-        builder.filter_module("spider_client", LevelFilter::Debug);
-        builder.filter_module("veilid_core", LevelFilter::Warn);
-        builder.filter_module("rust_lib_spider_gui", LevelFilter::Debug);
-        builder.filter_module("spider_link", LevelFilter::Debug);
-        
-
-        let _ = android_logger::init_once(
-            android_logger::Config::default()
-                .with_max_level(LevelFilter::max())
-                .with_filter(builder.build())
-                .format(|buf, record| writeln!(buf, "{}: {}", record.level(), record.args())),
-        );
-    }
-
-    #[cfg(target_os = "ios")]
-    let _ = oslog::OsLogger::new("frb_user")
-        .level_filter(log::LevelFilter::Info)
-        .init();
-
-    // #[cfg(wasm)]
-    // let _ = crate::misc::web_utils::WebConsoleLogger::init();
-}
 
 #[flutter_rust_bridge::frb(sync)]
 pub fn init_rust(stream_sink: StreamSink<ToUi>, config_path: String) {
-    // start the processor and get the read and write channels
-    let lpp = LinkProcessor::create(stream_sink, config_path);
+    init_logging();
 
+    // start the processor and get the read and write channels
+    let lpp = LinkProcessor::create(stream_sink, config_path).expect("creation of link processor parts failed, restart");
     // install LinkProcessorParts into the global
     let mut x = LINK_PROCESSOR_PARTS.lock().expect("Lock is not poisoned");
     let notify = lpp.installed.clone();
@@ -69,6 +37,53 @@ pub fn write(msg: ToProcessor) {
         }
     }
     info!("Writing done");
+}
+
+pub fn init_logging() {
+    if INITIALIZED.load(std::sync::atomic::Ordering::SeqCst) {
+        return;
+    }
+
+    #[cfg(target_os = "android")]
+    {
+        use log::LevelFilter;
+        let mut builder = android_logger::FilterBuilder::new();
+        builder.filter_module("spider_client", LevelFilter::Debug);
+        builder.filter_module("veilid_core", LevelFilter::Warn);
+        builder.filter_module("rust_lib_spider_gui", LevelFilter::Debug);
+        builder.filter_module("spider_link", LevelFilter::Debug);
+
+        let _ = android_logger::init_once(
+            android_logger::Config::default()
+                .with_max_level(LevelFilter::max())
+                .with_filter(builder.build())
+                .format(|buf, record| writeln!(buf, "{}: {}", record.level(), record.args())),
+        );
+    }
+
+    #[cfg(target_os = "ios")]
+    let _ = oslog::OsLogger::new("frb_user")
+        .level_filter(log::LevelFilter::Info)
+        .init();
+
+    #[cfg(target_os = "windows")]
+    {
+        env_logger::builder()
+            .filter_level(log::LevelFilter::Info)
+            .filter_module("veilid_core", log::LevelFilter::Warn)
+            .filter_module("spider_client", log::LevelFilter::Trace)
+            .filter_module("spider_link", log::LevelFilter::Trace)
+            .filter_module("spider_link::beacon", log::LevelFilter::Info)
+            .filter_module("rust_lib_spider_gui", log::LevelFilter::Trace)
+            // .format_target(false)
+            // .format_timestamp(None)
+            .init();
+    }
+
+    // #[cfg(wasm)]
+    // let _ = crate::misc::web_utils::WebConsoleLogger::init();
+
+    INITIALIZED.store(true, std::sync::atomic::Ordering::SeqCst);
 }
 
 #[cfg(target_os = "android")]

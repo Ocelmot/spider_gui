@@ -704,12 +704,14 @@ mixin _$ToUi {
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
     required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -718,12 +720,14 @@ mixin _$ToUi {
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
     TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -732,12 +736,14 @@ mixin _$ToUi {
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
     TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -747,12 +753,14 @@ mixin _$ToUi {
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
     required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -761,12 +769,14 @@ mixin _$ToUi {
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -775,12 +785,14 @@ mixin _$ToUi {
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -871,12 +883,14 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
     required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
   }) {
     return setId(field0);
   }
@@ -888,12 +902,14 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
     TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
   }) {
     return setId?.call(field0);
   }
@@ -905,12 +921,14 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
     TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) {
     if (setId != null) {
@@ -926,12 +944,14 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
     required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
   }) {
     return setId(this);
   }
@@ -943,12 +963,14 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
   }) {
     return setId?.call(this);
   }
@@ -960,12 +982,14 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) {
     if (setId != null) {
@@ -1027,12 +1051,14 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
     required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
   }) {
     return unpaired();
   }
@@ -1044,12 +1070,14 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
     TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
   }) {
     return unpaired?.call();
   }
@@ -1061,12 +1089,14 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
     TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) {
     if (unpaired != null) {
@@ -1082,12 +1112,14 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
     required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
   }) {
     return unpaired(this);
   }
@@ -1099,12 +1131,14 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
   }) {
     return unpaired?.call(this);
   }
@@ -1116,12 +1150,14 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) {
     if (unpaired != null) {
@@ -1206,12 +1242,14 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
     required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
   }) {
     return generatedInvite(field0);
   }
@@ -1223,12 +1261,14 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
     TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
   }) {
     return generatedInvite?.call(field0);
   }
@@ -1240,12 +1280,14 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
     TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) {
     if (generatedInvite != null) {
@@ -1261,12 +1303,14 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
     required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
   }) {
     return generatedInvite(this);
   }
@@ -1278,12 +1322,14 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
   }) {
     return generatedInvite?.call(this);
   }
@@ -1295,12 +1341,14 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) {
     if (generatedInvite != null) {
@@ -1359,7 +1407,10 @@ class _$ToUi_PairsImpl extends ToUi_Pairs {
       : _relations = relations,
         super._();
 
+  /// first string is name, second is base64 of its key
   final List<(String, String)> _relations;
+
+  /// first string is name, second is base64 of its key
   @override
   List<(String, String)> get relations {
     if (_relations is EqualUnmodifiableListView) return _relations;
@@ -1398,12 +1449,14 @@ class _$ToUi_PairsImpl extends ToUi_Pairs {
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
     required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
   }) {
     return pairs(relations);
   }
@@ -1415,12 +1468,14 @@ class _$ToUi_PairsImpl extends ToUi_Pairs {
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
     TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
   }) {
     return pairs?.call(relations);
   }
@@ -1432,12 +1487,14 @@ class _$ToUi_PairsImpl extends ToUi_Pairs {
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
     TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) {
     if (pairs != null) {
@@ -1453,12 +1510,14 @@ class _$ToUi_PairsImpl extends ToUi_Pairs {
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
     required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
   }) {
     return pairs(this);
   }
@@ -1470,12 +1529,14 @@ class _$ToUi_PairsImpl extends ToUi_Pairs {
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
   }) {
     return pairs?.call(this);
   }
@@ -1487,12 +1548,14 @@ class _$ToUi_PairsImpl extends ToUi_Pairs {
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) {
     if (pairs != null) {
@@ -1507,9 +1570,215 @@ abstract class ToUi_Pairs extends ToUi {
       _$ToUi_PairsImpl;
   const ToUi_Pairs._() : super._();
 
+  /// first string is name, second is base64 of its key
   List<(String, String)> get relations;
   @JsonKey(ignore: true)
   _$$ToUi_PairsImplCopyWith<_$ToUi_PairsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ToUi_BaseImplCopyWith<$Res> {
+  factory _$$ToUi_BaseImplCopyWith(
+          _$ToUi_BaseImpl value, $Res Function(_$ToUi_BaseImpl) then) =
+      __$$ToUi_BaseImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String key, String name});
+}
+
+/// @nodoc
+class __$$ToUi_BaseImplCopyWithImpl<$Res>
+    extends _$ToUiCopyWithImpl<$Res, _$ToUi_BaseImpl>
+    implements _$$ToUi_BaseImplCopyWith<$Res> {
+  __$$ToUi_BaseImplCopyWithImpl(
+      _$ToUi_BaseImpl _value, $Res Function(_$ToUi_BaseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+    Object? name = null,
+  }) {
+    return _then(_$ToUi_BaseImpl(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToUi_BaseImpl extends ToUi_Base {
+  const _$ToUi_BaseImpl({required this.key, required this.name}) : super._();
+
+  @override
+  final String key;
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'ToUi.base(key: $key, name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToUi_BaseImpl &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key, name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToUi_BaseImplCopyWith<_$ToUi_BaseImpl> get copyWith =>
+      __$$ToUi_BaseImplCopyWithImpl<_$ToUi_BaseImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
+    required TResult Function() unpaired,
+    required TResult Function(String field0) generatedInvite,
+    required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
+    required TResult Function(String msg) connecting,
+    required TResult Function(String msg) status,
+    required TResult Function(bool approved) pending,
+    required TResult Function() connected,
+    required TResult Function(List<String> pages) setPageOrder,
+    required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
+  }) {
+    return base(key, name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
+    TResult? Function()? unpaired,
+    TResult? Function(String field0)? generatedInvite,
+    TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
+    TResult? Function(String msg)? connecting,
+    TResult? Function(String msg)? status,
+    TResult? Function(bool approved)? pending,
+    TResult? Function()? connected,
+    TResult? Function(List<String> pages)? setPageOrder,
+    TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
+  }) {
+    return base?.call(key, name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
+    TResult Function()? unpaired,
+    TResult Function(String field0)? generatedInvite,
+    TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
+    TResult Function(String msg)? connecting,
+    TResult Function(String msg)? status,
+    TResult Function(bool approved)? pending,
+    TResult Function()? connected,
+    TResult Function(List<String> pages)? setPageOrder,
+    TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
+    required TResult orElse(),
+  }) {
+    if (base != null) {
+      return base(key, name);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
+    required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Status value) status,
+    required TResult Function(ToUi_Pending value) pending,
+    required TResult Function(ToUi_Connected value) connected,
+    required TResult Function(ToUi_SetPageOrder value) setPageOrder,
+    required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
+  }) {
+    return base(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
+    TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Status value)? status,
+    TResult? Function(ToUi_Pending value)? pending,
+    TResult? Function(ToUi_Connected value)? connected,
+    TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
+  }) {
+    return base?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
+    TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Status value)? status,
+    TResult Function(ToUi_Pending value)? pending,
+    TResult Function(ToUi_Connected value)? connected,
+    TResult Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (base != null) {
+      return base(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToUi_Base extends ToUi {
+  const factory ToUi_Base(
+      {required final String key,
+      required final String name}) = _$ToUi_BaseImpl;
+  const ToUi_Base._() : super._();
+
+  String get key;
+  String get name;
+  @JsonKey(ignore: true)
+  _$$ToUi_BaseImplCopyWith<_$ToUi_BaseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1582,12 +1851,14 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
     required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
   }) {
     return connecting(msg);
   }
@@ -1599,12 +1870,14 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
     TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
   }) {
     return connecting?.call(msg);
   }
@@ -1616,12 +1889,14 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
     TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) {
     if (connecting != null) {
@@ -1637,12 +1912,14 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
     required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
   }) {
     return connecting(this);
   }
@@ -1654,12 +1931,14 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
   }) {
     return connecting?.call(this);
   }
@@ -1671,12 +1950,14 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) {
     if (connecting != null) {
@@ -1765,12 +2046,14 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
     required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
   }) {
     return status(msg);
   }
@@ -1782,12 +2065,14 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
     TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
   }) {
     return status?.call(msg);
   }
@@ -1799,12 +2084,14 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
     TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) {
     if (status != null) {
@@ -1820,12 +2107,14 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
     required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
   }) {
     return status(this);
   }
@@ -1837,12 +2126,14 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
   }) {
     return status?.call(this);
   }
@@ -1854,12 +2145,14 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) {
     if (status != null) {
@@ -1948,12 +2241,14 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
     required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
   }) {
     return pending(approved);
   }
@@ -1965,12 +2260,14 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
     TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
   }) {
     return pending?.call(approved);
   }
@@ -1982,12 +2279,14 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
     TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) {
     if (pending != null) {
@@ -2003,12 +2302,14 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
     required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
   }) {
     return pending(this);
   }
@@ -2020,12 +2321,14 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
   }) {
     return pending?.call(this);
   }
@@ -2037,12 +2340,14 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) {
     if (pending != null) {
@@ -2105,12 +2410,14 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
     required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
   }) {
     return connected();
   }
@@ -2122,12 +2429,14 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
     TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
   }) {
     return connected?.call();
   }
@@ -2139,12 +2448,14 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
     TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) {
     if (connected != null) {
@@ -2160,12 +2471,14 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
     required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
   }) {
     return connected(this);
   }
@@ -2177,12 +2490,14 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
   }) {
     return connected?.call(this);
   }
@@ -2194,12 +2509,14 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) {
     if (connected != null) {
@@ -2291,12 +2608,14 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
     required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
   }) {
     return setPageOrder(pages);
   }
@@ -2308,12 +2627,14 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
     TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
   }) {
     return setPageOrder?.call(pages);
   }
@@ -2325,12 +2646,14 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
     TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) {
     if (setPageOrder != null) {
@@ -2346,12 +2669,14 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
     required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
   }) {
     return setPageOrder(this);
   }
@@ -2363,12 +2688,14 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
   }) {
     return setPageOrder?.call(this);
   }
@@ -2380,12 +2707,14 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) {
     if (setPageOrder != null) {
@@ -2474,12 +2803,14 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
     required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
     required TResult Function() connected,
     required TResult Function(List<String> pages) setPageOrder,
     required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
   }) {
     return setPage(page);
   }
@@ -2491,12 +2822,14 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
     TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
     TResult? Function()? connected,
     TResult? Function(List<String> pages)? setPageOrder,
     TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
   }) {
     return setPage?.call(page);
   }
@@ -2508,12 +2841,14 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
     TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
     TResult Function()? connected,
     TResult Function(List<String> pages)? setPageOrder,
     TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) {
     if (setPage != null) {
@@ -2529,12 +2864,14 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
     required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
     required TResult Function(ToUi_Connected value) connected,
     required TResult Function(ToUi_SetPageOrder value) setPageOrder,
     required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
   }) {
     return setPage(this);
   }
@@ -2546,12 +2883,14 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
     TResult? Function(ToUi_Connected value)? connected,
     TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
   }) {
     return setPage?.call(this);
   }
@@ -2563,12 +2902,14 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
     TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
     TResult Function(ToUi_Connected value)? connected,
     TResult Function(ToUi_SetPageOrder value)? setPageOrder,
     TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) {
     if (setPage != null) {
@@ -2586,5 +2927,210 @@ abstract class ToUi_SetPage extends ToUi {
   DartUiPage get page;
   @JsonKey(ignore: true)
   _$$ToUi_SetPageImplCopyWith<_$ToUi_SetPageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ToUi_ErrorImplCopyWith<$Res> {
+  factory _$$ToUi_ErrorImplCopyWith(
+          _$ToUi_ErrorImpl value, $Res Function(_$ToUi_ErrorImpl) then) =
+      __$$ToUi_ErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String msg, bool fatal});
+}
+
+/// @nodoc
+class __$$ToUi_ErrorImplCopyWithImpl<$Res>
+    extends _$ToUiCopyWithImpl<$Res, _$ToUi_ErrorImpl>
+    implements _$$ToUi_ErrorImplCopyWith<$Res> {
+  __$$ToUi_ErrorImplCopyWithImpl(
+      _$ToUi_ErrorImpl _value, $Res Function(_$ToUi_ErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? msg = null,
+    Object? fatal = null,
+  }) {
+    return _then(_$ToUi_ErrorImpl(
+      msg: null == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String,
+      fatal: null == fatal
+          ? _value.fatal
+          : fatal // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToUi_ErrorImpl extends ToUi_Error {
+  const _$ToUi_ErrorImpl({required this.msg, required this.fatal}) : super._();
+
+  @override
+  final String msg;
+  @override
+  final bool fatal;
+
+  @override
+  String toString() {
+    return 'ToUi.error(msg: $msg, fatal: $fatal)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToUi_ErrorImpl &&
+            (identical(other.msg, msg) || other.msg == msg) &&
+            (identical(other.fatal, fatal) || other.fatal == fatal));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, msg, fatal);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToUi_ErrorImplCopyWith<_$ToUi_ErrorImpl> get copyWith =>
+      __$$ToUi_ErrorImplCopyWithImpl<_$ToUi_ErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
+    required TResult Function() unpaired,
+    required TResult Function(String field0) generatedInvite,
+    required TResult Function(List<(String, String)> relations) pairs,
+    required TResult Function(String key, String name) base,
+    required TResult Function(String msg) connecting,
+    required TResult Function(String msg) status,
+    required TResult Function(bool approved) pending,
+    required TResult Function() connected,
+    required TResult Function(List<String> pages) setPageOrder,
+    required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
+  }) {
+    return error(msg, fatal);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
+    TResult? Function()? unpaired,
+    TResult? Function(String field0)? generatedInvite,
+    TResult? Function(List<(String, String)> relations)? pairs,
+    TResult? Function(String key, String name)? base,
+    TResult? Function(String msg)? connecting,
+    TResult? Function(String msg)? status,
+    TResult? Function(bool approved)? pending,
+    TResult? Function()? connected,
+    TResult? Function(List<String> pages)? setPageOrder,
+    TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
+  }) {
+    return error?.call(msg, fatal);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
+    TResult Function()? unpaired,
+    TResult Function(String field0)? generatedInvite,
+    TResult Function(List<(String, String)> relations)? pairs,
+    TResult Function(String key, String name)? base,
+    TResult Function(String msg)? connecting,
+    TResult Function(String msg)? status,
+    TResult Function(bool approved)? pending,
+    TResult Function()? connected,
+    TResult Function(List<String> pages)? setPageOrder,
+    TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(msg, fatal);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
+    required TResult Function(ToUi_Pairs value) pairs,
+    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Status value) status,
+    required TResult Function(ToUi_Pending value) pending,
+    required TResult Function(ToUi_Connected value) connected,
+    required TResult Function(ToUi_SetPageOrder value) setPageOrder,
+    required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
+    TResult? Function(ToUi_Pairs value)? pairs,
+    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Status value)? status,
+    TResult? Function(ToUi_Pending value)? pending,
+    TResult? Function(ToUi_Connected value)? connected,
+    TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
+    TResult Function(ToUi_Pairs value)? pairs,
+    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Status value)? status,
+    TResult Function(ToUi_Pending value)? pending,
+    TResult Function(ToUi_Connected value)? connected,
+    TResult Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToUi_Error extends ToUi {
+  const factory ToUi_Error(
+      {required final String msg,
+      required final bool fatal}) = _$ToUi_ErrorImpl;
+  const ToUi_Error._() : super._();
+
+  String get msg;
+  bool get fatal;
+  @JsonKey(ignore: true)
+  _$$ToUi_ErrorImplCopyWith<_$ToUi_ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

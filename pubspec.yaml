@@ -36,12 +36,13 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   ffi: ^2.0.2
-  flutter_rust_bridge: 2.0.0
+  flutter_rust_bridge: 2.0.0-dev.36
   freezed_annotation: ^2.2.0
 
   path_provider: ^2.0.15
   rust_lib_spider_gui:
     path: rust_builder
+  async: ^2.11.0
 
 dev_dependencies:
   flutter_test:
@@ -127,6 +128,6 @@ msix_config:
   display_name: Spider
   publisher_display_name: Chrys Adams
   identity_name: Ocelmot.Prod.Spider
-  msix_version: 1.0.0.0
+  msix_version: 1.0.0.1
   logo_path: "assets/spider_logo.png"
   capabilities: internetClient, privateNetworkClientServer 

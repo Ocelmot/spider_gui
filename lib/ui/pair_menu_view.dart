@@ -3,11 +3,12 @@ import 'package:spider_gui/src/rust/api/simple.dart';
 import 'package:spider_gui/src/rust/dart_spider/link.dart';
 
 class PairMenuView extends StatelessWidget {
-  final List<(String, String)> pairs;
+  final Map<String, (String, DateTime)> pairs;
   const PairMenuView({super.key, required this.pairs});
 
   @override
   Widget build(BuildContext context) {
+    // Add header items
     var children = [
       TextField(
         decoration: const InputDecoration(
@@ -25,8 +26,24 @@ class PairMenuView extends StatelessWidget {
         ],
       )
     ];
-    for (var (name, key) in pairs) {
+
+    // Add pairs
+    var pairList = List.empty(growable: true);
+    for (var entry in pairs.entries) {
+      var key = entry.key;
+      var name = entry.value.$1;
+
+      pairList.add((key, name));
+    }
+    pairList.sort(
+      (a, b) {
+        return a.$2.compareTo(b.$2);
+      },
+    );
+
+    for (var (key, name) in pairList) {
       children.add(Row(
+        key: Key(key),
         mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
@@ -55,6 +72,7 @@ class PairMenuView extends StatelessWidget {
       ));
     }
 
+    // Add spinner if no item are in the list
     if (pairs.isEmpty) {
       children.add(const Flex(
         direction: Axis.vertical,

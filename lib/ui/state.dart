@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:spider_gui/src/rust/api/simple.dart';
 import 'package:spider_gui/src/rust/dart_spider/link.dart';
 import 'package:spider_gui/src/rust/dart_spider/ui.dart';
+import 'package:spider_gui/ui/show_error_overlay.dart';
 import 'package:spider_gui/ui/show_invite_overlay.dart';
 import 'package:spider_gui/ui/show_key_overlay.dart';
 import 'spinner_view.dart';
@@ -30,6 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool _isPaired = false;
   List<(String, String)> pairs = List.empty(); // Potential Pairs
+  Map<String, (String, DateTime)> potentialPairs = {};
+  late Timer pairFilter;
 
   bool _isConnected = false;
   String _connectingMessage = "";
@@ -46,11 +51,22 @@ class _MyHomePageState extends State<MyHomePage> {
   _MyHomePageState(String configPath) {
     stream = initRust(configPath: configPath);
 
+    pairFilter = Timer.periodic(
+      const Duration(seconds: 20),
+      (timer) {
+        setState(() {
+          potentialPairs.removeWhere((key, value) => value.$2
+              .isBefore(DateTime.now().subtract(const Duration(seconds: 20))));
+        });
+      },
+    );
+
     stream.listen((event) {
       event.map(
         setId: _onSetId,
         unpaired: _onUnpaired,
         pairs: _onPairs,
+        base: _onBase,
         connecting: _onConnecting,
         pending: _onPending,
         connected: _onConnected,
@@ -58,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
         setPage: _onSetPage,
         generatedInvite: _onGeneratedInvite,
         status: _onStatus,
+        error: _onError,
       );
     });
   }
@@ -81,6 +98,20 @@ class _MyHomePageState extends State<MyHomePage> {
       _isConnected = false;
       pageOrder = [];
       pages = {};
+    });
+  }
+
+  void _onBase(ToUi_Base event) {
+    setState(() {
+      potentialPairs.update(
+        event.key,
+        (val) {
+          return (event.name, DateTime.now());
+        },
+        ifAbsent: () {
+          return (event.name, DateTime.now());
+        },
+      );
     });
   }
 
@@ -127,6 +158,26 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onGeneratedInvite(ToUi_GeneratedInvite event) {
     inviteOverlayBuilder(context, event.field0);
+  }
+
+  void _onError(ToUi_Error event) {
+    setState(() {
+      if (event.fatal) {
+        fatalErrorOverlayBuilder(context, event.msg);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Center(child: Text(event.msg)),
+          duration: const Duration(seconds: 10),
+          backgroundColor: Colors.red.shade400,
+          action: SnackBarAction(
+              label: "View",
+              textColor: Colors.white,
+              onPressed: () {
+                errorOverlayBuilder(context, event.msg);
+              }),
+        ));
+      }
+    });
   }
 
   @override
@@ -192,7 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // Show loading view
     if (!_isPaired) {
-      return (PairMenuView(pairs: pairs), null);
+      return (PairMenuView(pairs: potentialPairs), null);
     }
 
     // Show connection screen
