@@ -74,7 +74,6 @@ flutter {
 
 dependencies {
     implementation "androidx.security:security-crypto:1.1.0-alpha06"
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.1.0"
 }
 
 
@@ -85,6 +84,12 @@ dependencies {
 ].each {
     def taskPostfix = it.first
     def profileMode = it.second
+
+    // If the tuple combination does not match the flutter build mode, do not build it
+    if (taskPostfix.toLowerCase() != localProperties.getProperty("flutter.buildMode") ) {
+        return
+    }
+
     tasks.whenTaskAdded { task ->
         if (task.name == "javaPreCompile$taskPostfix") {
             task.dependsOn "cargoBuild$taskPostfix"

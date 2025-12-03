@@ -1,6 +1,6 @@
 use log::info;
 
-use crate::frb_generated::StreamSink;
+use crate::{frb_generated::StreamSink, logging_trace};
 use std::sync::{atomic::AtomicBool, Mutex};
 
 pub use crate::dart_spider::link::{LinkProcessor, LinkProcessorParts, ToProcessor, ToUi};
@@ -10,10 +10,12 @@ static LINK_PROCESSOR_PARTS: Mutex<Option<LinkProcessorParts>> = Mutex::new(None
 
 #[flutter_rust_bridge::frb(sync)]
 pub fn init_rust(stream_sink: StreamSink<ToUi>, config_path: String) {
-    init_logging();
+    let loggers = init_logging();
+    info!("init_loggers = {}", loggers);
 
     // start the processor and get the read and write channels
-    let lpp = LinkProcessor::create(stream_sink, config_path).expect("creation of link processor parts failed, restart");
+    let lpp = LinkProcessor::create(stream_sink, config_path)
+        .expect("creation of link processor parts failed, restart");
     // install LinkProcessorParts into the global
     let mut x = LINK_PROCESSOR_PARTS.lock().expect("Lock is not poisoned");
     let notify = lpp.installed.clone();
@@ -39,19 +41,22 @@ pub fn write(msg: ToProcessor) {
     info!("Writing done");
 }
 
-pub fn init_logging() {
+pub fn init_logging() -> bool {
     if INITIALIZED.load(std::sync::atomic::Ordering::SeqCst) {
-        return;
+        return false;
     }
 
     #[cfg(target_os = "android")]
     {
         use log::LevelFilter;
+        use tracing_core::subscriber;
+
         let mut builder = android_logger::FilterBuilder::new();
-        builder.filter_module("spider_client", LevelFilter::Debug);
-        builder.filter_module("veilid_core", LevelFilter::Warn);
-        builder.filter_module("rust_lib_spider_gui", LevelFilter::Debug);
-        builder.filter_module("spider_link", LevelFilter::Debug);
+        builder.filter_module("spider_client", LevelFilter::Trace);
+        builder.filter_module("rust_lib_spider_gui", LevelFilter::Trace);
+        builder.filter_module("spider_link", LevelFilter::Trace);
+        builder.filter_level(log::LevelFilter::Trace);
+        // builder.filter_module("spider_link::beacon", log::LevelFilter::Info);
 
         let _ = android_logger::init_once(
             android_logger::Config::default()
@@ -59,6 +64,8 @@ pub fn init_logging() {
                 .with_filter(builder.build())
                 .format(|buf, record| writeln!(buf, "{}: {}", record.level(), record.args())),
         );
+
+        
     }
 
     #[cfg(target_os = "ios")]
@@ -70,20 +77,27 @@ pub fn init_logging() {
     {
         env_logger::builder()
             .filter_level(log::LevelFilter::Info)
-            .filter_module("veilid_core", log::LevelFilter::Warn)
             .filter_module("spider_client", log::LevelFilter::Trace)
             .filter_module("spider_link", log::LevelFilter::Trace)
             .filter_module("spider_link::beacon", log::LevelFilter::Info)
             .filter_module("rust_lib_spider_gui", log::LevelFilter::Trace)
             // .format_target(false)
             // .format_timestamp(None)
+
             .init();
+
+        
     }
 
     // #[cfg(wasm)]
     // let _ = crate::misc::web_utils::WebConsoleLogger::init();
 
+    // Any tracing events should be emitted as logs instead
+    logging_trace::LoggingTrace::register();
+
+    info!("Initialized loggers");
     INITIALIZED.store(true, std::sync::atomic::Ordering::SeqCst);
+    true
 }
 
 #[cfg(target_os = "android")]
@@ -97,5 +111,5 @@ pub extern "system" fn Java_com_spider_spider_1gui_MainActivity_init_1android(
     _class: JClass,
     ctx: JObject,
 ) {
-    veilid_core::veilid_core_setup_android(env, ctx);
+    // veilid_core::veilid_core_setup_android(env, ctx);
 }

@@ -2,15 +2,11 @@ use std::{collections::HashMap, path::PathBuf, sync::Arc, time::Duration};
 
 use log::{debug, info, trace, warn};
 use spider_client::{
-    link::{
-        beacon::Beacon,
-        link::TCPLink,
-        message::{
+    ClientResponse, SpiderClientBuilder, link::{
+        Relation, SpiderId2048, beacon::Beacon, link_set::impls::TCPLink, message::{
             AbsoluteDatasetPath, DatasetData, Message, RouterMessage, UiMessage, UiPageList,
-        },
-        Relation, SpiderId2048,
-    },
-    ClientResponse, SpiderClientBuilder,
+        }
+    }
 };
 use tokio::{
     runtime::{Builder, Runtime},
