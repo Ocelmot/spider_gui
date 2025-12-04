@@ -4,11 +4,20 @@ import 'ui/state.dart';
 import 'package:path_provider/path_provider.dart';
 import 'color_schemes.g.dart';
 
-void main() async {
+void main(List<String> args) async {
   await RustLib.init();
   WidgetsFlutterBinding.ensureInitialized();
-  var dir = await getApplicationSupportDirectory();
-  var configPath = dir.path;
+
+
+  
+  String configPath;
+  if (args.length > 0) {
+    configPath = args[0];
+  } else {
+    var dir = await getApplicationSupportDirectory();
+    configPath = dir.path;
+  }
+
   runApp(MyApp(configPath: configPath));
 }
 

@@ -177,12 +177,15 @@ impl LinkProcessor {
             self.sender.add(ToUi::Unpaired)?;
         }
 
+        let beacon_port = client_builder.beacon_port();
+
         // Create the client channel
         let mut client = client_builder.start(true).await.wrap()?;
         if paired {
             client.connect().await.wrap()?;
         }
         let mut beacon = Beacon::new(Duration::from_secs(5));
+        beacon.set_port(beacon_port);
 
         // process messages
         loop {
