@@ -4,7 +4,7 @@ use log::{debug, info, trace, warn};
 use spider_client::{
     ClientResponse, SpiderClientBuilder, link::{
         Relation, SpiderId2048, beacon::Beacon, link_set::impls::TCPLink, message::{
-            AbsoluteDatasetPath, DatasetData, Message, RouterMessage, UiMessage, UiPageList,
+            AbsoluteDatasetPath, DatasetData, Invite, Message, RouterMessage, UiMessage, UiPageList
         }
     }
 };
@@ -34,6 +34,7 @@ pub enum ToProcessor {
     Unpair,
 
     GenerateInvite,
+    AcceptInvite(String),
 
     // Input
     Input {
@@ -208,6 +209,11 @@ impl LinkProcessor {
                         },
                         ToProcessor::GenerateInvite => {
                             let msg = Message::Router(RouterMessage::GenerateInvite);
+                            client.send(msg).await.wrap()?;
+                        }
+                        ToProcessor::AcceptInvite(invite_str) => {
+                            let invite = Invite::from_base64(invite_str).wrap()?;
+                            let msg = Message::Router(RouterMessage::Invite(invite));
                             client.send(msg).await.wrap()?;
                         }
                         // Input

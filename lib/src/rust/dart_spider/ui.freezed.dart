@@ -72,6 +72,9 @@ class _$DartUiInputCopyWithImpl<$Res, $Val extends DartUiInput>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DartUiInput
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$DartUiInput_ClickImplCopyWithImpl<$Res>
   __$$DartUiInput_ClickImplCopyWithImpl(_$DartUiInput_ClickImpl _value,
       $Res Function(_$DartUiInput_ClickImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DartUiInput
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -194,6 +200,8 @@ class __$$DartUiInput_TextImplCopyWithImpl<$Res>
       $Res Function(_$DartUiInput_TextImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DartUiInput
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -232,7 +240,9 @@ class _$DartUiInput_TextImpl extends DartUiInput_Text {
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DartUiInput
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DartUiInput_TextImplCopyWith<_$DartUiInput_TextImpl> get copyWith =>
@@ -307,7 +317,10 @@ abstract class DartUiInput_Text extends DartUiInput {
   const DartUiInput_Text._() : super._();
 
   String get field0;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DartUiInput
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DartUiInput_TextImplCopyWith<_$DartUiInput_TextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

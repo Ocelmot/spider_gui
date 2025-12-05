@@ -11,7 +11,7 @@ void main(List<String> args) async {
 
   
   String configPath;
-  if (args.length > 0) {
+  if (args.isNotEmpty) {
     configPath = args[0];
   } else {
     var dir = await getApplicationSupportDirectory();

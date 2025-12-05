@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:spider_gui/src/rust/api/simple.dart';
 import 'package:spider_gui/src/rust/dart_spider/link.dart';
 import 'package:spider_gui/src/rust/dart_spider/ui.dart';
+import 'package:spider_gui/ui/show_accept_invite.dart';
 import 'package:spider_gui/ui/show_error_overlay.dart';
 import 'package:spider_gui/ui/show_invite_overlay.dart';
 import 'package:spider_gui/ui/show_key_overlay.dart';
@@ -221,6 +222,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () => {
                   Future.delayed(const Duration(seconds: 0),
                       () => {write(msg: const ToProcessor.generateInvite())})
+                },
+              ),
+              PopupMenuItem(
+                child: const Text("Accept Invite"),
+                onTap: () => {
+                  Future.delayed(const Duration(seconds: 0),
+                      () => {acceptInviteOverlayBuilder(context)})
                 },
               )
             ],

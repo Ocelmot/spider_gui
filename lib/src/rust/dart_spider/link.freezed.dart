@@ -21,6 +21,7 @@ mixin _$ToProcessor {
     required TResult Function(String field0) pair,
     required TResult Function() unpair,
     required TResult Function() generateInvite,
+    required TResult Function(String field0) acceptInvite,
     required TResult Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)
         input,
@@ -31,6 +32,7 @@ mixin _$ToProcessor {
     TResult? Function(String field0)? pair,
     TResult? Function()? unpair,
     TResult? Function()? generateInvite,
+    TResult? Function(String field0)? acceptInvite,
     TResult? Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)?
         input,
@@ -41,6 +43,7 @@ mixin _$ToProcessor {
     TResult Function(String field0)? pair,
     TResult Function()? unpair,
     TResult Function()? generateInvite,
+    TResult Function(String field0)? acceptInvite,
     TResult Function(String pageId, String elementId, Uint32List datasetIndices,
             DartUiInput input)?
         input,
@@ -52,6 +55,7 @@ mixin _$ToProcessor {
     required TResult Function(ToProcessor_Pair value) pair,
     required TResult Function(ToProcessor_Unpair value) unpair,
     required TResult Function(ToProcessor_GenerateInvite value) generateInvite,
+    required TResult Function(ToProcessor_AcceptInvite value) acceptInvite,
     required TResult Function(ToProcessor_Input value) input,
   }) =>
       throw _privateConstructorUsedError;
@@ -60,6 +64,7 @@ mixin _$ToProcessor {
     TResult? Function(ToProcessor_Pair value)? pair,
     TResult? Function(ToProcessor_Unpair value)? unpair,
     TResult? Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult? Function(ToProcessor_AcceptInvite value)? acceptInvite,
     TResult? Function(ToProcessor_Input value)? input,
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +73,7 @@ mixin _$ToProcessor {
     TResult Function(ToProcessor_Pair value)? pair,
     TResult Function(ToProcessor_Unpair value)? unpair,
     TResult Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult Function(ToProcessor_AcceptInvite value)? acceptInvite,
     TResult Function(ToProcessor_Input value)? input,
     required TResult orElse(),
   }) =>
@@ -90,6 +96,9 @@ class _$ToProcessorCopyWithImpl<$Res, $Val extends ToProcessor>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -109,6 +118,8 @@ class __$$ToProcessor_PairImplCopyWithImpl<$Res>
       $Res Function(_$ToProcessor_PairImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -147,7 +158,9 @@ class _$ToProcessor_PairImpl extends ToProcessor_Pair {
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToProcessor_PairImplCopyWith<_$ToProcessor_PairImpl> get copyWith =>
@@ -160,6 +173,7 @@ class _$ToProcessor_PairImpl extends ToProcessor_Pair {
     required TResult Function(String field0) pair,
     required TResult Function() unpair,
     required TResult Function() generateInvite,
+    required TResult Function(String field0) acceptInvite,
     required TResult Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)
         input,
@@ -173,6 +187,7 @@ class _$ToProcessor_PairImpl extends ToProcessor_Pair {
     TResult? Function(String field0)? pair,
     TResult? Function()? unpair,
     TResult? Function()? generateInvite,
+    TResult? Function(String field0)? acceptInvite,
     TResult? Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)?
         input,
@@ -186,6 +201,7 @@ class _$ToProcessor_PairImpl extends ToProcessor_Pair {
     TResult Function(String field0)? pair,
     TResult Function()? unpair,
     TResult Function()? generateInvite,
+    TResult Function(String field0)? acceptInvite,
     TResult Function(String pageId, String elementId, Uint32List datasetIndices,
             DartUiInput input)?
         input,
@@ -203,6 +219,7 @@ class _$ToProcessor_PairImpl extends ToProcessor_Pair {
     required TResult Function(ToProcessor_Pair value) pair,
     required TResult Function(ToProcessor_Unpair value) unpair,
     required TResult Function(ToProcessor_GenerateInvite value) generateInvite,
+    required TResult Function(ToProcessor_AcceptInvite value) acceptInvite,
     required TResult Function(ToProcessor_Input value) input,
   }) {
     return pair(this);
@@ -214,6 +231,7 @@ class _$ToProcessor_PairImpl extends ToProcessor_Pair {
     TResult? Function(ToProcessor_Pair value)? pair,
     TResult? Function(ToProcessor_Unpair value)? unpair,
     TResult? Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult? Function(ToProcessor_AcceptInvite value)? acceptInvite,
     TResult? Function(ToProcessor_Input value)? input,
   }) {
     return pair?.call(this);
@@ -225,6 +243,7 @@ class _$ToProcessor_PairImpl extends ToProcessor_Pair {
     TResult Function(ToProcessor_Pair value)? pair,
     TResult Function(ToProcessor_Unpair value)? unpair,
     TResult Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult Function(ToProcessor_AcceptInvite value)? acceptInvite,
     TResult Function(ToProcessor_Input value)? input,
     required TResult orElse(),
   }) {
@@ -240,7 +259,10 @@ abstract class ToProcessor_Pair extends ToProcessor {
   const ToProcessor_Pair._() : super._();
 
   String get field0;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToProcessor_PairImplCopyWith<_$ToProcessor_PairImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -259,6 +281,9 @@ class __$$ToProcessor_UnpairImplCopyWithImpl<$Res>
   __$$ToProcessor_UnpairImplCopyWithImpl(_$ToProcessor_UnpairImpl _value,
       $Res Function(_$ToProcessor_UnpairImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -286,6 +311,7 @@ class _$ToProcessor_UnpairImpl extends ToProcessor_Unpair {
     required TResult Function(String field0) pair,
     required TResult Function() unpair,
     required TResult Function() generateInvite,
+    required TResult Function(String field0) acceptInvite,
     required TResult Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)
         input,
@@ -299,6 +325,7 @@ class _$ToProcessor_UnpairImpl extends ToProcessor_Unpair {
     TResult? Function(String field0)? pair,
     TResult? Function()? unpair,
     TResult? Function()? generateInvite,
+    TResult? Function(String field0)? acceptInvite,
     TResult? Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)?
         input,
@@ -312,6 +339,7 @@ class _$ToProcessor_UnpairImpl extends ToProcessor_Unpair {
     TResult Function(String field0)? pair,
     TResult Function()? unpair,
     TResult Function()? generateInvite,
+    TResult Function(String field0)? acceptInvite,
     TResult Function(String pageId, String elementId, Uint32List datasetIndices,
             DartUiInput input)?
         input,
@@ -329,6 +357,7 @@ class _$ToProcessor_UnpairImpl extends ToProcessor_Unpair {
     required TResult Function(ToProcessor_Pair value) pair,
     required TResult Function(ToProcessor_Unpair value) unpair,
     required TResult Function(ToProcessor_GenerateInvite value) generateInvite,
+    required TResult Function(ToProcessor_AcceptInvite value) acceptInvite,
     required TResult Function(ToProcessor_Input value) input,
   }) {
     return unpair(this);
@@ -340,6 +369,7 @@ class _$ToProcessor_UnpairImpl extends ToProcessor_Unpair {
     TResult? Function(ToProcessor_Pair value)? pair,
     TResult? Function(ToProcessor_Unpair value)? unpair,
     TResult? Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult? Function(ToProcessor_AcceptInvite value)? acceptInvite,
     TResult? Function(ToProcessor_Input value)? input,
   }) {
     return unpair?.call(this);
@@ -351,6 +381,7 @@ class _$ToProcessor_UnpairImpl extends ToProcessor_Unpair {
     TResult Function(ToProcessor_Pair value)? pair,
     TResult Function(ToProcessor_Unpair value)? unpair,
     TResult Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult Function(ToProcessor_AcceptInvite value)? acceptInvite,
     TResult Function(ToProcessor_Input value)? input,
     required TResult orElse(),
   }) {
@@ -382,6 +413,9 @@ class __$$ToProcessor_GenerateInviteImplCopyWithImpl<$Res>
       _$ToProcessor_GenerateInviteImpl _value,
       $Res Function(_$ToProcessor_GenerateInviteImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -410,6 +444,7 @@ class _$ToProcessor_GenerateInviteImpl extends ToProcessor_GenerateInvite {
     required TResult Function(String field0) pair,
     required TResult Function() unpair,
     required TResult Function() generateInvite,
+    required TResult Function(String field0) acceptInvite,
     required TResult Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)
         input,
@@ -423,6 +458,7 @@ class _$ToProcessor_GenerateInviteImpl extends ToProcessor_GenerateInvite {
     TResult? Function(String field0)? pair,
     TResult? Function()? unpair,
     TResult? Function()? generateInvite,
+    TResult? Function(String field0)? acceptInvite,
     TResult? Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)?
         input,
@@ -436,6 +472,7 @@ class _$ToProcessor_GenerateInviteImpl extends ToProcessor_GenerateInvite {
     TResult Function(String field0)? pair,
     TResult Function()? unpair,
     TResult Function()? generateInvite,
+    TResult Function(String field0)? acceptInvite,
     TResult Function(String pageId, String elementId, Uint32List datasetIndices,
             DartUiInput input)?
         input,
@@ -453,6 +490,7 @@ class _$ToProcessor_GenerateInviteImpl extends ToProcessor_GenerateInvite {
     required TResult Function(ToProcessor_Pair value) pair,
     required TResult Function(ToProcessor_Unpair value) unpair,
     required TResult Function(ToProcessor_GenerateInvite value) generateInvite,
+    required TResult Function(ToProcessor_AcceptInvite value) acceptInvite,
     required TResult Function(ToProcessor_Input value) input,
   }) {
     return generateInvite(this);
@@ -464,6 +502,7 @@ class _$ToProcessor_GenerateInviteImpl extends ToProcessor_GenerateInvite {
     TResult? Function(ToProcessor_Pair value)? pair,
     TResult? Function(ToProcessor_Unpair value)? unpair,
     TResult? Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult? Function(ToProcessor_AcceptInvite value)? acceptInvite,
     TResult? Function(ToProcessor_Input value)? input,
   }) {
     return generateInvite?.call(this);
@@ -475,6 +514,7 @@ class _$ToProcessor_GenerateInviteImpl extends ToProcessor_GenerateInvite {
     TResult Function(ToProcessor_Pair value)? pair,
     TResult Function(ToProcessor_Unpair value)? unpair,
     TResult Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult Function(ToProcessor_AcceptInvite value)? acceptInvite,
     TResult Function(ToProcessor_Input value)? input,
     required TResult orElse(),
   }) {
@@ -488,6 +528,175 @@ class _$ToProcessor_GenerateInviteImpl extends ToProcessor_GenerateInvite {
 abstract class ToProcessor_GenerateInvite extends ToProcessor {
   const factory ToProcessor_GenerateInvite() = _$ToProcessor_GenerateInviteImpl;
   const ToProcessor_GenerateInvite._() : super._();
+}
+
+/// @nodoc
+abstract class _$$ToProcessor_AcceptInviteImplCopyWith<$Res> {
+  factory _$$ToProcessor_AcceptInviteImplCopyWith(
+          _$ToProcessor_AcceptInviteImpl value,
+          $Res Function(_$ToProcessor_AcceptInviteImpl) then) =
+      __$$ToProcessor_AcceptInviteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String field0});
+}
+
+/// @nodoc
+class __$$ToProcessor_AcceptInviteImplCopyWithImpl<$Res>
+    extends _$ToProcessorCopyWithImpl<$Res, _$ToProcessor_AcceptInviteImpl>
+    implements _$$ToProcessor_AcceptInviteImplCopyWith<$Res> {
+  __$$ToProcessor_AcceptInviteImplCopyWithImpl(
+      _$ToProcessor_AcceptInviteImpl _value,
+      $Res Function(_$ToProcessor_AcceptInviteImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(_$ToProcessor_AcceptInviteImpl(
+      null == field0
+          ? _value.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToProcessor_AcceptInviteImpl extends ToProcessor_AcceptInvite {
+  const _$ToProcessor_AcceptInviteImpl(this.field0) : super._();
+
+  @override
+  final String field0;
+
+  @override
+  String toString() {
+    return 'ToProcessor.acceptInvite(field0: $field0)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToProcessor_AcceptInviteImpl &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToProcessor_AcceptInviteImplCopyWith<_$ToProcessor_AcceptInviteImpl>
+      get copyWith => __$$ToProcessor_AcceptInviteImplCopyWithImpl<
+          _$ToProcessor_AcceptInviteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String field0) pair,
+    required TResult Function() unpair,
+    required TResult Function() generateInvite,
+    required TResult Function(String field0) acceptInvite,
+    required TResult Function(String pageId, String elementId,
+            Uint32List datasetIndices, DartUiInput input)
+        input,
+  }) {
+    return acceptInvite(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? pair,
+    TResult? Function()? unpair,
+    TResult? Function()? generateInvite,
+    TResult? Function(String field0)? acceptInvite,
+    TResult? Function(String pageId, String elementId,
+            Uint32List datasetIndices, DartUiInput input)?
+        input,
+  }) {
+    return acceptInvite?.call(field0);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? pair,
+    TResult Function()? unpair,
+    TResult Function()? generateInvite,
+    TResult Function(String field0)? acceptInvite,
+    TResult Function(String pageId, String elementId, Uint32List datasetIndices,
+            DartUiInput input)?
+        input,
+    required TResult orElse(),
+  }) {
+    if (acceptInvite != null) {
+      return acceptInvite(field0);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ToProcessor_Pair value) pair,
+    required TResult Function(ToProcessor_Unpair value) unpair,
+    required TResult Function(ToProcessor_GenerateInvite value) generateInvite,
+    required TResult Function(ToProcessor_AcceptInvite value) acceptInvite,
+    required TResult Function(ToProcessor_Input value) input,
+  }) {
+    return acceptInvite(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToProcessor_Pair value)? pair,
+    TResult? Function(ToProcessor_Unpair value)? unpair,
+    TResult? Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult? Function(ToProcessor_AcceptInvite value)? acceptInvite,
+    TResult? Function(ToProcessor_Input value)? input,
+  }) {
+    return acceptInvite?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToProcessor_Pair value)? pair,
+    TResult Function(ToProcessor_Unpair value)? unpair,
+    TResult Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult Function(ToProcessor_AcceptInvite value)? acceptInvite,
+    TResult Function(ToProcessor_Input value)? input,
+    required TResult orElse(),
+  }) {
+    if (acceptInvite != null) {
+      return acceptInvite(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToProcessor_AcceptInvite extends ToProcessor {
+  const factory ToProcessor_AcceptInvite(final String field0) =
+      _$ToProcessor_AcceptInviteImpl;
+  const ToProcessor_AcceptInvite._() : super._();
+
+  String get field0;
+
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ToProcessor_AcceptInviteImplCopyWith<_$ToProcessor_AcceptInviteImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -513,6 +722,8 @@ class __$$ToProcessor_InputImplCopyWithImpl<$Res>
       $Res Function(_$ToProcessor_InputImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -541,6 +752,8 @@ class __$$ToProcessor_InputImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DartUiInputCopyWith<$Res> get input {
@@ -591,7 +804,9 @@ class _$ToProcessor_InputImpl extends ToProcessor_Input {
   int get hashCode => Object.hash(runtimeType, pageId, elementId,
       const DeepCollectionEquality().hash(datasetIndices), input);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToProcessor_InputImplCopyWith<_$ToProcessor_InputImpl> get copyWith =>
@@ -604,6 +819,7 @@ class _$ToProcessor_InputImpl extends ToProcessor_Input {
     required TResult Function(String field0) pair,
     required TResult Function() unpair,
     required TResult Function() generateInvite,
+    required TResult Function(String field0) acceptInvite,
     required TResult Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)
         input,
@@ -617,6 +833,7 @@ class _$ToProcessor_InputImpl extends ToProcessor_Input {
     TResult? Function(String field0)? pair,
     TResult? Function()? unpair,
     TResult? Function()? generateInvite,
+    TResult? Function(String field0)? acceptInvite,
     TResult? Function(String pageId, String elementId,
             Uint32List datasetIndices, DartUiInput input)?
         input,
@@ -630,6 +847,7 @@ class _$ToProcessor_InputImpl extends ToProcessor_Input {
     TResult Function(String field0)? pair,
     TResult Function()? unpair,
     TResult Function()? generateInvite,
+    TResult Function(String field0)? acceptInvite,
     TResult Function(String pageId, String elementId, Uint32List datasetIndices,
             DartUiInput input)?
         input,
@@ -647,6 +865,7 @@ class _$ToProcessor_InputImpl extends ToProcessor_Input {
     required TResult Function(ToProcessor_Pair value) pair,
     required TResult Function(ToProcessor_Unpair value) unpair,
     required TResult Function(ToProcessor_GenerateInvite value) generateInvite,
+    required TResult Function(ToProcessor_AcceptInvite value) acceptInvite,
     required TResult Function(ToProcessor_Input value) input,
   }) {
     return input(this);
@@ -658,6 +877,7 @@ class _$ToProcessor_InputImpl extends ToProcessor_Input {
     TResult? Function(ToProcessor_Pair value)? pair,
     TResult? Function(ToProcessor_Unpair value)? unpair,
     TResult? Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult? Function(ToProcessor_AcceptInvite value)? acceptInvite,
     TResult? Function(ToProcessor_Input value)? input,
   }) {
     return input?.call(this);
@@ -669,6 +889,7 @@ class _$ToProcessor_InputImpl extends ToProcessor_Input {
     TResult Function(ToProcessor_Pair value)? pair,
     TResult Function(ToProcessor_Unpair value)? unpair,
     TResult Function(ToProcessor_GenerateInvite value)? generateInvite,
+    TResult Function(ToProcessor_AcceptInvite value)? acceptInvite,
     TResult Function(ToProcessor_Input value)? input,
     required TResult orElse(),
   }) {
@@ -691,7 +912,10 @@ abstract class ToProcessor_Input extends ToProcessor {
   String get elementId;
   Uint32List get datasetIndices;
   DartUiInput get input;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToProcessor
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToProcessor_InputImplCopyWith<_$ToProcessor_InputImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -813,6 +1037,9 @@ class _$ToUiCopyWithImpl<$Res, $Val extends ToUi>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -832,6 +1059,8 @@ class __$$ToUi_SetIdImplCopyWithImpl<$Res>
       _$ToUi_SetIdImpl _value, $Res Function(_$ToUi_SetIdImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -870,7 +1099,9 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToUi_SetIdImplCopyWith<_$ToUi_SetIdImpl> get copyWith =>
@@ -1004,7 +1235,10 @@ abstract class ToUi_SetId extends ToUi {
   const ToUi_SetId._() : super._();
 
   String get field0;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToUi_SetIdImplCopyWith<_$ToUi_SetIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1023,6 +1257,9 @@ class __$$ToUi_UnpairedImplCopyWithImpl<$Res>
   __$$ToUi_UnpairedImplCopyWithImpl(
       _$ToUi_UnpairedImpl _value, $Res Function(_$ToUi_UnpairedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1189,6 +1426,8 @@ class __$$ToUi_GeneratedInviteImplCopyWithImpl<$Res>
       $Res Function(_$ToUi_GeneratedInviteImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1227,7 +1466,9 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
   @override
   int get hashCode => Object.hash(runtimeType, field0);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToUi_GeneratedInviteImplCopyWith<_$ToUi_GeneratedInviteImpl>
@@ -1364,7 +1605,10 @@ abstract class ToUi_GeneratedInvite extends ToUi {
   const ToUi_GeneratedInvite._() : super._();
 
   String get field0;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToUi_GeneratedInviteImplCopyWith<_$ToUi_GeneratedInviteImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1386,6 +1630,8 @@ class __$$ToUi_PairsImplCopyWithImpl<$Res>
       _$ToUi_PairsImpl _value, $Res Function(_$ToUi_PairsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1436,7 +1682,9 @@ class _$ToUi_PairsImpl extends ToUi_Pairs {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_relations));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToUi_PairsImplCopyWith<_$ToUi_PairsImpl> get copyWith =>
@@ -1572,7 +1820,10 @@ abstract class ToUi_Pairs extends ToUi {
 
   /// first string is name, second is base64 of its key
   List<(String, String)> get relations;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToUi_PairsImplCopyWith<_$ToUi_PairsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1594,6 +1845,8 @@ class __$$ToUi_BaseImplCopyWithImpl<$Res>
       _$ToUi_BaseImpl _value, $Res Function(_$ToUi_BaseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1640,7 +1893,9 @@ class _$ToUi_BaseImpl extends ToUi_Base {
   @override
   int get hashCode => Object.hash(runtimeType, key, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToUi_BaseImplCopyWith<_$ToUi_BaseImpl> get copyWith =>
@@ -1777,7 +2032,10 @@ abstract class ToUi_Base extends ToUi {
 
   String get key;
   String get name;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToUi_BaseImplCopyWith<_$ToUi_BaseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1799,6 +2057,8 @@ class __$$ToUi_ConnectingImplCopyWithImpl<$Res>
       _$ToUi_ConnectingImpl _value, $Res Function(_$ToUi_ConnectingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1837,7 +2097,9 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
   @override
   int get hashCode => Object.hash(runtimeType, msg);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToUi_ConnectingImplCopyWith<_$ToUi_ConnectingImpl> get copyWith =>
@@ -1973,7 +2235,10 @@ abstract class ToUi_Connecting extends ToUi {
   const ToUi_Connecting._() : super._();
 
   String get msg;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToUi_ConnectingImplCopyWith<_$ToUi_ConnectingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1995,6 +2260,8 @@ class __$$ToUi_StatusImplCopyWithImpl<$Res>
       _$ToUi_StatusImpl _value, $Res Function(_$ToUi_StatusImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2033,7 +2300,9 @@ class _$ToUi_StatusImpl extends ToUi_Status {
   @override
   int get hashCode => Object.hash(runtimeType, msg);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToUi_StatusImplCopyWith<_$ToUi_StatusImpl> get copyWith =>
@@ -2167,7 +2436,10 @@ abstract class ToUi_Status extends ToUi {
   const ToUi_Status._() : super._();
 
   String get msg;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToUi_StatusImplCopyWith<_$ToUi_StatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2189,6 +2461,8 @@ class __$$ToUi_PendingImplCopyWithImpl<$Res>
       _$ToUi_PendingImpl _value, $Res Function(_$ToUi_PendingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2228,7 +2502,9 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
   @override
   int get hashCode => Object.hash(runtimeType, approved);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToUi_PendingImplCopyWith<_$ToUi_PendingImpl> get copyWith =>
@@ -2363,7 +2639,10 @@ abstract class ToUi_Pending extends ToUi {
   const ToUi_Pending._() : super._();
 
   bool get approved;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToUi_PendingImplCopyWith<_$ToUi_PendingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2382,6 +2661,9 @@ class __$$ToUi_ConnectedImplCopyWithImpl<$Res>
   __$$ToUi_ConnectedImplCopyWithImpl(
       _$ToUi_ConnectedImpl _value, $Res Function(_$ToUi_ConnectedImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2548,6 +2830,8 @@ class __$$ToUi_SetPageOrderImplCopyWithImpl<$Res>
       $Res Function(_$ToUi_SetPageOrderImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2594,7 +2878,9 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_pages));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToUi_SetPageOrderImplCopyWith<_$ToUi_SetPageOrderImpl> get copyWith =>
@@ -2730,7 +3016,10 @@ abstract class ToUi_SetPageOrder extends ToUi {
   const ToUi_SetPageOrder._() : super._();
 
   List<String> get pages;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToUi_SetPageOrderImplCopyWith<_$ToUi_SetPageOrderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2752,6 +3041,8 @@ class __$$ToUi_SetPageImplCopyWithImpl<$Res>
       _$ToUi_SetPageImpl _value, $Res Function(_$ToUi_SetPageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2790,7 +3081,9 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
   @override
   int get hashCode => Object.hash(runtimeType, page);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToUi_SetPageImplCopyWith<_$ToUi_SetPageImpl> get copyWith =>
@@ -2925,7 +3218,10 @@ abstract class ToUi_SetPage extends ToUi {
   const ToUi_SetPage._() : super._();
 
   DartUiPage get page;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToUi_SetPageImplCopyWith<_$ToUi_SetPageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2947,6 +3243,8 @@ class __$$ToUi_ErrorImplCopyWithImpl<$Res>
       _$ToUi_ErrorImpl _value, $Res Function(_$ToUi_ErrorImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2993,7 +3291,9 @@ class _$ToUi_ErrorImpl extends ToUi_Error {
   @override
   int get hashCode => Object.hash(runtimeType, msg, fatal);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToUi_ErrorImplCopyWith<_$ToUi_ErrorImpl> get copyWith =>
@@ -3130,7 +3430,10 @@ abstract class ToUi_Error extends ToUi {
 
   String get msg;
   bool get fatal;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToUi_ErrorImplCopyWith<_$ToUi_ErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
