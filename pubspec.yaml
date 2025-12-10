@@ -43,6 +43,8 @@ dependencies:
   rust_lib_spider_gui:
     path: rust_builder
   async: ^2.11.0
+  flutter_nfc_kit: ^3.6.1
+  ndef: ^0.4.0
 
 dev_dependencies:
   flutter_test:
