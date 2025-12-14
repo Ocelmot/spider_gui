@@ -18,6 +18,7 @@ Future<void> acceptInviteOverlayBuilder(BuildContext context) {
         /// decoded NDEF records (see [ndef.NDEFRecord] for details)
         /// `UriRecord: id=(empty) typeNameFormat=TypeNameFormat.nfcWellKnown type=U uri=https://github.com/nfcim/ndef`
         for (var record in await FlutterNfcKit.readNDEFRecords(cached: false)) {
+          print("Read record from tag: $record");
           controller.text = record.toString();
         }
       }

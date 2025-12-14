@@ -13,9 +13,11 @@ Future<void> inviteOverlayBuilder(BuildContext context, String invite) async {
         iosMultipleTagMessage: "Multiple tags found!",
         iosAlertMessage: "Scan your tag");
 
-      if (tag.ndefWritable != null) {
+      if (tag.ndefWritable ?? false) {
         // decoded NDEF records
         await FlutterNfcKit.writeNDEFRecords([ndef.TextRecord(text: invite)]);
+      }else{
+        print("tag was not writable");
       }
     }
   } ());
