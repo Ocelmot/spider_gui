@@ -13,7 +13,7 @@ class PairMenuView extends StatelessWidget {
       TextField(
         decoration: const InputDecoration(
           border: OutlineInputBorder(),
-          hintText: 'Enter key of base to pair',
+          hintText: 'Enter key or IP of base to pair',
         ),
         onSubmitted: (value) {
           write(msg: ToProcessor.pair(value));

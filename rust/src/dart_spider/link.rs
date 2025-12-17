@@ -198,6 +198,12 @@ impl LinkProcessor {
                     match cmd {
                         // Connection management
                         ToProcessor::Pair(key) => {
+                            // If the pairing string is an ip address, try to pair to the device at that addr
+                            // if let Some(addr) = {
+                                
+                            // }
+
+                            // If the pairing string is a key, try to connect through the beacon
                             if let Some(rel) = Relation::peer_from_base_64(key){
                                 beacon.clear_sockets();
                                 client.pair(rel).await.wrap()?;

@@ -25,4 +25,4 @@ android_logger = "0.13"
 
 # Dependencies for IOS
 [target.'cfg(target_os = "ios")'.dependencies]
-oslog = {version = "0.1.0"}
+oslog = {version = "0.2.0"}
