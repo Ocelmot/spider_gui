@@ -199,9 +199,20 @@ impl LinkProcessor {
                         // Connection management
                         ToProcessor::Pair(key) => {
                             // If the pairing string is an ip address, try to pair to the device at that addr
-                            // if let Some(addr) = {
-                                
-                            // }
+                            let socket_addr = if let Ok(socket_addr) = key.parse::<std::net::SocketAddr>(){
+                                Some(socket_addr)
+                            } else if let Ok(ip_addr) = key.parse::<std::net::IpAddr>(){
+                                Some(std::net::SocketAddr::new(ip_addr, 1930))
+                            } else {
+                                None
+                            };
+
+                            if let Some(addr) = socket_addr {
+                                // clear sockets in the beacon before the connection attempt.
+                                beacon.clear_sockets();
+                                client.try_pair_addr(addr).await.wrap()?;
+                                client.connect().await.wrap()?;
+                            }
 
                             // If the pairing string is a key, try to connect through the beacon
                             if let Some(rel) = Relation::peer_from_base_64(key){
