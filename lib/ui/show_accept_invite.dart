@@ -9,18 +9,24 @@ Future<void> acceptInviteOverlayBuilder(BuildContext context) {
 
   CancelableOperation nfcPoller = CancelableOperation.fromFuture(() async {
     while (true) {
-      var tag = await FlutterNfcKit.poll(
-          timeout: const Duration(seconds: 10),
-          iosMultipleTagMessage: "Multiple devices found?",
-          iosAlertMessage: "Scan their device");
+      try {
+        var tag = await FlutterNfcKit.poll(
+            timeout: const Duration(seconds: 10),
+            iosMultipleTagMessage: "Multiple tags found!",
+            iosAlertMessage: "Scan the NFC tag with invite");
 
-      if (tag.ndefAvailable != null) {
-        /// decoded NDEF records (see [ndef.NDEFRecord] for details)
-        /// `UriRecord: id=(empty) typeNameFormat=TypeNameFormat.nfcWellKnown type=U uri=https://github.com/nfcim/ndef`
-        for (var record in await FlutterNfcKit.readNDEFRecords(cached: false)) {
-          print("Read record from tag: $record");
-          controller.text = record.toString();
+        if (tag.ndefAvailable ?? false) {
+          var records = await FlutterNfcKit.readNDEFRecords(cached: false);
+          for (var record in records) {
+            print("Read record from tag: $record");
+            controller.text = record.toString();
+          }
         }
+
+        await FlutterNfcKit.finish(iosAlertMessage: "Done");
+      } catch (e) {
+        print("NFC error: $e");
+        await FlutterNfcKit.finish(iosErrorMessage: "Error: $e");
       }
     }
   } ());

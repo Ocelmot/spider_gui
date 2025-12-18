@@ -8,16 +8,23 @@ import 'package:ndef/ndef.dart' as ndef;
 Future<void> inviteOverlayBuilder(BuildContext context, String invite) async {
   CancelableOperation nfcPoller = CancelableOperation.fromFuture(() async {
     while (true) {
-      var tag = await FlutterNfcKit.poll(
-        timeout: const Duration(seconds: 10),
-        iosMultipleTagMessage: "Multiple tags found!",
-        iosAlertMessage: "Scan your tag");
+      try {
+        var tag = await FlutterNfcKit.poll(
+          timeout: const Duration(seconds: 10),
+          iosMultipleTagMessage: "Multiple tags found!",
+          iosAlertMessage: "Scan your writable NFC tag");
 
-      if (tag.ndefWritable ?? false) {
-        // decoded NDEF records
-        await FlutterNfcKit.writeNDEFRecords([ndef.TextRecord(text: invite)]);
-      }else{
-        print("tag was not writable");
+        if (tag.ndefWritable ?? false) {
+          await FlutterNfcKit.writeNDEFRecords([ndef.TextRecord(text: invite)]);
+          print("Successfully wrote invite to tag");
+        } else {
+          print("Tag is not writable - please use a writable NFC tag");
+        }
+
+        await FlutterNfcKit.finish(iosAlertMessage: "Done");
+      } catch (e) {
+        print("NFC error: $e");
+        await FlutterNfcKit.finish(iosErrorMessage: "Error: $e");
       }
     }
   } ());
