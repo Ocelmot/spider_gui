@@ -31,7 +31,7 @@ def ndk_dir = "$sdk_dir\\ndk"
 android {
     namespace "com.spider.spider_gui"
     compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    ndkVersion = "28.0.12433566"
     compileSdk = 36
 
 
@@ -77,18 +77,22 @@ dependencies {
 }
 
 
-[
+def buildMode = localProperties.getProperty("flutter.buildMode")
+println "Flutter build mode: $buildMode"
+
+def buildConfigs = [
     new Tuple2('Debug', ''),
     new Tuple2('Profile', '--release'),
     new Tuple2('Release', '--release')
-].each {
+].findAll { it.first.toLowerCase() == buildMode }
+
+println "Filtered build configs: $buildConfigs"
+
+buildConfigs.each {
     def taskPostfix = it.first
     def profileMode = it.second
 
-    // If the tuple combination does not match the flutter build mode, do not build it
-    if (taskPostfix.toLowerCase() != localProperties.getProperty("flutter.buildMode") ) {
-        return
-    }
+    println "Registering cargoBuild$taskPostfix"
 
     tasks.whenTaskAdded { task ->
         if (task.name == "javaPreCompile$taskPostfix") {

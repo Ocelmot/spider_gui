@@ -457,16 +457,6 @@ dependencies = [
 
 [[package]]
 name = "dashmap"
-version = "4.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e77a43b28d0668df09411cb0bc9a8c2adc40f9a048afe863e05fd43251e8e39c"
-dependencies = [
- "cfg-if",
- "num_cpus",
-]
-
-[[package]]
-name = "dashmap"
 version = "5.5.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "978747c1d849a7d2ee5e8adc0159961c48fb7e5db2f06af6723b80123bb53856"
@@ -591,7 +581,7 @@ dependencies = [
  "js-sys",
  "lazy_static",
  "log",
- "oslog 0.2.0",
+ "oslog",
  "portable-atomic",
  "threadpool",
  "tokio",
@@ -1127,23 +1117,12 @@ checksum = "c08d65885ee38876c4f86fa503fb49d7b507c2b62552df7c70b2fce627e06381"
 
 [[package]]
 name = "oslog"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8343ce955f18e7e68c0207dd0ea776ec453035685395ababd2ea651c569728b3"
-dependencies = [
- "cc",
- "dashmap 4.0.2",
- "log",
-]
-
-[[package]]
-name = "oslog"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "80d2043d1f61d77cb2f4b1f7b7b2295f40507f5f8e9d1c8bf10a1ca5f97a3969"
 dependencies = [
  "cc",
- "dashmap 5.5.3",
+ "dashmap",
  "log",
 ]
 
@@ -1395,7 +1374,7 @@ dependencies = [
  "flutter_rust_bridge",
  "jni",
  "log",
- "oslog 0.1.0",
+ "oslog",
  "rand 0.9.2",
  "serde",
  "serde_json",
