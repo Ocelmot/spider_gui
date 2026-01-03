@@ -85,7 +85,7 @@ abstract class RustLibApi extends BaseApi {
 
   Stream<ToUi> crateApiSimpleInitRust({required String configPath});
 
-  Future<void> crateApiSimpleWrite({required ToProcessor msg});
+  void crateApiSimpleWrite({required ToProcessor msg});
 }
 
 class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
@@ -122,13 +122,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   @override
   Stream<ToUi> crateApiSimpleInitRust({required String configPath}) {
     final streamSink = RustStreamSink<ToUi>();
-    unawaited(handler.executeNormal(NormalTask(
-      callFfi: (port_) {
+    handler.executeSync(SyncTask(
+      callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_StreamSink_to_ui_Sse(streamSink, serializer);
         sse_encode_String(configPath, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 2, port: port_);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 2)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
@@ -137,7 +136,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       constMeta: kCrateApiSimpleInitRustConstMeta,
       argValues: [streamSink, configPath],
       apiImpl: this,
-    )));
+    ));
     return streamSink.stream;
   }
 
@@ -147,13 +146,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
-  Future<void> crateApiSimpleWrite({required ToProcessor msg}) {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
+  void crateApiSimpleWrite({required ToProcessor msg}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_box_autoadd_to_processor(msg, serializer);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 3, port: port_);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 3)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,

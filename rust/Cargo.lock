@@ -61,18 +61,6 @@ checksum = "84521a3cf562bc62942e294181d9eef17eb38ceb8c68677bc49f144e4c3d4f8d"
 
 [[package]]
 name = "android_logger"
-version = "0.13.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c494134f746c14dc653a35a4ea5aca24ac368529da5370ecf41fe0341c35772f"
-dependencies = [
- "android_log-sys",
- "env_logger 0.10.2",
- "log",
- "once_cell",
-]
-
-[[package]]
-name = "android_logger"
 version = "0.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dbb4e440d04be07da1f1bf44fb4495ebd58669372fe0cffa6e48595ac5bd88a3"
@@ -524,16 +512,6 @@ dependencies = [
 
 [[package]]
 name = "env_logger"
-version = "0.10.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4cd405aab171cb85d6735e5c8d9db038c17d3ca007a4d2c25f337935c3d90580"
-dependencies = [
- "log",
- "regex",
-]
-
-[[package]]
-name = "env_logger"
 version = "0.11.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dcaee3d8e3cfc3fd92428d477bc97fc29ec8716d180c0d74c643bb26166660e0"
@@ -568,7 +546,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dde126295b2acc5f0a712e265e91b6fdc0ed38767496483e592ae7134db83725"
 dependencies = [
  "allo-isolate",
- "android_logger 0.15.1",
+ "android_logger",
  "anyhow",
  "build-target",
  "bytemuck",
@@ -1369,8 +1347,8 @@ dependencies = [
 name = "rust_lib_spider_gui"
 version = "0.1.0"
 dependencies = [
- "android_logger 0.13.3",
- "env_logger 0.11.6",
+ "android_logger",
+ "env_logger",
  "flutter_rust_bridge",
  "jni",
  "log",

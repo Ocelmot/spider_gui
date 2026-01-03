@@ -8,12 +8,10 @@ import '../dart_spider/ui.dart';
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-///frb_marker: #[frb(sync)]
 Stream<ToUi> initRust({required String configPath}) =>
     RustLib.instance.api.crateApiSimpleInitRust(configPath: configPath);
 
-///frb_marker: #[frb(sync)]
-Future<void> write({required ToProcessor msg}) =>
+void write({required ToProcessor msg}) =>
     RustLib.instance.api.crateApiSimpleWrite(msg: msg);
 
 Future<bool> initLogging() => RustLib.instance.api.crateApiSimpleInitLogging();
