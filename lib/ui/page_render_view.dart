@@ -4,6 +4,7 @@ import 'package:spider_gui/src/rust/dart_spider/link.dart';
 import 'package:spider_gui/src/rust/dart_spider/ui.dart';
 import 'package:spider_gui/widgets/spider_row.dart';
 import 'package:spider_gui/widgets/spider_spacer.dart';
+import 'package:spider_gui/widgets/spider_text_entry.dart';
 
 class PageRenderView extends StatelessWidget {
   final DartUiPage? page;
@@ -55,7 +56,10 @@ class ElementWidget extends StatelessWidget {
           }
           children.add(SpiderRowLayoutStrategyWidget(
             layoutStrategy: layoutType,
-            child: ElementWidget(page: page, element: child),
+            child: ElementWidget(
+                key: child.id != null ? ValueKey((page.id, child.id)) : null,
+                page: page,
+                element: child),
           ));
         }
         return SpiderRow(
@@ -66,7 +70,10 @@ class ElementWidget extends StatelessWidget {
       case 'rows':
         var children = <Widget>[];
         for (DartUiElement child in element.children) {
-          children.add(ElementWidget(page: page, element: child));
+          children.add(ElementWidget(
+              key: child.id != null ? ValueKey((page.id, child.id)) : null,
+              page: page,
+              element: child));
         }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,30 +97,14 @@ class ElementWidget extends StatelessWidget {
           ),
         );
       case 'textEntry':
-        var textElementController = TextEditingController();
-
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
           child: SizedBox(
               width: 150,
-              child: TextField(
-                controller: textElementController,
-                decoration: InputDecoration(
-                  isDense: true,
-                  contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                  border: const OutlineInputBorder(),
-                  labelText: element.text,
-                ),
-                onSubmitted: (value) {
-                  write(
-                      msg: ToProcessor.input(
-                          pageId: page.id,
-                          elementId: element.id!,
-                          datasetIndices: element.datasetIndices,
-                          input: DartUiInput.text(value)));
-                  textElementController.clear();
-                },
+              child: SpiderTextEntryWidget(
+                key: ValueKey(element.id),
+                page: page,
+                element: element,
               )),
         );
       case 'button':
