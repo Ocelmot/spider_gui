@@ -3,9 +3,9 @@ use std::{collections::HashMap, path::PathBuf, sync::Arc, time::Duration};
 use log::{debug, info, trace, warn};
 use spider_client::{
     ClientResponse, SpiderClientBuilder, link::{
-        Relation, SpiderId2048, beacon::Beacon, link_set::impls::TCPLink, message::{
+        Relation, SpiderId2048, beacon::Beacon, message::{
             AbsoluteDatasetPath, DatasetData, Invite, Message, RouterMessage, UiMessage, UiPageList
-        }
+        }, transports::tcp::key_request
     }
 };
 use tokio::{
@@ -121,7 +121,7 @@ impl LinkProcessor {
                 .await
                 .wrap()?;
             client_builder.auto_reconnect(true);
-            client_builder.enable_veilid("Spider GUI");
+            client_builder.enable_transport("auth_tcp".to_string());
 
             let sig = client_builder.self_relation().sig();
             stream_sink.add(ToUi::SetId(sig))?;
@@ -245,8 +245,8 @@ impl LinkProcessor {
                 },
                 addr = beacon.next_addr(), if !paired => {
                     // if the link is not paired, search for possible bases
-                    let kr = TCPLink::key_request(addr).await;
-                    if let Some(key_request) = kr {
+                    let kr = key_request(addr).await;
+                    if let Ok(key_request) = kr {
                         debug!("Sending potential base `{}` at {}", key_request.name, addr);
                         self.sender.add(ToUi::Base {
                             name: key_request.name,
