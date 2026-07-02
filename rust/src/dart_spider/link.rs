@@ -5,7 +5,7 @@ use spider_client::{
     ClientResponse, SpiderClientBuilder, link::{
         Relation, SpiderId2048, beacon::Beacon, message::{
             AbsoluteDatasetPath, DatasetData, Invite, Message, RouterMessage, UiMessage, UiPageList
-        }, transports::tcp::key_request
+        }, transports::{iroh::IROH_SCHEME, tcp::{TCP_SCHEME, key_request}}
     }
 };
 use tokio::{
@@ -121,7 +121,8 @@ impl LinkProcessor {
                 .await
                 .wrap()?;
             client_builder.auto_reconnect(true);
-            client_builder.enable_transport("auth_tcp".to_string());
+            client_builder.enable_transport(TCP_SCHEME.to_string());
+            client_builder.enable_transport(IROH_SCHEME.to_string());
 
             let sig = client_builder.self_relation().sig();
             stream_sink.add(ToUi::SetId(sig))?;
