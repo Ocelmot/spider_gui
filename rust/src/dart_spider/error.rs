@@ -123,7 +123,7 @@ pub enum ErrorKind {
 pub struct GuiClientError {
     kind: ErrorKind,
     msg: Option<String>,
-    source: Option<Box<(dyn Error + Send + Sync + 'static)>>,
+    source: Option<Box<dyn Error + Send + Sync + 'static>>,
 }
 
 impl GuiClientError {
