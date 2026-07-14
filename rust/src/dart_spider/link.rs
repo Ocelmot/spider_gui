@@ -230,9 +230,15 @@ impl LinkProcessor {
                             client.send(msg).await.wrap()?;
                         }
                         ToProcessor::AcceptInvite(invite_str) => {
-                            let invite = Invite::from_base64(invite_str).wrap()?;
-                            let msg = Message::Router(RouterMessage::Invite(invite));
-                            client.send(msg).await.wrap()?;
+                            match Invite::decode(invite_str).wrap() {
+                                Ok(invite) => {
+                                    let msg = Message::Router(RouterMessage::Invite(invite));
+                                    client.send(msg).await.wrap()?;
+                                },
+                                Err(e) =>{
+                                    self.sender.add(ToUi::Error { msg: e.to_string(), fatal: false })?;
+                                },
+                            }
                         }
                         // Input
                         ToProcessor::Input{ page_id, element_id, dataset_indices, input } => {
@@ -264,7 +270,7 @@ impl LinkProcessor {
                             self.handle_ui(msg).await?;
                         },
                         ClientResponse::Message(Message::Router(RouterMessage::Invite(invite)), _) => {
-                            self.sender.add(ToUi::GeneratedInvite(invite.to_base64()))?;
+                            self.sender.add(ToUi::GeneratedInvite(invite.encode()))?;
                         }
                         ClientResponse::Message(Message::Router(RouterMessage::Pending), _) => {
                             self.sender.add(ToUi::Pending{approved: false})?;
