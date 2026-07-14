@@ -57,7 +57,10 @@ class ElementWidget extends StatelessWidget {
           children.add(SpiderRowLayoutStrategyWidget(
             layoutStrategy: layoutType,
             child: ElementWidget(
-                key: child.id != null ? ValueKey((page.id, child.id)) : null,
+                key: child.id != null
+                    ? ValueKey(
+                        '${page.id}/${child.id}/${child.datasetIndices.join(".")}')
+                    : null,
                 page: page,
                 element: child),
           ));
@@ -71,7 +74,10 @@ class ElementWidget extends StatelessWidget {
         var children = <Widget>[];
         for (DartUiElement child in element.children) {
           children.add(ElementWidget(
-              key: child.id != null ? ValueKey((page.id, child.id)) : null,
+              key: child.id != null
+                  ? ValueKey(
+                      '${page.id}/${child.id}/${child.datasetIndices.join(".")}')
+                  : null,
               page: page,
               element: child));
         }
@@ -102,7 +108,8 @@ class ElementWidget extends StatelessWidget {
           child: SizedBox(
               width: 150,
               child: SpiderTextEntryWidget(
-                key: ValueKey(element.id),
+                key: ValueKey(
+                    '${page.id}/${element.id}/${element.datasetIndices.join(".")}'),
                 page: page,
                 element: element,
               )),
