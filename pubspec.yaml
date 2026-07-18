@@ -130,6 +130,6 @@ msix_config:
   display_name: Spider
   publisher_display_name: Chrys Adams
   identity_name: Ocelmot.Prod.Spider
-  msix_version: 1.0.0.3
+  msix_version: 1.0.0.4
   logo_path: "assets/spider_logo.png"
   capabilities: internetClient, privateNetworkClientServer 
