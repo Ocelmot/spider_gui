@@ -310,18 +310,6 @@ impl SseDecode for Vec<u8> {
     }
 }
 
-impl SseDecode for Vec<(String, String)> {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut len_ = <i32>::sse_decode(deserializer);
-        let mut ans_ = vec![];
-        for idx_ in 0..len_ {
-            ans_.push(<(String, String)>::sse_decode(deserializer));
-        }
-        return ans_;
-    }
-}
-
 impl SseDecode for Option<String> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -330,15 +318,6 @@ impl SseDecode for Option<String> {
         } else {
             return None;
         }
-    }
-}
-
-impl SseDecode for (String, String) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
-        let mut var_field0 = <String>::sse_decode(deserializer);
-        let mut var_field1 = <String>::sse_decode(deserializer);
-        return (var_field0, var_field1);
     }
 }
 
@@ -397,18 +376,16 @@ impl SseDecode for crate::dart_spider::link::ToUi {
                 return crate::dart_spider::link::ToUi::GeneratedInvite(var_field0);
             }
             3 => {
-                let mut var_relations = <Vec<(String, String)>>::sse_decode(deserializer);
-                return crate::dart_spider::link::ToUi::Pairs {
-                    relations: var_relations,
+                let mut var_key = <String>::sse_decode(deserializer);
+                let mut var_name = <String>::sse_decode(deserializer);
+                return crate::dart_spider::link::ToUi::BaseFound {
+                    key: var_key,
+                    name: var_name,
                 };
             }
             4 => {
                 let mut var_key = <String>::sse_decode(deserializer);
-                let mut var_name = <String>::sse_decode(deserializer);
-                return crate::dart_spider::link::ToUi::Base {
-                    key: var_key,
-                    name: var_name,
-                };
+                return crate::dart_spider::link::ToUi::BaseLost { key: var_key };
             }
             5 => {
                 let mut var_msg = <String>::sse_decode(deserializer);
@@ -651,15 +628,15 @@ impl flutter_rust_bridge::IntoDart for crate::dart_spider::link::ToUi {
             crate::dart_spider::link::ToUi::GeneratedInvite(field0) => {
                 [2.into_dart(), field0.into_into_dart().into_dart()].into_dart()
             }
-            crate::dart_spider::link::ToUi::Pairs { relations } => {
-                [3.into_dart(), relations.into_into_dart().into_dart()].into_dart()
-            }
-            crate::dart_spider::link::ToUi::Base { key, name } => [
-                4.into_dart(),
+            crate::dart_spider::link::ToUi::BaseFound { key, name } => [
+                3.into_dart(),
                 key.into_into_dart().into_dart(),
                 name.into_into_dart().into_dart(),
             ]
             .into_dart(),
+            crate::dart_spider::link::ToUi::BaseLost { key } => {
+                [4.into_dart(), key.into_into_dart().into_dart()].into_dart()
+            }
             crate::dart_spider::link::ToUi::Connecting { msg } => {
                 [5.into_dart(), msg.into_into_dart().into_dart()].into_dart()
             }
@@ -838,16 +815,6 @@ impl SseEncode for Vec<u8> {
     }
 }
 
-impl SseEncode for Vec<(String, String)> {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <i32>::sse_encode(self.len() as _, serializer);
-        for item in self {
-            <(String, String)>::sse_encode(item, serializer);
-        }
-    }
-}
-
 impl SseEncode for Option<String> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -855,14 +822,6 @@ impl SseEncode for Option<String> {
         if let Some(value) = self {
             <String>::sse_encode(value, serializer);
         }
-    }
-}
-
-impl SseEncode for (String, String) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
-        <String>::sse_encode(self.0, serializer);
-        <String>::sse_encode(self.1, serializer);
     }
 }
 
@@ -918,14 +877,14 @@ impl SseEncode for crate::dart_spider::link::ToUi {
                 <i32>::sse_encode(2, serializer);
                 <String>::sse_encode(field0, serializer);
             }
-            crate::dart_spider::link::ToUi::Pairs { relations } => {
+            crate::dart_spider::link::ToUi::BaseFound { key, name } => {
                 <i32>::sse_encode(3, serializer);
-                <Vec<(String, String)>>::sse_encode(relations, serializer);
-            }
-            crate::dart_spider::link::ToUi::Base { key, name } => {
-                <i32>::sse_encode(4, serializer);
                 <String>::sse_encode(key, serializer);
                 <String>::sse_encode(name, serializer);
+            }
+            crate::dart_spider::link::ToUi::BaseLost { key } => {
+                <i32>::sse_encode(4, serializer);
+                <String>::sse_encode(key, serializer);
             }
             crate::dart_spider::link::ToUi::Connecting { msg } => {
                 <i32>::sse_encode(5, serializer);

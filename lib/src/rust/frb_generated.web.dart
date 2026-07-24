@@ -3,7 +3,6 @@
 
 // ignore_for_file: unused_import, unused_element, unnecessary_import, duplicate_ignore, invalid_use_of_internal_member, annotate_overrides, non_constant_identifier_names, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field
 
-
 // Static analysis wrongly picks the IO variant, thus ignore this
 // ignore_for_file: argument_type_not_assignable
 
@@ -15,176 +14,235 @@ import 'dart_spider/ui.dart';
 import 'frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated_web.dart';
 
+abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
+  RustLibApiImplPlatform({
+    required super.handler,
+    required super.wire,
+    required super.generalizedFrbRustBinding,
+    required super.portManager,
+  });
 
+  @protected
+  AnyhowException dco_decode_AnyhowException(dynamic raw);
 
+  @protected
+  RustStreamSink<ToUi> dco_decode_StreamSink_to_ui_Sse(dynamic raw);
 
-                abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
-                  RustLibApiImplPlatform({
-                    required super.handler,
-                    required super.wire,
-                    required super.generalizedFrbRustBinding,
-                    required super.portManager,
-                  });
+  @protected
+  String dco_decode_String(dynamic raw);
 
-                  
+  @protected
+  bool dco_decode_bool(dynamic raw);
 
-                  @protected AnyhowException dco_decode_AnyhowException(dynamic raw);
+  @protected
+  DartUiInput dco_decode_box_autoadd_dart_ui_input(dynamic raw);
 
-@protected RustStreamSink<ToUi> dco_decode_StreamSink_to_ui_Sse(dynamic raw);
+  @protected
+  DartUiPage dco_decode_box_autoadd_dart_ui_page(dynamic raw);
 
-@protected String dco_decode_String(dynamic raw);
+  @protected
+  ToProcessor dco_decode_box_autoadd_to_processor(dynamic raw);
 
-@protected bool dco_decode_bool(dynamic raw);
+  @protected
+  DartUiElement dco_decode_dart_ui_element(dynamic raw);
 
-@protected DartUiInput dco_decode_box_autoadd_dart_ui_input(dynamic raw);
+  @protected
+  DartUiElementKind dco_decode_dart_ui_element_kind(dynamic raw);
 
-@protected DartUiPage dco_decode_box_autoadd_dart_ui_page(dynamic raw);
+  @protected
+  DartUiInput dco_decode_dart_ui_input(dynamic raw);
 
-@protected ToProcessor dco_decode_box_autoadd_to_processor(dynamic raw);
+  @protected
+  DartUiPage dco_decode_dart_ui_page(dynamic raw);
 
-@protected DartUiElement dco_decode_dart_ui_element(dynamic raw);
+  @protected
+  int dco_decode_i_32(dynamic raw);
 
-@protected DartUiElementKind dco_decode_dart_ui_element_kind(dynamic raw);
+  @protected
+  List<String> dco_decode_list_String(dynamic raw);
 
-@protected DartUiInput dco_decode_dart_ui_input(dynamic raw);
+  @protected
+  List<DartUiElement> dco_decode_list_dart_ui_element(dynamic raw);
 
-@protected DartUiPage dco_decode_dart_ui_page(dynamic raw);
+  @protected
+  Uint32List dco_decode_list_prim_u_32_strict(dynamic raw);
 
-@protected int dco_decode_i_32(dynamic raw);
+  @protected
+  Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
 
-@protected List<String> dco_decode_list_String(dynamic raw);
+  @protected
+  String? dco_decode_opt_String(dynamic raw);
 
-@protected List<DartUiElement> dco_decode_list_dart_ui_element(dynamic raw);
+  @protected
+  ToProcessor dco_decode_to_processor(dynamic raw);
 
-@protected Uint32List dco_decode_list_prim_u_32_strict(dynamic raw);
+  @protected
+  ToUi dco_decode_to_ui(dynamic raw);
 
-@protected Uint8List dco_decode_list_prim_u_8_strict(dynamic raw);
+  @protected
+  int dco_decode_u_32(dynamic raw);
 
-@protected List<(String,String)> dco_decode_list_record_string_string(dynamic raw);
+  @protected
+  int dco_decode_u_8(dynamic raw);
 
-@protected String? dco_decode_opt_String(dynamic raw);
+  @protected
+  void dco_decode_unit(dynamic raw);
 
-@protected (String,String) dco_decode_record_string_string(dynamic raw);
+  @protected
+  AnyhowException sse_decode_AnyhowException(SseDeserializer deserializer);
 
-@protected ToProcessor dco_decode_to_processor(dynamic raw);
+  @protected
+  RustStreamSink<ToUi> sse_decode_StreamSink_to_ui_Sse(
+      SseDeserializer deserializer);
 
-@protected ToUi dco_decode_to_ui(dynamic raw);
+  @protected
+  String sse_decode_String(SseDeserializer deserializer);
 
-@protected int dco_decode_u_32(dynamic raw);
+  @protected
+  bool sse_decode_bool(SseDeserializer deserializer);
 
-@protected int dco_decode_u_8(dynamic raw);
+  @protected
+  DartUiInput sse_decode_box_autoadd_dart_ui_input(
+      SseDeserializer deserializer);
 
-@protected void dco_decode_unit(dynamic raw);
+  @protected
+  DartUiPage sse_decode_box_autoadd_dart_ui_page(SseDeserializer deserializer);
 
-@protected AnyhowException sse_decode_AnyhowException(SseDeserializer deserializer);
+  @protected
+  ToProcessor sse_decode_box_autoadd_to_processor(SseDeserializer deserializer);
 
-@protected RustStreamSink<ToUi> sse_decode_StreamSink_to_ui_Sse(SseDeserializer deserializer);
+  @protected
+  DartUiElement sse_decode_dart_ui_element(SseDeserializer deserializer);
 
-@protected String sse_decode_String(SseDeserializer deserializer);
+  @protected
+  DartUiElementKind sse_decode_dart_ui_element_kind(
+      SseDeserializer deserializer);
 
-@protected bool sse_decode_bool(SseDeserializer deserializer);
+  @protected
+  DartUiInput sse_decode_dart_ui_input(SseDeserializer deserializer);
 
-@protected DartUiInput sse_decode_box_autoadd_dart_ui_input(SseDeserializer deserializer);
+  @protected
+  DartUiPage sse_decode_dart_ui_page(SseDeserializer deserializer);
 
-@protected DartUiPage sse_decode_box_autoadd_dart_ui_page(SseDeserializer deserializer);
+  @protected
+  int sse_decode_i_32(SseDeserializer deserializer);
 
-@protected ToProcessor sse_decode_box_autoadd_to_processor(SseDeserializer deserializer);
+  @protected
+  List<String> sse_decode_list_String(SseDeserializer deserializer);
 
-@protected DartUiElement sse_decode_dart_ui_element(SseDeserializer deserializer);
+  @protected
+  List<DartUiElement> sse_decode_list_dart_ui_element(
+      SseDeserializer deserializer);
 
-@protected DartUiElementKind sse_decode_dart_ui_element_kind(SseDeserializer deserializer);
+  @protected
+  Uint32List sse_decode_list_prim_u_32_strict(SseDeserializer deserializer);
 
-@protected DartUiInput sse_decode_dart_ui_input(SseDeserializer deserializer);
+  @protected
+  Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
 
-@protected DartUiPage sse_decode_dart_ui_page(SseDeserializer deserializer);
+  @protected
+  String? sse_decode_opt_String(SseDeserializer deserializer);
 
-@protected int sse_decode_i_32(SseDeserializer deserializer);
+  @protected
+  ToProcessor sse_decode_to_processor(SseDeserializer deserializer);
 
-@protected List<String> sse_decode_list_String(SseDeserializer deserializer);
+  @protected
+  ToUi sse_decode_to_ui(SseDeserializer deserializer);
 
-@protected List<DartUiElement> sse_decode_list_dart_ui_element(SseDeserializer deserializer);
+  @protected
+  int sse_decode_u_32(SseDeserializer deserializer);
 
-@protected Uint32List sse_decode_list_prim_u_32_strict(SseDeserializer deserializer);
+  @protected
+  int sse_decode_u_8(SseDeserializer deserializer);
 
-@protected Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer);
+  @protected
+  void sse_decode_unit(SseDeserializer deserializer);
 
-@protected List<(String,String)> sse_decode_list_record_string_string(SseDeserializer deserializer);
+  @protected
+  void sse_encode_AnyhowException(
+      AnyhowException self, SseSerializer serializer);
 
-@protected String? sse_decode_opt_String(SseDeserializer deserializer);
+  @protected
+  void sse_encode_StreamSink_to_ui_Sse(
+      RustStreamSink<ToUi> self, SseSerializer serializer);
 
-@protected (String,String) sse_decode_record_string_string(SseDeserializer deserializer);
+  @protected
+  void sse_encode_String(String self, SseSerializer serializer);
 
-@protected ToProcessor sse_decode_to_processor(SseDeserializer deserializer);
+  @protected
+  void sse_encode_bool(bool self, SseSerializer serializer);
 
-@protected ToUi sse_decode_to_ui(SseDeserializer deserializer);
+  @protected
+  void sse_encode_box_autoadd_dart_ui_input(
+      DartUiInput self, SseSerializer serializer);
 
-@protected int sse_decode_u_32(SseDeserializer deserializer);
+  @protected
+  void sse_encode_box_autoadd_dart_ui_page(
+      DartUiPage self, SseSerializer serializer);
 
-@protected int sse_decode_u_8(SseDeserializer deserializer);
+  @protected
+  void sse_encode_box_autoadd_to_processor(
+      ToProcessor self, SseSerializer serializer);
 
-@protected void sse_decode_unit(SseDeserializer deserializer);
+  @protected
+  void sse_encode_dart_ui_element(DartUiElement self, SseSerializer serializer);
 
-@protected void sse_encode_AnyhowException(AnyhowException self, SseSerializer serializer);
+  @protected
+  void sse_encode_dart_ui_element_kind(
+      DartUiElementKind self, SseSerializer serializer);
 
-@protected void sse_encode_StreamSink_to_ui_Sse(RustStreamSink<ToUi> self, SseSerializer serializer);
+  @protected
+  void sse_encode_dart_ui_input(DartUiInput self, SseSerializer serializer);
 
-@protected void sse_encode_String(String self, SseSerializer serializer);
+  @protected
+  void sse_encode_dart_ui_page(DartUiPage self, SseSerializer serializer);
 
-@protected void sse_encode_bool(bool self, SseSerializer serializer);
+  @protected
+  void sse_encode_i_32(int self, SseSerializer serializer);
 
-@protected void sse_encode_box_autoadd_dart_ui_input(DartUiInput self, SseSerializer serializer);
+  @protected
+  void sse_encode_list_String(List<String> self, SseSerializer serializer);
 
-@protected void sse_encode_box_autoadd_dart_ui_page(DartUiPage self, SseSerializer serializer);
+  @protected
+  void sse_encode_list_dart_ui_element(
+      List<DartUiElement> self, SseSerializer serializer);
 
-@protected void sse_encode_box_autoadd_to_processor(ToProcessor self, SseSerializer serializer);
+  @protected
+  void sse_encode_list_prim_u_32_strict(
+      Uint32List self, SseSerializer serializer);
 
-@protected void sse_encode_dart_ui_element(DartUiElement self, SseSerializer serializer);
+  @protected
+  void sse_encode_list_prim_u_8_strict(
+      Uint8List self, SseSerializer serializer);
 
-@protected void sse_encode_dart_ui_element_kind(DartUiElementKind self, SseSerializer serializer);
+  @protected
+  void sse_encode_opt_String(String? self, SseSerializer serializer);
 
-@protected void sse_encode_dart_ui_input(DartUiInput self, SseSerializer serializer);
+  @protected
+  void sse_encode_to_processor(ToProcessor self, SseSerializer serializer);
 
-@protected void sse_encode_dart_ui_page(DartUiPage self, SseSerializer serializer);
+  @protected
+  void sse_encode_to_ui(ToUi self, SseSerializer serializer);
 
-@protected void sse_encode_i_32(int self, SseSerializer serializer);
+  @protected
+  void sse_encode_u_32(int self, SseSerializer serializer);
 
-@protected void sse_encode_list_String(List<String> self, SseSerializer serializer);
+  @protected
+  void sse_encode_u_8(int self, SseSerializer serializer);
 
-@protected void sse_encode_list_dart_ui_element(List<DartUiElement> self, SseSerializer serializer);
-
-@protected void sse_encode_list_prim_u_32_strict(Uint32List self, SseSerializer serializer);
-
-@protected void sse_encode_list_prim_u_8_strict(Uint8List self, SseSerializer serializer);
-
-@protected void sse_encode_list_record_string_string(List<(String,String)> self, SseSerializer serializer);
-
-@protected void sse_encode_opt_String(String? self, SseSerializer serializer);
-
-@protected void sse_encode_record_string_string((String,String) self, SseSerializer serializer);
-
-@protected void sse_encode_to_processor(ToProcessor self, SseSerializer serializer);
-
-@protected void sse_encode_to_ui(ToUi self, SseSerializer serializer);
-
-@protected void sse_encode_u_32(int self, SseSerializer serializer);
-
-@protected void sse_encode_u_8(int self, SseSerializer serializer);
-
-@protected void sse_encode_unit(void self, SseSerializer serializer);
-                }
-                
-
+  @protected
+  void sse_encode_unit(void self, SseSerializer serializer);
+}
 
 // Section: wire_class
 
 class RustLibWire implements BaseWire {
-            RustLibWire.fromExternalLibrary(ExternalLibrary lib);
+  RustLibWire.fromExternalLibrary(ExternalLibrary lib);
+}
 
-            
-        }
-        @JS('wasm_bindgen') external RustLibWasmModule get wasmModule;
+@JS('wasm_bindgen')
+external RustLibWasmModule get wasmModule;
 
-        @JS() @anonymous extension type RustLibWasmModule._(JSObject _) implements JSObject {
-            
-        }
-        
+@JS()
+@anonymous
+extension type RustLibWasmModule._(JSObject _) implements JSObject {}

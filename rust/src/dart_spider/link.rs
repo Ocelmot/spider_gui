@@ -1,11 +1,11 @@
-use std::{collections::HashMap, path::PathBuf, sync::Arc, time::Duration};
+use std::{collections::HashMap, path::PathBuf, sync::Arc};
 
 use log::{debug, info, trace, warn};
 use spider_client::{
     ClientResponse, SpiderClientBuilder, link::{
-        Relation, SpiderId2048, beacon::Beacon, message::{
+        Relation, SpiderId2048, discovery::{AdvertEvent, Discoverer, get_discovery}, message::{
             AbsoluteDatasetPath, DatasetData, Invite, Message, RouterMessage, UiMessage, UiPageList
-        }, transports::{iroh::IROH_SCHEME, tcp::{TCP_SCHEME, key_request}}
+        }, transports::{iroh::IROH_SCHEME, tcp::TCP_SCHEME}
     }
 };
 use tokio::{
@@ -51,13 +51,15 @@ pub enum ToUi {
     Unpaired,
     GeneratedInvite(String),
 
-    Pairs {
-        /// first string is name, second is base64 of its key
-        relations: Vec<(String, String)>,
-    },
-    Base {
+    BaseFound {
+        // Key is base64 of the id
         key: String,
+        // Name is the base's identified name (or NoName, if none provided)
         name: String,
+    },
+    BaseLost{
+        // Key is base64 of the id
+        key: String,
     },
     Connecting {
         msg: String,
@@ -168,6 +170,8 @@ impl LinkProcessor {
 
         // Send initial state to UI
         let mut paired = false;
+        let mut discoverer = None;
+        let beacon_port = client_builder.beacon_port();
         if client_builder.has_host_relation() {
             debug!("Link is paired, connecting...");
             self.sender.add(ToUi::Connecting {
@@ -177,17 +181,15 @@ impl LinkProcessor {
         } else {
             debug!("Link is unpaired");
             self.sender.add(ToUi::Unpaired)?;
+            discoverer = Some(get_discovery(beacon_port));
         }
-
-        let beacon_port = client_builder.beacon_port();
 
         // Create the client channel
         let mut client = client_builder.start(true).await.wrap()?;
         if paired {
             client.connect().await.wrap()?;
         }
-        let mut beacon = Beacon::new(Duration::from_secs(5));
-        beacon.set_port(beacon_port);
+        
 
         // process messages
         loop {
@@ -209,15 +211,12 @@ impl LinkProcessor {
                             };
 
                             if let Some(addr) = socket_addr {
-                                // clear sockets in the beacon before the connection attempt.
-                                beacon.clear_sockets();
                                 client.try_pair_addr(addr).await.wrap()?;
                                 client.connect().await.wrap()?;
                             }
 
                             // If the pairing string is a key, try to connect through the beacon
                             if let Some(rel) = Relation::peer_from_base_64(key){
-                                beacon.clear_sockets();
                                 client.pair(rel).await.wrap()?;
                                 client.connect().await.wrap()?;
                             }
@@ -250,15 +249,25 @@ impl LinkProcessor {
                         },
                     }
                 },
-                addr = beacon.next_addr(), if !paired => {
+                event = opt_next_addr(discoverer.as_mut()), if !paired => {
                     // if the link is not paired, search for possible bases
-                    let kr = key_request(addr).await;
-                    if let Ok(key_request) = kr {
-                        debug!("Sending potential base `{}` at {}", key_request.name, addr);
-                        self.sender.add(ToUi::Base {
-                            name: key_request.name,
-                            key: key_request.key.to_base64()
-                        })?;
+                    match event{
+                        AdvertEvent::Found(base_advert) => {
+                            // If the event does not contain a key, it would not be possible to pair.
+                            if let Some(key) = base_advert.id {
+                                let name = base_advert.name.unwrap_or(String::from("NoName"));
+                                debug!("Sending potential base `{}`", name);
+                                self.sender.add(ToUi::BaseFound {
+                                    name: name,
+                                    key: key.to_base64()
+                                })?;
+                            }
+                        },
+                        AdvertEvent::Lost(base_advert) => {
+                            if let Some(key) = base_advert.id {
+                                self.sender.add(ToUi::BaseLost { key: key.to_base64() })?;
+                            }
+                        },
                     }
                 },
                 msg = client.recv() => {
@@ -281,7 +290,7 @@ impl LinkProcessor {
                         ClientResponse::Paired => {
                             trace!("Paired from client");
                             paired = true;
-                            beacon.clear_sockets();
+                            discoverer = None;
                             self.sender.add(ToUi::Connecting { msg: String::from("Connecting...") })?;
                         }
                         ClientResponse::Connected(_) => {
@@ -305,6 +314,7 @@ impl LinkProcessor {
                         ClientResponse::Unpaired(_rel) => {
                             trace!("Unpair from client");
                             paired = false;
+                            discoverer = Some(get_discovery(beacon_port));
                             self.sender.add(ToUi::Unpaired)?;
                         }
                         ClientResponse::Terminated(builder) => {
@@ -385,5 +395,12 @@ impl LinkProcessor {
             self.update_ui_page(id)?;
         }
         Ok(())
+    }
+}
+
+async fn opt_next_addr(d: Option<&mut Box<dyn Discoverer>>) -> AdvertEvent {
+    match d {
+        Some(d) => d.next_addr().await,
+        None => std::future::pending().await,
     }
 }

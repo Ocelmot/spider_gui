@@ -40,14 +40,13 @@ sealed class ToUi with _$ToUi {
   const factory ToUi.generatedInvite(
     String field0,
   ) = ToUi_GeneratedInvite;
-  const factory ToUi.pairs({
-    /// first string is name, second is base64 of its key
-    required List<(String, String)> relations,
-  }) = ToUi_Pairs;
-  const factory ToUi.base({
+  const factory ToUi.baseFound({
     required String key,
     required String name,
-  }) = ToUi_Base;
+  }) = ToUi_BaseFound;
+  const factory ToUi.baseLost({
+    required String key,
+  }) = ToUi_BaseLost;
   const factory ToUi.connecting({
     required String msg,
   }) = ToUi_Connecting;

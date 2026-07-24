@@ -33,9 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _initialized = false;
 
   bool _isPaired = false;
-  List<(String, String)> pairs = List.empty(); // Potential Pairs
-  Map<String, (String, DateTime)> potentialPairs = {};
-  late Timer pairFilter;
+  // Map from the base's id to its name
+  Map<String, String> potentialPairs = {};
 
   bool _isConnected = false;
   String _connectingMessage = "";
@@ -52,22 +51,12 @@ class _MyHomePageState extends State<MyHomePage> {
   _MyHomePageState(String configPath) {
     stream = initRust(configPath: configPath);
 
-    pairFilter = Timer.periodic(
-      const Duration(seconds: 20),
-      (timer) {
-        setState(() {
-          potentialPairs.removeWhere((key, value) => value.$2
-              .isBefore(DateTime.now().subtract(const Duration(seconds: 20))));
-        });
-      },
-    );
-
     stream.listen((event) {
       event.map(
         setId: _onSetId,
         unpaired: _onUnpaired,
-        pairs: _onPairs,
-        base: _onBase,
+        baseFound: _onBaseFound,
+        baseLost: _onBaseLost,
         connecting: _onConnecting,
         pending: _onPending,
         connected: _onConnected,
@@ -97,28 +86,21 @@ class _MyHomePageState extends State<MyHomePage> {
       _initialized = true;
       _isPaired = false;
       _isConnected = false;
+      _isPending = false;
       pageOrder = [];
       pages = {};
     });
   }
 
-  void _onBase(ToUi_Base event) {
+  void _onBaseFound(ToUi_BaseFound event) {
     setState(() {
-      potentialPairs.update(
-        event.key,
-        (val) {
-          return (event.name, DateTime.now());
-        },
-        ifAbsent: () {
-          return (event.name, DateTime.now());
-        },
-      );
+      potentialPairs[event.key] = event.name;
     });
   }
 
-  void _onPairs(ToUi_Pairs event) {
+  void _onBaseLost(ToUi_BaseLost event) {
     setState(() {
-      pairs = event.relations;
+      potentialPairs.remove(event.key);
     });
   }
 
@@ -141,6 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _isPaired = true;
       _isConnected = true;
+      _isPending = false;
       _connectingMessage = "";
     });
   }

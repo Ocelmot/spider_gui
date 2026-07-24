@@ -3,7 +3,8 @@ import 'package:spider_gui/src/rust/api/simple.dart';
 import 'package:spider_gui/src/rust/dart_spider/link.dart';
 
 class PairMenuView extends StatelessWidget {
-  final Map<String, (String, DateTime)> pairs;
+  // Map from base64 of the id to the base's name
+  final Map<String, String> pairs;
   const PairMenuView({super.key, required this.pairs});
 
   @override
@@ -31,7 +32,7 @@ class PairMenuView extends StatelessWidget {
     var pairList = List.empty(growable: true);
     for (var entry in pairs.entries) {
       var key = entry.key;
-      var name = entry.value.$1;
+      var name = entry.value;
 
       pairList.add((key, name));
     }

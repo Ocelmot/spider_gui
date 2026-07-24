@@ -291,28 +291,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  List<(String, String)> dco_decode_list_record_string_string(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    return (raw as List<dynamic>).map(dco_decode_record_string_string).toList();
-  }
-
-  @protected
   String? dco_decode_opt_String(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw == null ? null : dco_decode_String(raw);
-  }
-
-  @protected
-  (String, String) dco_decode_record_string_string(dynamic raw) {
-    // Codec=Dco (DartCObject based), see doc to use other codecs
-    final arr = raw as List<dynamic>;
-    if (arr.length != 2) {
-      throw Exception('Expected 2 elements, got ${arr.length}');
-    }
-    return (
-      dco_decode_String(arr[0]),
-      dco_decode_String(arr[1]),
-    );
   }
 
   @protected
@@ -358,13 +339,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
           dco_decode_String(raw[1]),
         );
       case 3:
-        return ToUi_Pairs(
-          relations: dco_decode_list_record_string_string(raw[1]),
-        );
-      case 4:
-        return ToUi_Base(
+        return ToUi_BaseFound(
           key: dco_decode_String(raw[1]),
           name: dco_decode_String(raw[2]),
+        );
+      case 4:
+        return ToUi_BaseLost(
+          key: dco_decode_String(raw[1]),
         );
       case 5:
         return ToUi_Connecting(
@@ -560,19 +541,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  List<(String, String)> sse_decode_list_record_string_string(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-
-    var len_ = sse_decode_i_32(deserializer);
-    var ans_ = <(String, String)>[];
-    for (var idx_ = 0; idx_ < len_; ++idx_) {
-      ans_.add(sse_decode_record_string_string(deserializer));
-    }
-    return ans_;
-  }
-
-  @protected
   String? sse_decode_opt_String(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
 
@@ -581,15 +549,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     } else {
       return null;
     }
-  }
-
-  @protected
-  (String, String) sse_decode_record_string_string(
-      SseDeserializer deserializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    var var_field0 = sse_decode_String(deserializer);
-    var var_field1 = sse_decode_String(deserializer);
-    return (var_field0, var_field1);
   }
 
   @protected
@@ -638,12 +597,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
         var var_field0 = sse_decode_String(deserializer);
         return ToUi_GeneratedInvite(var_field0);
       case 3:
-        var var_relations = sse_decode_list_record_string_string(deserializer);
-        return ToUi_Pairs(relations: var_relations);
-      case 4:
         var var_key = sse_decode_String(deserializer);
         var var_name = sse_decode_String(deserializer);
-        return ToUi_Base(key: var_key, name: var_name);
+        return ToUi_BaseFound(key: var_key, name: var_name);
+      case 4:
+        var var_key = sse_decode_String(deserializer);
+        return ToUi_BaseLost(key: var_key);
       case 5:
         var var_msg = sse_decode_String(deserializer);
         return ToUi_Connecting(msg: var_msg);
@@ -821,16 +780,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
-  void sse_encode_list_record_string_string(
-      List<(String, String)> self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_i_32(self.length, serializer);
-    for (final item in self) {
-      sse_encode_record_string_string(item, serializer);
-    }
-  }
-
-  @protected
   void sse_encode_opt_String(String? self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
 
@@ -838,14 +787,6 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     if (self != null) {
       sse_encode_String(self, serializer);
     }
-  }
-
-  @protected
-  void sse_encode_record_string_string(
-      (String, String) self, SseSerializer serializer) {
-    // Codec=Sse (Serialization based), see doc to use other codecs
-    sse_encode_String(self.$1, serializer);
-    sse_encode_String(self.$2, serializer);
   }
 
   @protected
@@ -888,13 +829,13 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       case ToUi_GeneratedInvite(field0: final field0):
         sse_encode_i_32(2, serializer);
         sse_encode_String(field0, serializer);
-      case ToUi_Pairs(relations: final relations):
+      case ToUi_BaseFound(key: final key, name: final name):
         sse_encode_i_32(3, serializer);
-        sse_encode_list_record_string_string(relations, serializer);
-      case ToUi_Base(key: final key, name: final name):
-        sse_encode_i_32(4, serializer);
         sse_encode_String(key, serializer);
         sse_encode_String(name, serializer);
+      case ToUi_BaseLost(key: final key):
+        sse_encode_i_32(4, serializer);
+        sse_encode_String(key, serializer);
       case ToUi_Connecting(msg: final msg):
         sse_encode_i_32(5, serializer);
         sse_encode_String(msg, serializer);

@@ -927,8 +927,8 @@ mixin _$ToUi {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -943,8 +943,8 @@ mixin _$ToUi {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -959,8 +959,8 @@ mixin _$ToUi {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -976,8 +976,8 @@ mixin _$ToUi {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -992,8 +992,8 @@ mixin _$ToUi {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -1008,8 +1008,8 @@ mixin _$ToUi {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
@@ -1113,8 +1113,8 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -1132,8 +1132,8 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -1151,8 +1151,8 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -1174,8 +1174,8 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -1193,8 +1193,8 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -1212,8 +1212,8 @@ class _$ToUi_SetIdImpl extends ToUi_SetId {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
@@ -1287,8 +1287,8 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -1306,8 +1306,8 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -1325,8 +1325,8 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -1348,8 +1348,8 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -1367,8 +1367,8 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -1386,8 +1386,8 @@ class _$ToUi_UnpairedImpl extends ToUi_Unpaired {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
@@ -1482,8 +1482,8 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -1501,8 +1501,8 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -1520,8 +1520,8 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -1543,8 +1543,8 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -1562,8 +1562,8 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -1581,8 +1581,8 @@ class _$ToUi_GeneratedInviteImpl extends ToUi_GeneratedInvite {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
@@ -1614,235 +1614,20 @@ abstract class ToUi_GeneratedInvite extends ToUi {
 }
 
 /// @nodoc
-abstract class _$$ToUi_PairsImplCopyWith<$Res> {
-  factory _$$ToUi_PairsImplCopyWith(
-          _$ToUi_PairsImpl value, $Res Function(_$ToUi_PairsImpl) then) =
-      __$$ToUi_PairsImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<(String, String)> relations});
-}
-
-/// @nodoc
-class __$$ToUi_PairsImplCopyWithImpl<$Res>
-    extends _$ToUiCopyWithImpl<$Res, _$ToUi_PairsImpl>
-    implements _$$ToUi_PairsImplCopyWith<$Res> {
-  __$$ToUi_PairsImplCopyWithImpl(
-      _$ToUi_PairsImpl _value, $Res Function(_$ToUi_PairsImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ToUi
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? relations = null,
-  }) {
-    return _then(_$ToUi_PairsImpl(
-      relations: null == relations
-          ? _value._relations
-          : relations // ignore: cast_nullable_to_non_nullable
-              as List<(String, String)>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ToUi_PairsImpl extends ToUi_Pairs {
-  const _$ToUi_PairsImpl({required final List<(String, String)> relations})
-      : _relations = relations,
-        super._();
-
-  /// first string is name, second is base64 of its key
-  final List<(String, String)> _relations;
-
-  /// first string is name, second is base64 of its key
-  @override
-  List<(String, String)> get relations {
-    if (_relations is EqualUnmodifiableListView) return _relations;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_relations);
-  }
-
-  @override
-  String toString() {
-    return 'ToUi.pairs(relations: $relations)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ToUi_PairsImpl &&
-            const DeepCollectionEquality()
-                .equals(other._relations, _relations));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_relations));
-
-  /// Create a copy of ToUi
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ToUi_PairsImplCopyWith<_$ToUi_PairsImpl> get copyWith =>
-      __$$ToUi_PairsImplCopyWithImpl<_$ToUi_PairsImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String field0) setId,
-    required TResult Function() unpaired,
-    required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
-    required TResult Function(String msg) connecting,
-    required TResult Function(String msg) status,
-    required TResult Function(bool approved) pending,
-    required TResult Function() connected,
-    required TResult Function(List<String> pages) setPageOrder,
-    required TResult Function(DartUiPage page) setPage,
-    required TResult Function(String msg, bool fatal) error,
-  }) {
-    return pairs(relations);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String field0)? setId,
-    TResult? Function()? unpaired,
-    TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
-    TResult? Function(String msg)? connecting,
-    TResult? Function(String msg)? status,
-    TResult? Function(bool approved)? pending,
-    TResult? Function()? connected,
-    TResult? Function(List<String> pages)? setPageOrder,
-    TResult? Function(DartUiPage page)? setPage,
-    TResult? Function(String msg, bool fatal)? error,
-  }) {
-    return pairs?.call(relations);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String field0)? setId,
-    TResult Function()? unpaired,
-    TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
-    TResult Function(String msg)? connecting,
-    TResult Function(String msg)? status,
-    TResult Function(bool approved)? pending,
-    TResult Function()? connected,
-    TResult Function(List<String> pages)? setPageOrder,
-    TResult Function(DartUiPage page)? setPage,
-    TResult Function(String msg, bool fatal)? error,
-    required TResult orElse(),
-  }) {
-    if (pairs != null) {
-      return pairs(relations);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ToUi_SetId value) setId,
-    required TResult Function(ToUi_Unpaired value) unpaired,
-    required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
-    required TResult Function(ToUi_Connecting value) connecting,
-    required TResult Function(ToUi_Status value) status,
-    required TResult Function(ToUi_Pending value) pending,
-    required TResult Function(ToUi_Connected value) connected,
-    required TResult Function(ToUi_SetPageOrder value) setPageOrder,
-    required TResult Function(ToUi_SetPage value) setPage,
-    required TResult Function(ToUi_Error value) error,
-  }) {
-    return pairs(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ToUi_SetId value)? setId,
-    TResult? Function(ToUi_Unpaired value)? unpaired,
-    TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
-    TResult? Function(ToUi_Connecting value)? connecting,
-    TResult? Function(ToUi_Status value)? status,
-    TResult? Function(ToUi_Pending value)? pending,
-    TResult? Function(ToUi_Connected value)? connected,
-    TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
-    TResult? Function(ToUi_SetPage value)? setPage,
-    TResult? Function(ToUi_Error value)? error,
-  }) {
-    return pairs?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ToUi_SetId value)? setId,
-    TResult Function(ToUi_Unpaired value)? unpaired,
-    TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
-    TResult Function(ToUi_Connecting value)? connecting,
-    TResult Function(ToUi_Status value)? status,
-    TResult Function(ToUi_Pending value)? pending,
-    TResult Function(ToUi_Connected value)? connected,
-    TResult Function(ToUi_SetPageOrder value)? setPageOrder,
-    TResult Function(ToUi_SetPage value)? setPage,
-    TResult Function(ToUi_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (pairs != null) {
-      return pairs(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ToUi_Pairs extends ToUi {
-  const factory ToUi_Pairs({required final List<(String, String)> relations}) =
-      _$ToUi_PairsImpl;
-  const ToUi_Pairs._() : super._();
-
-  /// first string is name, second is base64 of its key
-  List<(String, String)> get relations;
-
-  /// Create a copy of ToUi
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ToUi_PairsImplCopyWith<_$ToUi_PairsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ToUi_BaseImplCopyWith<$Res> {
-  factory _$$ToUi_BaseImplCopyWith(
-          _$ToUi_BaseImpl value, $Res Function(_$ToUi_BaseImpl) then) =
-      __$$ToUi_BaseImplCopyWithImpl<$Res>;
+abstract class _$$ToUi_BaseFoundImplCopyWith<$Res> {
+  factory _$$ToUi_BaseFoundImplCopyWith(_$ToUi_BaseFoundImpl value,
+          $Res Function(_$ToUi_BaseFoundImpl) then) =
+      __$$ToUi_BaseFoundImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String key, String name});
 }
 
 /// @nodoc
-class __$$ToUi_BaseImplCopyWithImpl<$Res>
-    extends _$ToUiCopyWithImpl<$Res, _$ToUi_BaseImpl>
-    implements _$$ToUi_BaseImplCopyWith<$Res> {
-  __$$ToUi_BaseImplCopyWithImpl(
-      _$ToUi_BaseImpl _value, $Res Function(_$ToUi_BaseImpl) _then)
+class __$$ToUi_BaseFoundImplCopyWithImpl<$Res>
+    extends _$ToUiCopyWithImpl<$Res, _$ToUi_BaseFoundImpl>
+    implements _$$ToUi_BaseFoundImplCopyWith<$Res> {
+  __$$ToUi_BaseFoundImplCopyWithImpl(
+      _$ToUi_BaseFoundImpl _value, $Res Function(_$ToUi_BaseFoundImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ToUi
@@ -1853,7 +1638,7 @@ class __$$ToUi_BaseImplCopyWithImpl<$Res>
     Object? key = null,
     Object? name = null,
   }) {
-    return _then(_$ToUi_BaseImpl(
+    return _then(_$ToUi_BaseFoundImpl(
       key: null == key
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
@@ -1868,8 +1653,9 @@ class __$$ToUi_BaseImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ToUi_BaseImpl extends ToUi_Base {
-  const _$ToUi_BaseImpl({required this.key, required this.name}) : super._();
+class _$ToUi_BaseFoundImpl extends ToUi_BaseFound {
+  const _$ToUi_BaseFoundImpl({required this.key, required this.name})
+      : super._();
 
   @override
   final String key;
@@ -1878,14 +1664,14 @@ class _$ToUi_BaseImpl extends ToUi_Base {
 
   @override
   String toString() {
-    return 'ToUi.base(key: $key, name: $name)';
+    return 'ToUi.baseFound(key: $key, name: $name)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ToUi_BaseImpl &&
+            other is _$ToUi_BaseFoundImpl &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -1898,8 +1684,9 @@ class _$ToUi_BaseImpl extends ToUi_Base {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ToUi_BaseImplCopyWith<_$ToUi_BaseImpl> get copyWith =>
-      __$$ToUi_BaseImplCopyWithImpl<_$ToUi_BaseImpl>(this, _$identity);
+  _$$ToUi_BaseFoundImplCopyWith<_$ToUi_BaseFoundImpl> get copyWith =>
+      __$$ToUi_BaseFoundImplCopyWithImpl<_$ToUi_BaseFoundImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1907,8 +1694,8 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -1917,7 +1704,7 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     required TResult Function(DartUiPage page) setPage,
     required TResult Function(String msg, bool fatal) error,
   }) {
-    return base(key, name);
+    return baseFound(key, name);
   }
 
   @override
@@ -1926,8 +1713,8 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -1936,7 +1723,7 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     TResult? Function(DartUiPage page)? setPage,
     TResult? Function(String msg, bool fatal)? error,
   }) {
-    return base?.call(key, name);
+    return baseFound?.call(key, name);
   }
 
   @override
@@ -1945,8 +1732,8 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -1956,8 +1743,8 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     TResult Function(String msg, bool fatal)? error,
     required TResult orElse(),
   }) {
-    if (base != null) {
-      return base(key, name);
+    if (baseFound != null) {
+      return baseFound(key, name);
     }
     return orElse();
   }
@@ -1968,8 +1755,8 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -1978,7 +1765,7 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     required TResult Function(ToUi_SetPage value) setPage,
     required TResult Function(ToUi_Error value) error,
   }) {
-    return base(this);
+    return baseFound(this);
   }
 
   @override
@@ -1987,8 +1774,8 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -1997,7 +1784,7 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     TResult? Function(ToUi_SetPage value)? setPage,
     TResult? Function(ToUi_Error value)? error,
   }) {
-    return base?.call(this);
+    return baseFound?.call(this);
   }
 
   @override
@@ -2006,8 +1793,8 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
@@ -2017,18 +1804,18 @@ class _$ToUi_BaseImpl extends ToUi_Base {
     TResult Function(ToUi_Error value)? error,
     required TResult orElse(),
   }) {
-    if (base != null) {
-      return base(this);
+    if (baseFound != null) {
+      return baseFound(this);
     }
     return orElse();
   }
 }
 
-abstract class ToUi_Base extends ToUi {
-  const factory ToUi_Base(
+abstract class ToUi_BaseFound extends ToUi {
+  const factory ToUi_BaseFound(
       {required final String key,
-      required final String name}) = _$ToUi_BaseImpl;
-  const ToUi_Base._() : super._();
+      required final String name}) = _$ToUi_BaseFoundImpl;
+  const ToUi_BaseFound._() : super._();
 
   String get key;
   String get name;
@@ -2036,7 +1823,209 @@ abstract class ToUi_Base extends ToUi {
   /// Create a copy of ToUi
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ToUi_BaseImplCopyWith<_$ToUi_BaseImpl> get copyWith =>
+  _$$ToUi_BaseFoundImplCopyWith<_$ToUi_BaseFoundImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ToUi_BaseLostImplCopyWith<$Res> {
+  factory _$$ToUi_BaseLostImplCopyWith(
+          _$ToUi_BaseLostImpl value, $Res Function(_$ToUi_BaseLostImpl) then) =
+      __$$ToUi_BaseLostImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String key});
+}
+
+/// @nodoc
+class __$$ToUi_BaseLostImplCopyWithImpl<$Res>
+    extends _$ToUiCopyWithImpl<$Res, _$ToUi_BaseLostImpl>
+    implements _$$ToUi_BaseLostImplCopyWith<$Res> {
+  __$$ToUi_BaseLostImplCopyWithImpl(
+      _$ToUi_BaseLostImpl _value, $Res Function(_$ToUi_BaseLostImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? key = null,
+  }) {
+    return _then(_$ToUi_BaseLostImpl(
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ToUi_BaseLostImpl extends ToUi_BaseLost {
+  const _$ToUi_BaseLostImpl({required this.key}) : super._();
+
+  @override
+  final String key;
+
+  @override
+  String toString() {
+    return 'ToUi.baseLost(key: $key)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ToUi_BaseLostImpl &&
+            (identical(other.key, key) || other.key == key));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, key);
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToUi_BaseLostImplCopyWith<_$ToUi_BaseLostImpl> get copyWith =>
+      __$$ToUi_BaseLostImplCopyWithImpl<_$ToUi_BaseLostImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String field0) setId,
+    required TResult Function() unpaired,
+    required TResult Function(String field0) generatedInvite,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
+    required TResult Function(String msg) connecting,
+    required TResult Function(String msg) status,
+    required TResult Function(bool approved) pending,
+    required TResult Function() connected,
+    required TResult Function(List<String> pages) setPageOrder,
+    required TResult Function(DartUiPage page) setPage,
+    required TResult Function(String msg, bool fatal) error,
+  }) {
+    return baseLost(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String field0)? setId,
+    TResult? Function()? unpaired,
+    TResult? Function(String field0)? generatedInvite,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
+    TResult? Function(String msg)? connecting,
+    TResult? Function(String msg)? status,
+    TResult? Function(bool approved)? pending,
+    TResult? Function()? connected,
+    TResult? Function(List<String> pages)? setPageOrder,
+    TResult? Function(DartUiPage page)? setPage,
+    TResult? Function(String msg, bool fatal)? error,
+  }) {
+    return baseLost?.call(key);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String field0)? setId,
+    TResult Function()? unpaired,
+    TResult Function(String field0)? generatedInvite,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
+    TResult Function(String msg)? connecting,
+    TResult Function(String msg)? status,
+    TResult Function(bool approved)? pending,
+    TResult Function()? connected,
+    TResult Function(List<String> pages)? setPageOrder,
+    TResult Function(DartUiPage page)? setPage,
+    TResult Function(String msg, bool fatal)? error,
+    required TResult orElse(),
+  }) {
+    if (baseLost != null) {
+      return baseLost(key);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ToUi_SetId value) setId,
+    required TResult Function(ToUi_Unpaired value) unpaired,
+    required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
+    required TResult Function(ToUi_Connecting value) connecting,
+    required TResult Function(ToUi_Status value) status,
+    required TResult Function(ToUi_Pending value) pending,
+    required TResult Function(ToUi_Connected value) connected,
+    required TResult Function(ToUi_SetPageOrder value) setPageOrder,
+    required TResult Function(ToUi_SetPage value) setPage,
+    required TResult Function(ToUi_Error value) error,
+  }) {
+    return baseLost(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ToUi_SetId value)? setId,
+    TResult? Function(ToUi_Unpaired value)? unpaired,
+    TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
+    TResult? Function(ToUi_Connecting value)? connecting,
+    TResult? Function(ToUi_Status value)? status,
+    TResult? Function(ToUi_Pending value)? pending,
+    TResult? Function(ToUi_Connected value)? connected,
+    TResult? Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult? Function(ToUi_SetPage value)? setPage,
+    TResult? Function(ToUi_Error value)? error,
+  }) {
+    return baseLost?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ToUi_SetId value)? setId,
+    TResult Function(ToUi_Unpaired value)? unpaired,
+    TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
+    TResult Function(ToUi_Connecting value)? connecting,
+    TResult Function(ToUi_Status value)? status,
+    TResult Function(ToUi_Pending value)? pending,
+    TResult Function(ToUi_Connected value)? connected,
+    TResult Function(ToUi_SetPageOrder value)? setPageOrder,
+    TResult Function(ToUi_SetPage value)? setPage,
+    TResult Function(ToUi_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (baseLost != null) {
+      return baseLost(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ToUi_BaseLost extends ToUi {
+  const factory ToUi_BaseLost({required final String key}) =
+      _$ToUi_BaseLostImpl;
+  const ToUi_BaseLost._() : super._();
+
+  String get key;
+
+  /// Create a copy of ToUi
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ToUi_BaseLostImplCopyWith<_$ToUi_BaseLostImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2112,8 +2101,8 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -2131,8 +2120,8 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -2150,8 +2139,8 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -2173,8 +2162,8 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -2192,8 +2181,8 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -2211,8 +2200,8 @@ class _$ToUi_ConnectingImpl extends ToUi_Connecting {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
@@ -2314,8 +2303,8 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -2333,8 +2322,8 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -2352,8 +2341,8 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -2375,8 +2364,8 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -2394,8 +2383,8 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -2413,8 +2402,8 @@ class _$ToUi_StatusImpl extends ToUi_Status {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
@@ -2516,8 +2505,8 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -2535,8 +2524,8 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -2554,8 +2543,8 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -2577,8 +2566,8 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -2596,8 +2585,8 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -2615,8 +2604,8 @@ class _$ToUi_PendingImpl extends ToUi_Pending {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
@@ -2691,8 +2680,8 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -2710,8 +2699,8 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -2729,8 +2718,8 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -2752,8 +2741,8 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -2771,8 +2760,8 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -2790,8 +2779,8 @@ class _$ToUi_ConnectedImpl extends ToUi_Connected {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
@@ -2893,8 +2882,8 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -2912,8 +2901,8 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -2931,8 +2920,8 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -2954,8 +2943,8 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -2973,8 +2962,8 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -2992,8 +2981,8 @@ class _$ToUi_SetPageOrderImpl extends ToUi_SetPageOrder {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
@@ -3095,8 +3084,8 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -3114,8 +3103,8 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -3133,8 +3122,8 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -3156,8 +3145,8 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -3175,8 +3164,8 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -3194,8 +3183,8 @@ class _$ToUi_SetPageImpl extends ToUi_SetPage {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
@@ -3305,8 +3294,8 @@ class _$ToUi_ErrorImpl extends ToUi_Error {
     required TResult Function(String field0) setId,
     required TResult Function() unpaired,
     required TResult Function(String field0) generatedInvite,
-    required TResult Function(List<(String, String)> relations) pairs,
-    required TResult Function(String key, String name) base,
+    required TResult Function(String key, String name) baseFound,
+    required TResult Function(String key) baseLost,
     required TResult Function(String msg) connecting,
     required TResult Function(String msg) status,
     required TResult Function(bool approved) pending,
@@ -3324,8 +3313,8 @@ class _$ToUi_ErrorImpl extends ToUi_Error {
     TResult? Function(String field0)? setId,
     TResult? Function()? unpaired,
     TResult? Function(String field0)? generatedInvite,
-    TResult? Function(List<(String, String)> relations)? pairs,
-    TResult? Function(String key, String name)? base,
+    TResult? Function(String key, String name)? baseFound,
+    TResult? Function(String key)? baseLost,
     TResult? Function(String msg)? connecting,
     TResult? Function(String msg)? status,
     TResult? Function(bool approved)? pending,
@@ -3343,8 +3332,8 @@ class _$ToUi_ErrorImpl extends ToUi_Error {
     TResult Function(String field0)? setId,
     TResult Function()? unpaired,
     TResult Function(String field0)? generatedInvite,
-    TResult Function(List<(String, String)> relations)? pairs,
-    TResult Function(String key, String name)? base,
+    TResult Function(String key, String name)? baseFound,
+    TResult Function(String key)? baseLost,
     TResult Function(String msg)? connecting,
     TResult Function(String msg)? status,
     TResult Function(bool approved)? pending,
@@ -3366,8 +3355,8 @@ class _$ToUi_ErrorImpl extends ToUi_Error {
     required TResult Function(ToUi_SetId value) setId,
     required TResult Function(ToUi_Unpaired value) unpaired,
     required TResult Function(ToUi_GeneratedInvite value) generatedInvite,
-    required TResult Function(ToUi_Pairs value) pairs,
-    required TResult Function(ToUi_Base value) base,
+    required TResult Function(ToUi_BaseFound value) baseFound,
+    required TResult Function(ToUi_BaseLost value) baseLost,
     required TResult Function(ToUi_Connecting value) connecting,
     required TResult Function(ToUi_Status value) status,
     required TResult Function(ToUi_Pending value) pending,
@@ -3385,8 +3374,8 @@ class _$ToUi_ErrorImpl extends ToUi_Error {
     TResult? Function(ToUi_SetId value)? setId,
     TResult? Function(ToUi_Unpaired value)? unpaired,
     TResult? Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult? Function(ToUi_Pairs value)? pairs,
-    TResult? Function(ToUi_Base value)? base,
+    TResult? Function(ToUi_BaseFound value)? baseFound,
+    TResult? Function(ToUi_BaseLost value)? baseLost,
     TResult? Function(ToUi_Connecting value)? connecting,
     TResult? Function(ToUi_Status value)? status,
     TResult? Function(ToUi_Pending value)? pending,
@@ -3404,8 +3393,8 @@ class _$ToUi_ErrorImpl extends ToUi_Error {
     TResult Function(ToUi_SetId value)? setId,
     TResult Function(ToUi_Unpaired value)? unpaired,
     TResult Function(ToUi_GeneratedInvite value)? generatedInvite,
-    TResult Function(ToUi_Pairs value)? pairs,
-    TResult Function(ToUi_Base value)? base,
+    TResult Function(ToUi_BaseFound value)? baseFound,
+    TResult Function(ToUi_BaseLost value)? baseLost,
     TResult Function(ToUi_Connecting value)? connecting,
     TResult Function(ToUi_Status value)? status,
     TResult Function(ToUi_Pending value)? pending,
