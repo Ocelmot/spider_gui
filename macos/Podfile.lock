@@ -1,5 +1,8 @@
 PODS:
   - FlutterMacOS (1.0.0)
+  - mobile_scanner (7.0.0):
+    - Flutter
+    - FlutterMacOS
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -8,12 +11,15 @@ PODS:
 
 DEPENDENCIES:
   - FlutterMacOS (from `Flutter/ephemeral`)
+  - mobile_scanner (from `Flutter/ephemeral/.symlinks/plugins/mobile_scanner/darwin`)
   - path_provider_foundation (from `Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin`)
   - rust_lib_spider_gui (from `Flutter/ephemeral/.symlinks/plugins/rust_lib_spider_gui/macos`)
 
 EXTERNAL SOURCES:
   FlutterMacOS:
     :path: Flutter/ephemeral
+  mobile_scanner:
+    :path: Flutter/ephemeral/.symlinks/plugins/mobile_scanner/darwin
   path_provider_foundation:
     :path: Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin
   rust_lib_spider_gui:
@@ -21,8 +27,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
-  path_provider_foundation: bb55f6dbba17d0dccd6737fe6f7f34fbd0376880
-  rust_lib_spider_gui: 55a5f4b10cbd090b5d5f02c737a4ef5d6c5a64d4
+  mobile_scanner: 9157936403f5a0644ca3779a38ff8404c5434a93
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  rust_lib_spider_gui: 6543e7e63478e344e800d730109e53b6966c2c6b
 
 PODFILE CHECKSUM: 9ebaf0ce3d369aaa26a9ea0e159195ed94724cf3
 

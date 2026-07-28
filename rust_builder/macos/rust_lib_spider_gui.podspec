@@ -25,6 +25,15 @@ A new Flutter FFI plugin project.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 
+  # The Rust crate is linked in as a static archive, so the `#[link(..., kind =
+  # "framework")]` attributes inside its dependencies never reach this final
+  # link. These are the frameworks reported by
+  #   cargo rustc --lib --crate-type staticlib -- --print native-static-libs
+  s.frameworks = 'Security', 'SystemConfiguration', 'CoreWLAN',
+                 'SecurityFoundation', 'Foundation', 'CoreFoundation'
+  # (-lobjc and -lSystem are already pulled in by Foundation.)
+  s.libraries = 'iconv'
+
   s.script_phase = {
     :name => 'Build Rust library',
     # First argument is relative path to the `rust` folder, second is name of rust library

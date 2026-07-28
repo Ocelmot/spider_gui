@@ -32,6 +32,10 @@
 	<true/>
 	<key>NFCReaderUsageDescription</key>
 	<string>This app uses the NFC radio to transfer invitations to connect from phone to phone.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_spider._tcp</string>
+	</array>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>This app uses the local network to find and connect to the base unit it controls.</string>
 	<key>NSCameraUsageDescription</key>
