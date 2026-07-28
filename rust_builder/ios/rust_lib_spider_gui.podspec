@@ -26,6 +26,18 @@ A new Flutter FFI plugin project.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
 
+  # The Rust crate is linked in as a static archive, so the `#[link(..., kind =
+  # "framework")]` attributes inside its dependencies never reach this final
+  # link. These are the frameworks reported by
+  #   cargo rustc --lib --target aarch64-apple-ios --crate-type staticlib \
+  #     -- --print native-static-libs
+  # (Differs from macOS: iOS has no CoreWLAN/SecurityFoundation, but does need
+  # Network.)
+  s.frameworks = 'Security', 'Network', 'SystemConfiguration',
+                 'Foundation', 'CoreFoundation'
+  # (-lobjc and -lSystem are already pulled in by Foundation.)
+  s.libraries = 'iconv'
+
   s.script_phase = {
     :name => 'Build Rust library',
     # First argument is relative path to the `rust` folder, second is name of rust library
