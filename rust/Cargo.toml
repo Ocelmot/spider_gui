@@ -11,7 +11,7 @@ flutter_rust_bridge = { version = "=2.11.1", features = ["log"] }
 tokio = { version = "1", features = ["full"] }
 tracing-core = "0.1.35"
 rand = "0.9.2"
-spider_client = { git = "https://github.com/Ocelmot/spider", rev = "0d68eb010edf4355c3ff9899f898c35e9b0d6c4d", features=["transport_iroh"]}
+spider_client = { git = "https://github.com/Ocelmot/spider", rev = "706f5761cc8bd9aed81c9e8dbe0a5880d1e91861", features=["transport_iroh"]}
 
 serde_json = "1.0.73"
 serde = { version = "1.0.132", features = ["derive"] }

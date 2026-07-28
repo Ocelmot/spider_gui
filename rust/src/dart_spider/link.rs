@@ -1,4 +1,4 @@
-use std::{collections::HashMap, path::PathBuf, sync::Arc};
+use std::{collections::{hash_map::Entry, HashMap}, path::PathBuf, sync::Arc};
 
 use log::{debug, info, trace, warn};
 use spider_client::{
@@ -190,6 +190,7 @@ impl LinkProcessor {
             client.connect().await.wrap()?;
         }
         
+        let mut base_list: HashMap<String, u32> = HashMap::new();
 
         // process messages
         loop {
@@ -255,17 +256,25 @@ impl LinkProcessor {
                         AdvertEvent::Found(base_advert) => {
                             // If the event does not contain a key, it would not be possible to pair.
                             if let Some(key) = base_advert.id {
+                                let key_b64 = key.to_base64();
                                 let name = base_advert.name.unwrap_or(String::from("NoName"));
+                                *base_list.entry(key_b64.clone()).or_insert(0) += 1;
                                 debug!("Sending potential base `{}`", name);
                                 self.sender.add(ToUi::BaseFound {
                                     name: name,
-                                    key: key.to_base64()
+                                    key: key_b64
                                 })?;
                             }
                         },
                         AdvertEvent::Lost(base_advert) => {
                             if let Some(key) = base_advert.id {
-                                self.sender.add(ToUi::BaseLost { key: key.to_base64() })?;
+                                if let Entry::Occupied(mut e) = base_list.entry(key.to_base64()){
+                                    *e.get_mut() -=1;
+                                    if *e.get() == 0 {
+                                        let key = e.remove_entry().0;
+                                        self.sender.add(ToUi::BaseLost { key: key })?;
+                                    }
+                                }
                             }
                         },
                     }
@@ -291,6 +300,9 @@ impl LinkProcessor {
                             trace!("Paired from client");
                             paired = true;
                             discoverer = None;
+                            for (key, _) in base_list.drain(){
+                                self.sender.add(ToUi::BaseLost { key: key })?;
+                            }
                             self.sender.add(ToUi::Connecting { msg: String::from("Connecting...") })?;
                         }
                         ClientResponse::Connected(_) => {
