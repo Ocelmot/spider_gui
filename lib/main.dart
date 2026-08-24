@@ -7,9 +7,6 @@ import 'color_schemes.g.dart';
 void main(List<String> args) async {
   await RustLib.init();
   WidgetsFlutterBinding.ensureInitialized();
-
-
-  
   String configPath;
   if (args.isNotEmpty) {
     configPath = args[0];

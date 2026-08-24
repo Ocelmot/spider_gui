@@ -38,6 +38,8 @@
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>This app uses the local network to find and connect to the base unit it controls.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Spider uses Bluetooth to provide a base unit with wifi credentials as needed.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses the camera to scan QR codes for accepting invite codes.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

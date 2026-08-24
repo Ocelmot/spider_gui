@@ -3,7 +3,8 @@
 
 // ignore_for_file: unused_import, unused_element, unnecessary_import, duplicate_ignore, invalid_use_of_internal_member, annotate_overrides, non_constant_identifier_names, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field
 
-import 'api/simple.dart';
+import 'api/attach.dart';
+import 'api/main.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart_spider/link.dart';
@@ -70,7 +71,7 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
   String get codegenVersion => '2.11.1';
 
   @override
-  int get rustContentHash => -603630631;
+  int get rustContentHash => -1814157318;
 
   static const kDefaultExternalLibraryLoaderConfig =
       ExternalLibraryLoaderConfig(
@@ -81,11 +82,116 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
 }
 
 abstract class RustLibApi extends BaseApi {
-  Future<bool> crateApiSimpleInitLogging();
+  AttachDetails? crateApiAttachAttachDetailsCreate(
+      {required List<int> ssid,
+      required AttachSecurityType secType,
+      required bool hidden});
 
-  Stream<ToUi> crateApiSimpleInitRust({required String configPath});
+  Uint8List crateApiAttachAttachDetailsPack(
+      {required AttachDetails that,
+      required AttachKey key,
+      required AttachNonce nonce});
 
-  void crateApiSimpleWrite({required ToProcessor msg});
+  AttachStatus? crateApiAttachAttachStatusFromBytes({required List<int> bytes});
+
+  StatusKind crateApiAttachAttachStatusKind({required AttachStatus that});
+
+  String crateApiAttachAttachStatusText({required AttachStatus that});
+
+  NetworkDetails? crateApiAttachNetworkDetailsFromBytes(
+      {required List<int> bytes});
+
+  NetworkSecurityType crateApiAttachNetworkDetailsSecType(
+      {required NetworkDetails that});
+
+  Uint8List crateApiAttachNetworkDetailsSsid({required NetworkDetails that});
+
+  int crateApiAttachNetworkDetailsStrength({required NetworkDetails that});
+
+  BleUuids crateApiAttachBleUuids();
+
+  AttachKey? crateApiAttachGenerateKey(
+      {required String hardwareCode, required AttachSalt salt});
+
+  Future<bool> crateApiMainInitLogging();
+
+  Stream<ToUi> crateApiMainInitRust({required String configPath});
+
+  bool crateApiAttachIsSupported({required NetworkSecurityType secType});
+
+  AttachSecurityType crateApiAttachOpenSecurityType();
+
+  (AttachSalt, AttachNonce)? crateApiAttachParseNonce(
+      {required List<int> data});
+
+  String crateApiAttachSecurityTypeName({required NetworkSecurityType secType});
+
+  bool crateApiAttachValidateHardwareCode({required String hardwareCode});
+
+  AttachSecurityType crateApiAttachWpa2SecurityType({required String pass});
+
+  AttachSecurityType crateApiAttachWpa3SecurityType({required String pass});
+
+  void crateApiMainWrite({required ToProcessor msg});
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachDetails;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachDetails;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_AttachDetailsPtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachKey;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachKey;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_AttachKeyPtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachNonce;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachNonce;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_AttachNoncePtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachSalt;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachSalt;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_AttachSaltPtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachSecurityType;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachSecurityType;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_AttachSecurityTypePtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachStatus;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachStatus;
+
+  CrossPlatformFinalizerArg get rust_arc_decrement_strong_count_AttachStatusPtr;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_NetworkDetails;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_NetworkDetails;
+
+  CrossPlatformFinalizerArg
+      get rust_arc_decrement_strong_count_NetworkDetailsPtr;
 }
 
 class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
@@ -97,81 +203,750 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   });
 
   @override
-  Future<bool> crateApiSimpleInitLogging() {
-    return handler.executeNormal(NormalTask(
-      callFfi: (port_) {
+  AttachDetails? crateApiAttachAttachDetailsCreate(
+      {required List<int> ssid,
+      required AttachSecurityType secType,
+      required bool hidden}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
-        pdeCallFfi(generalizedFrbRustBinding, serializer,
-            funcId: 1, port: port_);
+        sse_encode_list_prim_u_8_loose(ssid, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType(
+            secType, serializer);
+        sse_encode_bool(hidden, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 1)!;
       },
       codec: SseCodec(
-        decodeSuccessData: sse_decode_bool,
+        decodeSuccessData:
+            sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails,
         decodeErrorData: null,
       ),
-      constMeta: kCrateApiSimpleInitLoggingConstMeta,
+      constMeta: kCrateApiAttachAttachDetailsCreateConstMeta,
+      argValues: [ssid, secType, hidden],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachAttachDetailsCreateConstMeta =>
+      const TaskConstMeta(
+        debugName: "AttachDetails_create",
+        argNames: ["ssid", "secType", "hidden"],
+      );
+
+  @override
+  Uint8List crateApiAttachAttachDetailsPack(
+      {required AttachDetails that,
+      required AttachKey key,
+      required AttachNonce nonce}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+            that, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+            key, serializer);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+            nonce, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 2)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_list_prim_u_8_strict,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachAttachDetailsPackConstMeta,
+      argValues: [that, key, nonce],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachAttachDetailsPackConstMeta =>
+      const TaskConstMeta(
+        debugName: "AttachDetails_pack",
+        argNames: ["that", "key", "nonce"],
+      );
+
+  @override
+  AttachStatus? crateApiAttachAttachStatusFromBytes(
+      {required List<int> bytes}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_list_prim_u_8_loose(bytes, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 3)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachAttachStatusFromBytesConstMeta,
+      argValues: [bytes],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachAttachStatusFromBytesConstMeta =>
+      const TaskConstMeta(
+        debugName: "AttachStatus_from_bytes",
+        argNames: ["bytes"],
+      );
+
+  @override
+  StatusKind crateApiAttachAttachStatusKind({required AttachStatus that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 4)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_status_kind,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachAttachStatusKindConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachAttachStatusKindConstMeta =>
+      const TaskConstMeta(
+        debugName: "AttachStatus_kind",
+        argNames: ["that"],
+      );
+
+  @override
+  String crateApiAttachAttachStatusText({required AttachStatus that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 5)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_String,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachAttachStatusTextConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachAttachStatusTextConstMeta =>
+      const TaskConstMeta(
+        debugName: "AttachStatus_text",
+        argNames: ["that"],
+      );
+
+  @override
+  NetworkDetails? crateApiAttachNetworkDetailsFromBytes(
+      {required List<int> bytes}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_list_prim_u_8_loose(bytes, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 6)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachNetworkDetailsFromBytesConstMeta,
+      argValues: [bytes],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachNetworkDetailsFromBytesConstMeta =>
+      const TaskConstMeta(
+        debugName: "NetworkDetails_from_bytes",
+        argNames: ["bytes"],
+      );
+
+  @override
+  NetworkSecurityType crateApiAttachNetworkDetailsSecType(
+      {required NetworkDetails that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 7)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_network_security_type,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachNetworkDetailsSecTypeConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachNetworkDetailsSecTypeConstMeta =>
+      const TaskConstMeta(
+        debugName: "NetworkDetails_sec_type",
+        argNames: ["that"],
+      );
+
+  @override
+  Uint8List crateApiAttachNetworkDetailsSsid({required NetworkDetails that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 8)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_list_prim_u_8_strict,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachNetworkDetailsSsidConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachNetworkDetailsSsidConstMeta =>
+      const TaskConstMeta(
+        debugName: "NetworkDetails_ssid",
+        argNames: ["that"],
+      );
+
+  @override
+  int crateApiAttachNetworkDetailsStrength({required NetworkDetails that}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+            that, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 9)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_i_8,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachNetworkDetailsStrengthConstMeta,
+      argValues: [that],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachNetworkDetailsStrengthConstMeta =>
+      const TaskConstMeta(
+        debugName: "NetworkDetails_strength",
+        argNames: ["that"],
+      );
+
+  @override
+  BleUuids crateApiAttachBleUuids() {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 10)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_ble_uuids,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachBleUuidsConstMeta,
       argValues: [],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kCrateApiSimpleInitLoggingConstMeta => const TaskConstMeta(
+  TaskConstMeta get kCrateApiAttachBleUuidsConstMeta => const TaskConstMeta(
+        debugName: "ble_uuids",
+        argNames: [],
+      );
+
+  @override
+  AttachKey? crateApiAttachGenerateKey(
+      {required String hardwareCode, required AttachSalt salt}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_String(hardwareCode, serializer);
+        sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt(
+            salt, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 11)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachGenerateKeyConstMeta,
+      argValues: [hardwareCode, salt],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachGenerateKeyConstMeta => const TaskConstMeta(
+        debugName: "generate_key",
+        argNames: ["hardwareCode", "salt"],
+      );
+
+  @override
+  Future<bool> crateApiMainInitLogging() {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        pdeCallFfi(generalizedFrbRustBinding, serializer,
+            funcId: 12, port: port_);
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_bool,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiMainInitLoggingConstMeta,
+      argValues: [],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiMainInitLoggingConstMeta => const TaskConstMeta(
         debugName: "init_logging",
         argNames: [],
       );
 
   @override
-  Stream<ToUi> crateApiSimpleInitRust({required String configPath}) {
+  Stream<ToUi> crateApiMainInitRust({required String configPath}) {
     final streamSink = RustStreamSink<ToUi>();
     handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_StreamSink_to_ui_Sse(streamSink, serializer);
         sse_encode_String(configPath, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 2)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 13)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kCrateApiSimpleInitRustConstMeta,
+      constMeta: kCrateApiMainInitRustConstMeta,
       argValues: [streamSink, configPath],
       apiImpl: this,
     ));
     return streamSink.stream;
   }
 
-  TaskConstMeta get kCrateApiSimpleInitRustConstMeta => const TaskConstMeta(
+  TaskConstMeta get kCrateApiMainInitRustConstMeta => const TaskConstMeta(
         debugName: "init_rust",
         argNames: ["streamSink", "configPath"],
       );
 
   @override
-  void crateApiSimpleWrite({required ToProcessor msg}) {
+  bool crateApiAttachIsSupported({required NetworkSecurityType secType}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_network_security_type(secType, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 14)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_bool,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachIsSupportedConstMeta,
+      argValues: [secType],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachIsSupportedConstMeta => const TaskConstMeta(
+        debugName: "is_supported",
+        argNames: ["secType"],
+      );
+
+  @override
+  AttachSecurityType crateApiAttachOpenSecurityType() {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 15)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachOpenSecurityTypeConstMeta,
+      argValues: [],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachOpenSecurityTypeConstMeta =>
+      const TaskConstMeta(
+        debugName: "open_security_type",
+        argNames: [],
+      );
+
+  @override
+  (AttachSalt, AttachNonce)? crateApiAttachParseNonce(
+      {required List<int> data}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_list_prim_u_8_loose(data, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 16)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_opt_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachParseNonceConstMeta,
+      argValues: [data],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachParseNonceConstMeta => const TaskConstMeta(
+        debugName: "parse_nonce",
+        argNames: ["data"],
+      );
+
+  @override
+  String crateApiAttachSecurityTypeName(
+      {required NetworkSecurityType secType}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_network_security_type(secType, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 17)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_String,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachSecurityTypeNameConstMeta,
+      argValues: [secType],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachSecurityTypeNameConstMeta =>
+      const TaskConstMeta(
+        debugName: "security_type_name",
+        argNames: ["secType"],
+      );
+
+  @override
+  bool crateApiAttachValidateHardwareCode({required String hardwareCode}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_String(hardwareCode, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 18)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData: sse_decode_bool,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachValidateHardwareCodeConstMeta,
+      argValues: [hardwareCode],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachValidateHardwareCodeConstMeta =>
+      const TaskConstMeta(
+        debugName: "validate_hardware_code",
+        argNames: ["hardwareCode"],
+      );
+
+  @override
+  AttachSecurityType crateApiAttachWpa2SecurityType({required String pass}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_String(pass, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 19)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachWpa2SecurityTypeConstMeta,
+      argValues: [pass],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachWpa2SecurityTypeConstMeta =>
+      const TaskConstMeta(
+        debugName: "wpa2_security_type",
+        argNames: ["pass"],
+      );
+
+  @override
+  AttachSecurityType crateApiAttachWpa3SecurityType({required String pass}) {
+    return handler.executeSync(SyncTask(
+      callFfi: () {
+        final serializer = SseSerializer(generalizedFrbRustBinding);
+        sse_encode_String(pass, serializer);
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 20)!;
+      },
+      codec: SseCodec(
+        decodeSuccessData:
+            sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType,
+        decodeErrorData: null,
+      ),
+      constMeta: kCrateApiAttachWpa3SecurityTypeConstMeta,
+      argValues: [pass],
+      apiImpl: this,
+    ));
+  }
+
+  TaskConstMeta get kCrateApiAttachWpa3SecurityTypeConstMeta =>
+      const TaskConstMeta(
+        debugName: "wpa3_security_type",
+        argNames: ["pass"],
+      );
+
+  @override
+  void crateApiMainWrite({required ToProcessor msg}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         final serializer = SseSerializer(generalizedFrbRustBinding);
         sse_encode_box_autoadd_to_processor(msg, serializer);
-        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 3)!;
+        return pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 21)!;
       },
       codec: SseCodec(
         decodeSuccessData: sse_decode_unit,
         decodeErrorData: null,
       ),
-      constMeta: kCrateApiSimpleWriteConstMeta,
+      constMeta: kCrateApiMainWriteConstMeta,
       argValues: [msg],
       apiImpl: this,
     ));
   }
 
-  TaskConstMeta get kCrateApiSimpleWriteConstMeta => const TaskConstMeta(
+  TaskConstMeta get kCrateApiMainWriteConstMeta => const TaskConstMeta(
         debugName: "write",
         argNames: ["msg"],
       );
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachDetails => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachDetails => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachKey => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachKey => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachNonce => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachNonce => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachSalt => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachSalt => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachSecurityType => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachSecurityType => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_AttachStatus => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_AttachStatus => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus;
+
+  RustArcIncrementStrongCountFnType
+      get rust_arc_increment_strong_count_NetworkDetails => wire
+          .rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails;
+
+  RustArcDecrementStrongCountFnType
+      get rust_arc_decrement_strong_count_NetworkDetails => wire
+          .rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails;
 
   @protected
   AnyhowException dco_decode_AnyhowException(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return AnyhowException(raw as String);
+  }
+
+  @protected
+  AttachDetails
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachDetailsImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachKey
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachKeyImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachNonce
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachNonceImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachSalt
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachSaltImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachSecurityType
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachSecurityTypeImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachStatus
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachStatusImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  NetworkDetails
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return NetworkDetailsImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachDetails
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachDetailsImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachKey
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachKeyImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachNonce
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachNonceImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachStatus
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachStatusImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  NetworkDetails
+      dco_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return NetworkDetailsImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachDetails
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachDetailsImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachKey
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachKeyImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachNonce
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachNonceImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachSalt
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachSaltImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachSecurityType
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachSecurityTypeImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  AttachStatus
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return AttachStatusImpl.frbInternalDcoDecode(raw as List<dynamic>);
+  }
+
+  @protected
+  NetworkDetails
+      dco_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return NetworkDetailsImpl.frbInternalDcoDecode(raw as List<dynamic>);
   }
 
   @protected
@@ -187,9 +962,60 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  BleUuids dco_decode_ble_uuids(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 5)
+      throw Exception('unexpected arr length: expect 5 but see ${arr.length}');
+    return BleUuids(
+      base: dco_decode_String(arr[0]),
+      status: dco_decode_String(arr[1]),
+      networks: dco_decode_String(arr[2]),
+      nonce: dco_decode_String(arr[3]),
+      attach: dco_decode_String(arr[4]),
+    );
+  }
+
+  @protected
   bool dco_decode_bool(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as bool;
+  }
+
+  @protected
+  AttachDetails
+      dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+        raw);
+  }
+
+  @protected
+  AttachKey
+      dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+        raw);
+  }
+
+  @protected
+  AttachStatus
+      dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+        raw);
+  }
+
+  @protected
+  NetworkDetails
+      dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+        raw);
   }
 
   @protected
@@ -202,6 +1028,16 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   DartUiPage dco_decode_box_autoadd_dart_ui_page(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_dart_ui_page(raw);
+  }
+
+  @protected
+  (
+    AttachSalt,
+    AttachNonce
+  ) dco_decode_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+      dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as (AttachSalt, AttachNonce);
   }
 
   @protected
@@ -267,6 +1103,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  int dco_decode_i_8(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as int;
+  }
+
+  @protected
   List<String> dco_decode_list_String(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return (raw as List<dynamic>).map(dco_decode_String).toList();
@@ -285,15 +1127,109 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  List<int> dco_decode_list_prim_u_8_loose(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as List<int>;
+  }
+
+  @protected
   Uint8List dco_decode_list_prim_u_8_strict(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw as Uint8List;
   }
 
   @protected
+  NetworkSecurityType dco_decode_network_security_type(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return NetworkSecurityType.values[raw as int];
+  }
+
+  @protected
   String? dco_decode_opt_String(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw == null ? null : dco_decode_String(raw);
+  }
+
+  @protected
+  AttachDetails?
+      dco_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null
+        ? null
+        : dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+            raw);
+  }
+
+  @protected
+  AttachKey?
+      dco_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null
+        ? null
+        : dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+            raw);
+  }
+
+  @protected
+  AttachStatus?
+      dco_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null
+        ? null
+        : dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+            raw);
+  }
+
+  @protected
+  NetworkDetails?
+      dco_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null
+        ? null
+        : dco_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+            raw);
+  }
+
+  @protected
+  (
+    AttachSalt,
+    AttachNonce
+  )? dco_decode_opt_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+      dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null
+        ? null
+        : dco_decode_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+            raw);
+  }
+
+  @protected
+  (
+    AttachSalt,
+    AttachNonce
+  ) dco_decode_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+      dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 2) {
+      throw Exception('Expected 2 elements, got ${arr.length}');
+    }
+    return (
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt(
+          arr[0]),
+      dco_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+          arr[1]),
+    );
+  }
+
+  @protected
+  StatusKind dco_decode_status_kind(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return StatusKind.values[raw as int];
   }
 
   @protected
@@ -398,10 +1334,187 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  BigInt dco_decode_usize(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dcoDecodeU64(raw);
+  }
+
+  @protected
   AnyhowException sse_decode_AnyhowException(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var inner = sse_decode_String(deserializer);
     return AnyhowException(inner);
+  }
+
+  @protected
+  AttachDetails
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachDetailsImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachKey
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachKeyImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachNonce
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachNonceImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachSalt
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachSaltImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachSecurityType
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachSecurityTypeImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachStatus
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachStatusImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  NetworkDetails
+      sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return NetworkDetailsImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachDetails
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachDetailsImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachKey
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachKeyImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachNonce
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachNonceImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachStatus
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachStatusImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  NetworkDetails
+      sse_decode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return NetworkDetailsImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachDetails
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachDetailsImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachKey
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachKeyImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachNonce
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachNonceImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachSalt
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachSaltImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachSecurityType
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachSecurityTypeImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  AttachStatus
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return AttachStatusImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
+  }
+
+  @protected
+  NetworkDetails
+      sse_decode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return NetworkDetailsImpl.frbInternalSseDecode(
+        sse_decode_usize(deserializer), sse_decode_i_32(deserializer));
   }
 
   @protected
@@ -419,9 +1532,61 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  BleUuids sse_decode_ble_uuids(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_base = sse_decode_String(deserializer);
+    var var_status = sse_decode_String(deserializer);
+    var var_networks = sse_decode_String(deserializer);
+    var var_nonce = sse_decode_String(deserializer);
+    var var_attach = sse_decode_String(deserializer);
+    return BleUuids(
+        base: var_base,
+        status: var_status,
+        networks: var_networks,
+        nonce: var_nonce,
+        attach: var_attach);
+  }
+
+  @protected
   bool sse_decode_bool(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return deserializer.buffer.getUint8() != 0;
+  }
+
+  @protected
+  AttachDetails
+      sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+        deserializer));
+  }
+
+  @protected
+  AttachKey
+      sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+        deserializer));
+  }
+
+  @protected
+  AttachStatus
+      sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+        deserializer));
+  }
+
+  @protected
+  NetworkDetails
+      sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+        deserializer));
   }
 
   @protected
@@ -435,6 +1600,17 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   DartUiPage sse_decode_box_autoadd_dart_ui_page(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_dart_ui_page(deserializer));
+  }
+
+  @protected
+  (
+    AttachSalt,
+    AttachNonce
+  ) sse_decode_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+        deserializer));
   }
 
   @protected
@@ -502,6 +1678,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  int sse_decode_i_8(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getInt8();
+  }
+
+  @protected
   List<String> sse_decode_list_String(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
 
@@ -534,10 +1716,25 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  List<int> sse_decode_list_prim_u_8_loose(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var len_ = sse_decode_i_32(deserializer);
+    return deserializer.buffer.getUint8List(len_);
+  }
+
+  @protected
   Uint8List sse_decode_list_prim_u_8_strict(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     var len_ = sse_decode_i_32(deserializer);
     return deserializer.buffer.getUint8List(len_);
+  }
+
+  @protected
+  NetworkSecurityType sse_decode_network_security_type(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return NetworkSecurityType.values[inner];
   }
 
   @protected
@@ -549,6 +1746,101 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     } else {
       return null;
     }
+  }
+
+  @protected
+  AttachDetails?
+      sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  AttachKey?
+      sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  AttachStatus?
+      sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  NetworkDetails?
+      sse_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  (
+    AttachSalt,
+    AttachNonce
+  )? sse_decode_opt_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+          deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  (
+    AttachSalt,
+    AttachNonce
+  ) sse_decode_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_field0 =
+        sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt(
+            deserializer);
+    var var_field1 =
+        sse_decode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+            deserializer);
+    return (var_field0, var_field1);
+  }
+
+  @protected
+  StatusKind sse_decode_status_kind(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return StatusKind.values[inner];
   }
 
   @protected
@@ -647,10 +1939,199 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  BigInt sse_decode_usize(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return deserializer.buffer.getBigUint64();
+  }
+
+  @protected
   void sse_encode_AnyhowException(
       AnyhowException self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_String(self.message, serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          AttachDetails self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachDetailsImpl).frbInternalSseEncode(move: true),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          AttachKey self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachKeyImpl).frbInternalSseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+          AttachNonce self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachNonceImpl).frbInternalSseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt(
+          AttachSalt self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachSaltImpl).frbInternalSseEncode(move: true), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType(
+          AttachSecurityType self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachSecurityTypeImpl).frbInternalSseEncode(move: true),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          AttachStatus self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachStatusImpl).frbInternalSseEncode(move: true),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          NetworkDetails self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as NetworkDetailsImpl).frbInternalSseEncode(move: true),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          AttachDetails self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachDetailsImpl).frbInternalSseEncode(move: false),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          AttachKey self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachKeyImpl).frbInternalSseEncode(move: false), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+          AttachNonce self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachNonceImpl).frbInternalSseEncode(move: false),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          AttachStatus self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachStatusImpl).frbInternalSseEncode(move: false),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_Auto_Ref_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          NetworkDetails self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as NetworkDetailsImpl).frbInternalSseEncode(move: false),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          AttachDetails self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachDetailsImpl).frbInternalSseEncode(move: null),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          AttachKey self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachKeyImpl).frbInternalSseEncode(move: null), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+          AttachNonce self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachNonceImpl).frbInternalSseEncode(move: null), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt(
+          AttachSalt self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachSaltImpl).frbInternalSseEncode(move: null), serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSecurityType(
+          AttachSecurityType self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachSecurityTypeImpl).frbInternalSseEncode(move: null),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          AttachStatus self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as AttachStatusImpl).frbInternalSseEncode(move: null),
+        serializer);
+  }
+
+  @protected
+  void
+      sse_encode_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          NetworkDetails self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_usize(
+        (self as NetworkDetailsImpl).frbInternalSseEncode(move: null),
+        serializer);
   }
 
   @protected
@@ -673,9 +2154,55 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_ble_uuids(BleUuids self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_String(self.base, serializer);
+    sse_encode_String(self.status, serializer);
+    sse_encode_String(self.networks, serializer);
+    sse_encode_String(self.nonce, serializer);
+    sse_encode_String(self.attach, serializer);
+  }
+
+  @protected
   void sse_encode_bool(bool self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     serializer.buffer.putUint8(self ? 1 : 0);
+  }
+
+  @protected
+  void
+      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          AttachDetails self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+        self, serializer);
+  }
+
+  @protected
+  void
+      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          AttachKey self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+        self, serializer);
+  }
+
+  @protected
+  void
+      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          AttachStatus self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+        self, serializer);
+  }
+
+  @protected
+  void
+      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          NetworkDetails self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+        self, serializer);
   }
 
   @protected
@@ -690,6 +2217,15 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       DartUiPage self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_dart_ui_page(self, serializer);
+  }
+
+  @protected
+  void
+      sse_encode_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+          (AttachSalt, AttachNonce) self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+        self, serializer);
   }
 
   @protected
@@ -745,6 +2281,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_i_8(int self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putInt8(self);
+  }
+
+  @protected
   void sse_encode_list_String(List<String> self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_i_32(self.length, serializer);
@@ -772,11 +2314,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_list_prim_u_8_loose(
+      List<int> self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.length, serializer);
+    serializer.buffer
+        .putUint8List(self is Uint8List ? self : Uint8List.fromList(self));
+  }
+
+  @protected
   void sse_encode_list_prim_u_8_strict(
       Uint8List self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_i_32(self.length, serializer);
     serializer.buffer.putUint8List(self);
+  }
+
+  @protected
+  void sse_encode_network_security_type(
+      NetworkSecurityType self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
   }
 
   @protected
@@ -787,6 +2345,88 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     if (self != null) {
       sse_encode_String(self, serializer);
     }
+  }
+
+  @protected
+  void
+      sse_encode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          AttachDetails? self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachDetails(
+          self, serializer);
+    }
+  }
+
+  @protected
+  void
+      sse_encode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          AttachKey? self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachKey(
+          self, serializer);
+    }
+  }
+
+  @protected
+  void
+      sse_encode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          AttachStatus? self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachStatus(
+          self, serializer);
+    }
+  }
+
+  @protected
+  void
+      sse_encode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          NetworkDetails? self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerNetworkDetails(
+          self, serializer);
+    }
+  }
+
+  @protected
+  void
+      sse_encode_opt_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+          (AttachSalt, AttachNonce)? self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+          self, serializer);
+    }
+  }
+
+  @protected
+  void
+      sse_encode_record_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_salt_auto_owned_rust_opaque_flutter_rust_bridgefor_generated_rust_auto_opaque_inner_attach_nonce(
+          (AttachSalt, AttachNonce) self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachSalt(
+        self.$1, serializer);
+    sse_encode_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerAttachNonce(
+        self.$2, serializer);
+  }
+
+  @protected
+  void sse_encode_status_kind(StatusKind self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
   }
 
   @protected
@@ -876,4 +2516,176 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void sse_encode_unit(void self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
   }
+
+  @protected
+  void sse_encode_usize(BigInt self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    serializer.buffer.putBigUint64(self);
+  }
+}
+
+@sealed
+class AttachDetailsImpl extends RustOpaque implements AttachDetails {
+  // Not to be used by end users
+  AttachDetailsImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  AttachDetailsImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_AttachDetails,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AttachDetails,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AttachDetailsPtr,
+  );
+
+  Uint8List pack({required AttachKey key, required AttachNonce nonce}) =>
+      RustLib.instance.api
+          .crateApiAttachAttachDetailsPack(that: this, key: key, nonce: nonce);
+}
+
+@sealed
+class AttachKeyImpl extends RustOpaque implements AttachKey {
+  // Not to be used by end users
+  AttachKeyImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  AttachKeyImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_AttachKey,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AttachKey,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AttachKeyPtr,
+  );
+}
+
+@sealed
+class AttachNonceImpl extends RustOpaque implements AttachNonce {
+  // Not to be used by end users
+  AttachNonceImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  AttachNonceImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_AttachNonce,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AttachNonce,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AttachNoncePtr,
+  );
+}
+
+@sealed
+class AttachSaltImpl extends RustOpaque implements AttachSalt {
+  // Not to be used by end users
+  AttachSaltImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  AttachSaltImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_AttachSalt,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AttachSalt,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AttachSaltPtr,
+  );
+}
+
+@sealed
+class AttachSecurityTypeImpl extends RustOpaque implements AttachSecurityType {
+  // Not to be used by end users
+  AttachSecurityTypeImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  AttachSecurityTypeImpl.frbInternalSseDecode(
+      BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_AttachSecurityType,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AttachSecurityType,
+    rustArcDecrementStrongCountPtr: RustLib
+        .instance.api.rust_arc_decrement_strong_count_AttachSecurityTypePtr,
+  );
+}
+
+@sealed
+class AttachStatusImpl extends RustOpaque implements AttachStatus {
+  // Not to be used by end users
+  AttachStatusImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  AttachStatusImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_AttachStatus,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AttachStatus,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_AttachStatusPtr,
+  );
+
+  StatusKind kind() => RustLib.instance.api.crateApiAttachAttachStatusKind(
+        that: this,
+      );
+
+  String text() => RustLib.instance.api.crateApiAttachAttachStatusText(
+        that: this,
+      );
+}
+
+@sealed
+class NetworkDetailsImpl extends RustOpaque implements NetworkDetails {
+  // Not to be used by end users
+  NetworkDetailsImpl.frbInternalDcoDecode(List<dynamic> wire)
+      : super.frbInternalDcoDecode(wire, _kStaticData);
+
+  // Not to be used by end users
+  NetworkDetailsImpl.frbInternalSseDecode(BigInt ptr, int externalSizeOnNative)
+      : super.frbInternalSseDecode(ptr, externalSizeOnNative, _kStaticData);
+
+  static final _kStaticData = RustArcStaticData(
+    rustArcIncrementStrongCount:
+        RustLib.instance.api.rust_arc_increment_strong_count_NetworkDetails,
+    rustArcDecrementStrongCount:
+        RustLib.instance.api.rust_arc_decrement_strong_count_NetworkDetails,
+    rustArcDecrementStrongCountPtr:
+        RustLib.instance.api.rust_arc_decrement_strong_count_NetworkDetailsPtr,
+  );
+
+  NetworkSecurityType secType() =>
+      RustLib.instance.api.crateApiAttachNetworkDetailsSecType(
+        that: this,
+      );
+
+  Uint8List ssid() => RustLib.instance.api.crateApiAttachNetworkDetailsSsid(
+        that: this,
+      );
+
+  int strength() => RustLib.instance.api.crateApiAttachNetworkDetailsStrength(
+        that: this,
+      );
 }

@@ -9,9 +9,9 @@ import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
 Stream<ToUi> initRust({required String configPath}) =>
-    RustLib.instance.api.crateApiSimpleInitRust(configPath: configPath);
+    RustLib.instance.api.crateApiMainInitRust(configPath: configPath);
 
 void write({required ToProcessor msg}) =>
-    RustLib.instance.api.crateApiSimpleWrite(msg: msg);
+    RustLib.instance.api.crateApiMainWrite(msg: msg);
 
-Future<bool> initLogging() => RustLib.instance.api.crateApiSimpleInitLogging();
+Future<bool> initLogging() => RustLib.instance.api.crateApiMainInitLogging();

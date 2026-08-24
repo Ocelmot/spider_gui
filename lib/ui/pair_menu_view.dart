@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spider_gui/src/rust/api/simple.dart';
+import 'package:spider_gui/src/rust/api/main.dart';
 import 'package:spider_gui/src/rust/dart_spider/link.dart';
 
 class PairMenuView extends StatelessWidget {

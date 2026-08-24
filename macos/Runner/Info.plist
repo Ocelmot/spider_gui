@@ -28,5 +28,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Spider uses Bluetooth to provide a base unit with wifi credentials as needed.</string>
 </dict>
 </plist>

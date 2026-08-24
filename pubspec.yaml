@@ -45,6 +45,8 @@ dependencies:
   async: ^2.11.0
   qr_flutter: ^4.1.0
   mobile_scanner: ^7.1.4
+  flutter_blue_plus: ^2.3.11
+  collection: ^1.19.1
 
 dev_dependencies:
   flutter_test:
@@ -130,6 +132,6 @@ msix_config:
   display_name: Spider
   publisher_display_name: Chrys Adams
   identity_name: Ocelmot.Prod.Spider
-  msix_version: 1.0.0.4
+  msix_version: 1.0.0.5
   logo_path: "assets/spider_logo.png"
-  capabilities: internetClient, privateNetworkClientServer 
+  capabilities: internetClient, privateNetworkClientServer, bluetooth

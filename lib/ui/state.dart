@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:spider_gui/src/rust/api/simple.dart';
+import 'package:spider_gui/src/rust/api/main.dart';
 import 'package:spider_gui/src/rust/dart_spider/link.dart';
 import 'package:spider_gui/src/rust/dart_spider/ui.dart';
+import 'package:spider_gui/ui/hardware_setup/bluetooth_selector.dart';
 import 'package:spider_gui/ui/show_accept_invite.dart';
 import 'package:spider_gui/ui/show_error_overlay.dart';
 import 'package:spider_gui/ui/show_invite_overlay.dart';
@@ -212,6 +213,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () => {
                   Future.delayed(const Duration(seconds: 0),
                       () => {acceptInviteOverlayBuilder(context)})
+                },
+              ),
+              PopupMenuItem(
+                child: const Text("Setup Hardware"),
+                onTap: () => {
+                  Future.delayed(
+                      const Duration(seconds: 0),
+                      () => {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  const BluetoothSelectorPage(),
+                            ))
+                          })
                 },
               )
             ],

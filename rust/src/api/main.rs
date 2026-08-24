@@ -89,9 +89,6 @@ pub fn init_logging() -> bool {
         
     }
 
-    // #[cfg(wasm)]
-    // let _ = crate::misc::web_utils::WebConsoleLogger::init();
-
     // Any tracing events should be emitted as logs instead
     logging_trace::LoggingTrace::register();
 

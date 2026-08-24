@@ -1,5 +1,6 @@
 //
-// Do not put code in `mod.rs`, but put in e.g. `simple.rs`.
+// Do not put code in `mod.rs` put submodules instead.
 //
 
-pub mod simple;
+pub mod main;
+pub mod attach;
