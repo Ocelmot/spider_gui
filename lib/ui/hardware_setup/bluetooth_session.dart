@@ -27,7 +27,7 @@ class BluetoothSession {
   Stream<bool> get connected => _connectedCtl.stream;
 
   Future<void> open() async {
-    await device.connect(license: License.nonprofit, mtu: 1024);
+    await device.connect(license: License.nonprofit, mtu: 517);
     await _setup();
     _wasConnected = true;
 
